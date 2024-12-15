@@ -4,6 +4,10 @@ from bs4 import BeautifulSoup
 import asyncio
 from dotenv import load_dotenv
 import os
+import logging
+
+# Configurer le logging
+logging.basicConfig(level=logging.INFO)
 
 # Charger les variables d'environnement depuis le fichier .env
 load_dotenv()
@@ -20,11 +24,18 @@ TWITCH_USERNAME = os.getenv('TWITCH_USERNAME')
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 
-# NEWS
+# Utiliser une session HTTP pour réutiliser les connexions
+session = requests.Session()
 
+# Cache pour les news et les streams
+news_cache = set()
+stream_cache = set()
+
+# NEWS
 async def fetch_swtor_news():
     url = 'https://www.swtor.com/fr/info/news'
-    response = requests.get(url)
+    response = session.get(url)
+    response.raise_for_status()
     soup = BeautifulSoup(response.content, 'html.parser')
 
     news_items = []
@@ -33,38 +44,38 @@ async def fetch_swtor_news():
         title = article.find('h2').text.strip()
         description = article.find('span', class_='newsDesc').text.strip()
         link = article.find('a')['href']
-        full_link = base_url + link  
+        full_link = base_url + link
         image_tag = article.find('img')
         image_url = base_url + image_tag['src'] if image_tag else None
         news_items.append({'title': title, 'description': description, 'link': full_link, 'image_url': image_url})
 
     return news_items
 
-
-
 async def send_news_to_channel(channel_id, news_items):
     channel = client.get_channel(channel_id)
     if channel:
         for item in news_items:
-            embed = discord.Embed(
-                title=item['title'],
-                url=item['link'],
-                description=item['description'],
-                color=discord.Color.blue()
-            )
-            embed.set_author(name="SWTOR News")
-            embed.set_footer(text="SWTOR News", icon_url="https://www.swtor.com/favicon.ico")
-            if item['image_url']:
-                embed.set_image(url=item['image_url'])
-            embed.add_field(name="Lien", value=f"[Lire plus]({item['link']})", inline=False)
-            try:
-                await channel.send(embed=embed)
-            except discord.errors.Forbidden:
-                print(f"Le bot n'a pas les permissions nécessaires pour envoyer des messages dans le canal {channel_id}.")
-            except discord.errors.HTTPException as e:
-                print(f"Erreur HTTP lors de l'envoi du message : {e}")
-            except Exception as e:
-                print(f"Erreur inattendue : {e}")
+            if item['link'] not in news_cache:
+                embed = discord.Embed(
+                    title=item['title'],
+                    url=item['link'],
+                    description=item['description'],
+                    color=discord.Color.blue()
+                )
+                embed.set_author(name="SWTOR News")
+                embed.set_footer(text="SWTOR News", icon_url="https://www.swtor.com/favicon.ico")
+                if item['image_url']:
+                    embed.set_image(url=item['image_url'])
+                embed.add_field(name="Lien", value=f"[Lire plus]({item['link']})", inline=False)
+                try:
+                    await channel.send(embed=embed)
+                    news_cache.add(item['link'])
+                except discord.errors.Forbidden:
+                    logging.error(f"Le bot n'a pas les permissions nécessaires pour envoyer des messages dans le canal {channel_id}.")
+                except discord.errors.HTTPException as e:
+                    logging.error(f"Erreur HTTP lors de l'envoi du message : {e}")
+                except Exception as e:
+                    logging.error(f"Erreur inattendue : {e}")
 
 # STREAM
 async def get_twitch_access_token():
@@ -74,7 +85,7 @@ async def get_twitch_access_token():
         'client_secret': TWITCH_CLIENT_SECRET,
         'grant_type': 'client_credentials'
     }
-    response = requests.post(url, params=params)
+    response = session.post(url, params=params)
     response.raise_for_status()
     data = response.json()
     return data['access_token']
@@ -85,7 +96,7 @@ async def check_twitch_stream(username, access_token):
         'Client-ID': TWITCH_CLIENT_ID,
         'Authorization': f'Bearer {access_token}'
     }
-    response = requests.get(url, headers=headers)
+    response = session.get(url, headers=headers)
     response.raise_for_status()
     data = response.json()
     return data['data']
@@ -106,24 +117,34 @@ async def send_stream_announcement(channel_id, stream_info):
         embed.set_footer(text="Regardez le stream maintenant !")
         try:
             await channel.send(embed=embed)
+            stream_cache.add(stream_info['id'])
         except discord.errors.Forbidden:
-            print(f"Le bot n'a pas les permissions nécessaires pour envoyer des messages dans le canal {channel_id}.")
+            logging.error(f"Le bot n'a pas les permissions nécessaires pour envoyer des messages dans le canal {channel_id}.")
         except discord.errors.HTTPException as e:
-            print(f"Erreur HTTP lors de l'envoi du message : {e}")
+            logging.error(f"Erreur HTTP lors de l'envoi du message : {e}")
         except Exception as e:
-            print(f"Erreur inattendue : {e}")
+            logging.error(f"Erreur inattendue : {e}")
 
-@client.event
-async def on_ready():
-    print(f'We have logged in as {client.user}')
-    access_token = await get_twitch_access_token()
+async def check_news():
+    await client.wait_until_ready()
     while True:
         news_items = await fetch_swtor_news()
         await send_news_to_channel(CHANNEL_ID, news_items)
         await asyncio.sleep(3600)  # Attendre 1 heure avant de récupérer les news à nouveau
+
+async def check_streams():
+    await client.wait_until_ready()
+    access_token = await get_twitch_access_token()
+    while True:
         stream_info = await check_twitch_stream(TWITCH_USERNAME, access_token)
-        if stream_info:
+        if stream_info and stream_info[0]['id'] not in stream_cache:
             await send_stream_announcement(SOCIAL_ID, stream_info[0])
         await asyncio.sleep(60)  # Vérifier toutes les minutes
+
+@client.event
+async def on_ready():
+    print(f'We have logged in as {client.user}')
+    client.loop.create_task(check_news())
+    client.loop.create_task(check_streams())
 
 client.run(TOKEN)
