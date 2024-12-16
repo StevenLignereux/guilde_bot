@@ -358,16 +358,48 @@ async def on_member_join(member):
             background = Image.open(WELCOME_IMAGE_PATH)
             draw = ImageDraw.Draw(background)
             # Vous pouvez changer la police et la taille
-            font = ImageFont.truetype(FONT_PATH, 40)
+            font = ImageFont.truetype(FONT_PATH, 100)
 
-            # Ajouter du texte à l'image
+            # Charger l'avatar de l'utilisateur
+            avatar_url = member.avatar.url if member.avatar else "https://via.placeholder.com/150"
+            response = requests.get(avatar_url)
+            avatar_image = Image.open(BytesIO(response.content))
+
+            # Redimensionner l'avatar
+            avatar_size = 475  # Taille souhaitée pour l'avatar
+            avatar_image = avatar_image.resize((avatar_size, avatar_size), Image.LANCZOS)
+
+            # Créer un masque circulaire
+            mask = Image.new('L', (avatar_size, avatar_size), 0)
+            draw_mask = ImageDraw.Draw(mask)
+            draw_mask.ellipse((0, 0, avatar_size, avatar_size), fill=255)
+
+            # Appliquer le masque à l'avatar
+            avatar_image.putalpha(mask)
+
+            # Position de l'avatar sur l'image de fond
+            avatar_position = (60, 70)  # Coordonnées (x, y) pour placer l'avatar
+            background.paste(avatar_image, avatar_position, avatar_image)
+
+                        # Ajouter du texte à l'image
             welcome_text = f"Bienvenue {member.name} !"
+            font_size = 40  # Taille initiale de la police
+            font = ImageFont.truetype(FONT_PATH, font_size)
+
+            # Ajuster la taille de la police en fonction de la taille du texte
             bbox = draw.textbbox((0, 0), welcome_text, font=font)
             text_width = bbox[2] - bbox[0]
             text_height = bbox[3] - bbox[1]
-            width, height = background.size
-            x = (width - text_width) / 2
-            y = (height - text_height) / 2
+            while text_width > background.width - 20 or text_height > background.height - 20:
+                font_size -= 1
+                font = ImageFont.truetype(FONT_PATH, font_size)
+                bbox = draw.textbbox((0, 0), welcome_text, font=font)
+                text_width = bbox[2] - bbox[0]
+                text_height = bbox[3] - bbox[1]
+
+            # Calculer les coordonnées pour centrer le texte
+            x = (background.width - text_width) / 2
+            y = (background.height - text_height) / 2
             draw.text((x, y), welcome_text, font=font, fill="white")
 
             # Sauvegarder l'image dans un objet BytesIO
@@ -384,14 +416,7 @@ async def on_member_join(member):
                 description=f"Bienvenue sur le serveur, {member.mention} ! Nous sommes ravis de t'avoir parmi nous.",
                 color=discord.Color.green()
             )
-            embed.set_thumbnail(
-                url=member.avatar.url if member.avatar else "https://via.placeholder.com/150")
             embed.set_image(url=f"attachment://{file.filename}")
-            embed.add_field(name="Nom d'utilisateur",
-                            value=member.name, inline=True)
-            embed.add_field(name="ID", value=member.id, inline=True)
-            embed.add_field(name="Date de création du compte", value=member.created_at.strftime(
-                "%Y-%m-%d %H:%M:%S"), inline=False)
             embed.set_footer(text="Amuse-toi bien sur le serveur !")
 
             try:
