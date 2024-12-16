@@ -5,6 +5,7 @@ import asyncio
 from dotenv import load_dotenv
 import os
 import logging
+from keep_alive import keep_alive
 
 # Configurer le logging
 logging.basicConfig(level=logging.INFO)
@@ -147,4 +148,5 @@ async def on_ready():
     client.loop.create_task(check_news())
     client.loop.create_task(check_streams())
 
+keep_alive()
 client.run(TOKEN)
