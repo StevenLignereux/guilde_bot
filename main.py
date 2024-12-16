@@ -381,9 +381,9 @@ async def on_member_join(member):
             avatar_position = (60, 70)  # Coordonnées (x, y) pour placer l'avatar
             background.paste(avatar_image, avatar_position, avatar_image)
 
-                        # Ajouter du texte à l'image
-            welcome_text = f"Bienvenue {member.name} !"
-            font_size = 40  # Taille initiale de la police
+            # Ajouter du texte à l'image
+            welcome_text = f"Bienvenue\n sur le serveur discord\n La Flotte exilée !"
+            font_size = 110  # Taille initiale de la police
             font = ImageFont.truetype(FONT_PATH, font_size)
 
             # Ajuster la taille de la police en fonction de la taille du texte
