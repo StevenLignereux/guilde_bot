@@ -388,20 +388,20 @@ async def on_member_join(member):
             font = ImageFont.truetype(FONT_PATH, font_size)
 
             # Ajuster la taille de la police en fonction de la taille du texte
-            bbox = draw.textbbox((0, 0), welcome_text, font=font)
+            bbox = draw.textbbox((0, 0), welcome_text, font=font, align="center")
             text_width = bbox[2] - bbox[0]
             text_height = bbox[3] - bbox[1]
             while text_width > background.width - 20 or text_height > background.height - 20:
                 font_size -= 1
                 font = ImageFont.truetype(FONT_PATH, font_size)
-                bbox = draw.textbbox((0, 0), welcome_text, font=font)
+                bbox = draw.textbbox((0, 0), welcome_text, font=font, align="center")
                 text_width = bbox[2] - bbox[0]
                 text_height = bbox[3] - bbox[1]
 
             # Calculer les coordonnées pour positionner le texte à gauche de l'avatar
-            x = avatar_position[0] + avatar_size + 150
+            x = avatar_position[0] + avatar_size + 130
             y = (background.height - text_height) / 2
-            draw.text((x, y), welcome_text, font=font, fill="white")
+            draw.text((x, y), welcome_text, font=font, fill="white", align="center")
 
             # Ajouter une bordure au texte
             border_color = "black"
@@ -409,14 +409,13 @@ async def on_member_join(member):
             for dx in range(-border_size, border_size + 1):
                 for dy in range(-border_size, border_size + 1):
                     draw.text((x + dx, y + dy), welcome_text,
-                              font=font, fill=border_color)
+                              font=font, fill=border_color, align="center")
 
             # Ajouter une ombre au texte
             shadow_color = "#fefaf9"
             shadow_offset = 2
             draw.text((x + shadow_offset, y + shadow_offset),
-                      welcome_text, font=font, fill=shadow_color)
-
+                      welcome_text, font=font, fill=shadow_color, align="center")
 
             # Sauvegarder l'image dans un objet BytesIO
             buffer = BytesIO()
