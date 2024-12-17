@@ -129,25 +129,21 @@ async def send_stream_announcement(channel_id, stream_info):
             description=stream_info['title'],
             color=discord.Color.purple()
         )
-        embed.set_author(
-            name=stream_info['user_name'], icon_url=stream_info['profile_image_url'])
-        embed.set_thumbnail(
-            url=stream_info['thumbnail_url'].format(width=320, height=180))
-        embed.add_field(
-            name="Jeu", value=stream_info['game_name'], inline=False)
-        embed.add_field(
-            name="Vues", value=stream_info['viewer_count'], inline=False)
+        embed.set_author(name=stream_info['user_name'], icon_url=stream_info['profile_image_url'])
+        embed.set_thumbnail(url=stream_info['thumbnail_url'].format(width=320, height=180))
+        embed.add_field(name="Jeu", value=stream_info['game_name'], inline=False)
+        embed.add_field(name="Vues", value=stream_info['viewer_count'], inline=False)
         embed.set_footer(text="Regardez le stream maintenant !")
         try:
             await channel.send(embed=embed)
             stream_cache.add(stream_info['id'])
         except discord.errors.Forbidden:
-            logging.error(
-                f"Le bot n'a pas les permissions nécessaires pour envoyer des messages dans le canal {channel_id}.")
+            logging.error(f"Le bot n'a pas les permissions nécessaires pour envoyer des messages dans le canal {channel_id}.")
         except discord.errors.HTTPException as e:
             logging.error(f"Erreur HTTP lors de l'envoi du message : {e}")
         except Exception as e:
             logging.error(f"Erreur inattendue : {e}")
+
 
 
 async def check_news():
@@ -176,6 +172,7 @@ async def on_ready():
     client.loop.create_task(check_streams())
 
 
+@client.event
 async def on_member_join(member):
     channel = client.get_channel(WELCOME_CHANNEL_ID)
     if channel:
@@ -280,6 +277,7 @@ async def on_member_join(member):
         else:
             logging.error(
                 f"Le fichier de police n'a pas été trouvé à l'emplacement : {FONT_PATH}")
+
 
 # keep_alive()
 client.run(TOKEN)
