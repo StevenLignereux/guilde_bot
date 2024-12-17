@@ -260,7 +260,7 @@ async def on_member_join(member):
             embed = discord.Embed(
                 title=f"Bienvenue {member.name} !",
                 description=f"Bienvenue sur le serveur, {
-                    member.mention} ! Nous sommes ravis de t'avoir parmi nous.",
+                    member.mention} ! Nous sommes ravis de ta présence.",
                 color=discord.Color.green()
             )
             embed.set_image(url=f"attachment://{file.filename}")
