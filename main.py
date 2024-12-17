@@ -5,7 +5,6 @@ import asyncio
 from dotenv import load_dotenv
 import os
 import logging
-from keep_alive import keep_alive
 from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
 
@@ -382,7 +381,7 @@ async def on_member_join(member):
             background.paste(avatar_image, avatar_position, avatar_image)
 
             # Ajouter du texte à l'image
-            welcome_text = f"Bienvenue\n sur le serveur discord\n La Flotte exilée !"
+            welcome_text = f"Bienvenue \nsur le serveur discord \nLa Flotte exilée !"
             font_size = 110  # Taille initiale de la police
             font = ImageFont.truetype(FONT_PATH, font_size)
 
@@ -397,8 +396,8 @@ async def on_member_join(member):
                 text_width = bbox[2] - bbox[0]
                 text_height = bbox[3] - bbox[1]
 
-            # Calculer les coordonnées pour centrer le texte
-            x = (background.width - text_width) / 2
+             # Calculer les coordonnées pour positionner le texte à gauche de l'avatar
+            x = avatar_position[0] + avatar_size + 150  
             y = (background.height - text_height) / 2
             draw.text((x, y), welcome_text, font=font, fill="white")
 
