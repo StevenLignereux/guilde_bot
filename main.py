@@ -366,7 +366,8 @@ async def on_member_join(member):
 
             # Redimensionner l'avatar
             avatar_size = 475  # Taille souhaitée pour l'avatar
-            avatar_image = avatar_image.resize((avatar_size, avatar_size), Image.LANCZOS)
+            avatar_image = avatar_image.resize(
+                (avatar_size, avatar_size), Image.LANCZOS)
 
             # Créer un masque circulaire
             mask = Image.new('L', (avatar_size, avatar_size), 0)
@@ -377,7 +378,8 @@ async def on_member_join(member):
             avatar_image.putalpha(mask)
 
             # Position de l'avatar sur l'image de fond
-            avatar_position = (60, 70)  # Coordonnées (x, y) pour placer l'avatar
+            # Coordonnées (x, y) pour placer l'avatar
+            avatar_position = (60, 70)
             background.paste(avatar_image, avatar_position, avatar_image)
 
             # Ajouter du texte à l'image
@@ -396,17 +398,25 @@ async def on_member_join(member):
                 text_width = bbox[2] - bbox[0]
                 text_height = bbox[3] - bbox[1]
 
-             # Calculer les coordonnées pour positionner le texte à gauche de l'avatar
-            x = avatar_position[0] + avatar_size + 150  
+            # Calculer les coordonnées pour positionner le texte à gauche de l'avatar
+            x = avatar_position[0] + avatar_size + 150
             y = (background.height - text_height) / 2
             draw.text((x, y), welcome_text, font=font, fill="white")
 
-             # Ajouter une bordure au texte
-            border_color = "#Fefee2"
+            # Ajouter une bordure au texte
+            border_color = "black"
             border_size = 2
             for dx in range(-border_size, border_size + 1):
                 for dy in range(-border_size, border_size + 1):
-                    draw.text((x + dx, y + dy), welcome_text, font=font, fill=border_color)
+                    draw.text((x + dx, y + dy), welcome_text,
+                              font=font, fill=border_color)
+
+            # Ajouter une ombre au texte
+            shadow_color = "#fefaf9"
+            shadow_offset = 2
+            draw.text((x + shadow_offset, y + shadow_offset),
+                      welcome_text, font=font, fill=shadow_color)
+
 
             # Sauvegarder l'image dans un objet BytesIO
             buffer = BytesIO()
@@ -419,7 +429,8 @@ async def on_member_join(member):
             # Créer l'embed de bienvenue
             embed = discord.Embed(
                 title=f"Bienvenue {member.name} !",
-                description=f"Bienvenue sur le serveur, {member.mention} ! Nous sommes ravis de t'avoir parmi nous.",
+                description=f"Bienvenue sur le serveur, {
+                    member.mention} ! Nous sommes ravis de t'avoir parmi nous.",
                 color=discord.Color.green()
             )
             embed.set_image(url=f"attachment://{file.filename}")
