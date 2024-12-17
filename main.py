@@ -401,6 +401,13 @@ async def on_member_join(member):
             y = (background.height - text_height) / 2
             draw.text((x, y), welcome_text, font=font, fill="white")
 
+             # Ajouter une bordure au texte
+            border_color = "#Fefee2"
+            border_size = 2
+            for dx in range(-border_size, border_size + 1):
+                for dy in range(-border_size, border_size + 1):
+                    draw.text((x + dx, y + dy), welcome_text, font=font, fill=border_color)
+
             # Sauvegarder l'image dans un objet BytesIO
             buffer = BytesIO()
             background.save(buffer, format="PNG")
