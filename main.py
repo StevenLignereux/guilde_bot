@@ -7,7 +7,7 @@ import os
 import logging
 from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
-from keep_alive import keep_alive
+
 
 # Configurer le logging
 logging.basicConfig(level=logging.INFO)
@@ -274,5 +274,4 @@ async def on_member_join(member):
                 f"Le fichier de police n'a pas été trouvé à l'emplacement : {FONT_PATH}")
 
 
-keep_alive()
 client.run(TOKEN)
