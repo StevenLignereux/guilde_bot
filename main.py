@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 import logging
 from discord.ext import commands
+from keep_alive import keep_alive
 
 # Configurer le logging
 LOG_LEVEL = logging.INFO
@@ -44,6 +45,7 @@ async def main():
     await bot.load_extension('cogs.streams')
 
     # Démarrer le bot
+    keep_alive()
     await bot.start(TOKEN)
 
 # Exécuter la fonction principale
