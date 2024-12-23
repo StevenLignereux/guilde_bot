@@ -8,25 +8,32 @@ import logging
 from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
 
-
 # Configurer le logging
-logging.basicConfig(level=logging.INFO)
+LOG_LEVEL = logging.INFO
+logging.basicConfig(level=LOG_LEVEL)
 
 # Charger les variables d'environnement depuis le fichier .env
 load_dotenv()
 
+# Fonction pour récupérer les variables d'environnement
+def get_env_variable(name, default=None, required=True):
+    value = os.getenv(name, default)
+    if required and value is None:
+        logging.error(f"La variable d'environnement {name} est manquante.")
+        raise EnvironmentError(f"La variable d'environnement {name} est manquante.")
+    return value
+
 # Récupérer les variables d'environnement
-TOKEN = os.getenv('TOKEN')
-CHANNEL_ID = int(os.getenv('CHANNEL_ID'))
-SOCIAL_ID = int(os.getenv('SOCIAL_ID'))
-OTHER_BOT_COMMAND = os.getenv('OTHER_BOT_COMMAND')
-TWITCH_CLIENT_ID = os.getenv('TWITCH_CLIENT_ID')
-TWITCH_CLIENT_SECRET = os.getenv('TWITCH_CLIENT_SECRET')
-TWITCH_USERNAME = os.getenv('TWITCH_USERNAME')
-WELCOME_CHANNEL_ID = int(os.getenv('WELCOME_CHANNEL_ID'))
-# Chemin vers l'image de fond locale
-WELCOME_IMAGE_PATH = os.getenv('WELCOME_IMAGE_PATH')
-FONT_PATH = os.getenv('FONT_PATH')
+TOKEN = get_env_variable('TOKEN')
+CHANNEL_ID = int(get_env_variable('CHANNEL_ID'))
+SOCIAL_ID = int(get_env_variable('SOCIAL_ID'))
+OTHER_BOT_COMMAND = get_env_variable('OTHER_BOT_COMMAND', required=False)
+TWITCH_CLIENT_ID = get_env_variable('TWITCH_CLIENT_ID')
+TWITCH_CLIENT_SECRET = get_env_variable('TWITCH_CLIENT_SECRET')
+TWITCH_USERNAME = get_env_variable('TWITCH_USERNAME')
+WELCOME_CHANNEL_ID = int(get_env_variable('WELCOME_CHANNEL_ID'))
+WELCOME_IMAGE_PATH = get_env_variable('WELCOME_IMAGE_PATH')
+FONT_PATH = get_env_variable('FONT_PATH')
 
 intents = discord.Intents.default()
 intents.members = True
