@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 import os
 import logging
 from discord.ext import commands
-from keep_alive import keep_alive
 
 # Configurer le logging
 LOG_LEVEL = logging.INFO
@@ -13,14 +12,17 @@ logging.basicConfig(level=LOG_LEVEL)
 load_dotenv()
 
 # Fonction pour récupérer les variables d'environnement
+
+
 def get_env_variable(name, default=None, required=True):
     value = os.getenv(name, default)
     if required and value is None:
         logging.error(f"La variable d'environnement {name} est manquante.")
-        raise EnvironmentError(f"La variable d'environnement {name} est manquante.")
+        raise EnvironmentError(f"La variable d'environnement {
+                               name} est manquante.")
     return value
 
-# Récupérer les variables d'environnement
+
 TOKEN = get_env_variable('TOKEN')
 CHANNEL_ID = int(get_env_variable('CHANNEL_ID'))
 SOCIAL_ID = int(get_env_variable('SOCIAL_ID'))
@@ -37,6 +39,7 @@ intents.members = True
 intents.message_content = True  # Activer l'intention de contenu des messages
 bot = commands.Bot(command_prefix='!', intents=intents)
 
+
 async def main():
     # Charger les cogs
     await bot.load_extension('cogs.events')
@@ -45,7 +48,6 @@ async def main():
     await bot.load_extension('cogs.streams')
 
     # Démarrer le bot
-    keep_alive()
     await bot.start(TOKEN)
 
 # Exécuter la fonction principale

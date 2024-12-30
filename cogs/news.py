@@ -66,7 +66,7 @@ class News(commands.Cog):
         news_items = await self.fetch_swtor_news()
         await self.send_news_to_channel(ctx.channel, news_items)
 
-    @tasks.loop(minutes=1)
+    @tasks.loop(hours=1)
     async def check_news(self):
         channel_id = int(os.getenv('CHANNEL_ID'))
         channel = self.bot.get_channel(channel_id)
