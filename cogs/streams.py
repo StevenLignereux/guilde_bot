@@ -64,7 +64,7 @@ class Streams(commands.Cog):
 
     @tasks.loop(minutes=5)
     async def check_streams(self):
-        channel_id = int(os.getenv('CHANNEL_ID'))
+        channel_id = int(os.getenv('SOCIAL_ID'))
         twitch_username = os.getenv('TWITCH_USERNAME')
         channel = self.bot.get_channel(channel_id)
         if channel:
