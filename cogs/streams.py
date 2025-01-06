@@ -62,7 +62,7 @@ class Streams(commands.Cog):
                 except Exception as e:
                     logging.error(f"Erreur inattendue : {e}")
 
-    @tasks.loop(hours=2)
+    @tasks.loop(seconds=10)
     async def check_streams(self):
         channel_id = int(os.getenv('SOCIAL_ID'))
         twitch_username = os.getenv('TWITCH_USERNAME')
