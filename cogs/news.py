@@ -6,6 +6,7 @@ import os
 import logging
 
 
+
 class News(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -78,6 +79,5 @@ class News(commands.Cog):
     async def before_check_news(self):
         await self.bot.wait_until_ready()
 
-
-async def setup(bot):
+async def setup(bot):  # Ajout de la fonction setup asynchrone
     await bot.add_cog(News(bot))
