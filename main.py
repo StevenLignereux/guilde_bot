@@ -39,6 +39,8 @@ intents.members = True
 intents.message_content = True
 bot = commands.Bot(command_prefix='/', intents=intents)
 
+
+
 @bot.event
 async def on_ready():
     print(f'Bot connecté en tant que {bot.user}')
@@ -49,7 +51,7 @@ async def on_ready():
         print(f'Erreur lors de la synchronisation des commandes : {e}')
 
 async def main():
-    # Charger les cogs
+    # # Charger les cogs
     await bot.load_extension('cogs.events')
     await bot.load_extension('cogs.commands')
     await bot.load_extension('cogs.tasks')
