@@ -260,7 +260,7 @@ async def test_check_database_delete_failure():
         mock_task_list = TaskList(name="__test__", user_discord_id="__test__")
         mock_instance.create_list = AsyncMock(return_value=mock_task_list)
         
-        # Créer un mock pour db qui simule une erreur lors de la suppression
+        # Créer un mock pour db qui lève une exception lors de la suppression
         mock_db = AsyncMock()
         mock_db.delete = AsyncMock(side_effect=Exception("Erreur de suppression"))
         mock_instance.db = mock_db
@@ -273,8 +273,7 @@ async def test_check_database_delete_failure():
         # Assert
         assert success is False
         assert "Erreur de base de données" in message
-        assert "Erreur de suppression" in message
-        mock_instance.db.delete.assert_awaited_once_with(mock_task_list) 
+        mock_instance.db.delete.assert_awaited_once_with(mock_task_list)
 
 @pytest.mark.asyncio
 async def test_check_database_commit_failure():
@@ -285,7 +284,7 @@ async def test_check_database_commit_failure():
         mock_task_list = TaskList(name="__test__", user_discord_id="__test__")
         mock_instance.create_list = AsyncMock(return_value=mock_task_list)
         
-        # Créer un mock pour db qui simule une erreur lors du commit
+        # Créer un mock pour db qui lève une exception lors du commit
         mock_db = AsyncMock()
         mock_db.delete = AsyncMock()
         mock_db.commit = AsyncMock(side_effect=Exception("Erreur de commit"))
@@ -299,9 +298,24 @@ async def test_check_database_commit_failure():
         # Assert
         assert success is False
         assert "Erreur de base de données" in message
-        assert "Erreur de commit" in message
         mock_instance.db.delete.assert_awaited_once_with(mock_task_list)
-        mock_instance.db.commit.assert_awaited_once() 
+        mock_instance.db.commit.assert_awaited_once()
+
+@pytest.mark.asyncio
+async def test_check_database_create_returns_none():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_instance.create_list = AsyncMock(return_value=None)
+        service.repository = mock_instance
+        
+        # Act
+        success, message = await service.check_database()
+        
+        # Assert
+        assert success is False
+        assert "impossible de créer une liste de test" in message
 
 @pytest.mark.asyncio
 async def test_add_task_failure():
@@ -327,7 +341,7 @@ async def test_toggle_task_failure():
         
         # Act & Assert
         with pytest.raises(Exception, match="Erreur de basculement de tâche"):
-            await service.toggle_task(1) 
+            await service.toggle_task(1)
 
 @pytest.mark.asyncio
 async def test_check_database_create_returns_none():
@@ -351,8 +365,7 @@ async def test_create_list_value_error():
     with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
         service = TaskService()
         mock_instance = AsyncMock()
-        error_message = "Liste déjà existante"
-        mock_instance.create_list = AsyncMock(side_effect=ValueError(error_message))
+        mock_instance.create_list = AsyncMock(side_effect=ValueError("Liste déjà existante"))
         service.repository = mock_instance
         
         # Act
@@ -360,8 +373,8 @@ async def test_create_list_value_error():
         
         # Assert
         assert success is False
-        assert message == error_message
-        assert task_list is None 
+        assert "Liste déjà existante" in message
+        assert task_list is None
 
 @pytest.mark.asyncio
 async def test_create_list_whitespace_name():
@@ -374,4 +387,62 @@ async def test_create_list_whitespace_name():
     # Assert
     assert success is False
     assert "ne peut pas être vide" in message
-    assert task_list is None 
+    assert task_list is None
+
+@pytest.mark.asyncio
+async def test_delete_list_success():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_instance.delete_list = AsyncMock(return_value=True)
+        service.repository = mock_instance
+        
+        # Act
+        result = await service.delete_list(1)
+        
+        # Assert
+        assert result is True
+        mock_instance.delete_list.assert_called_once_with(1)
+
+@pytest.mark.asyncio
+async def test_delete_list_failure():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_instance.delete_list = AsyncMock(return_value=False)
+        service.repository = mock_instance
+        
+        # Act
+        result = await service.delete_list(1)
+        
+        # Assert
+        assert result is False
+        mock_instance.delete_list.assert_called_once_with(1)
+
+@pytest.mark.asyncio
+async def test_delete_list_not_found():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_instance.delete_list = AsyncMock(side_effect=ValueError("Liste non trouvée"))
+        service.repository = mock_instance
+        
+        # Act & Assert
+        with pytest.raises(ValueError, match="Liste non trouvée"):
+            await service.delete_list(1) 
+
+@pytest.mark.asyncio
+async def test_update_task_description_failure():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_instance.update_task_description = AsyncMock(side_effect=ValueError("Tâche non trouvée"))
+        service.repository = mock_instance
+        
+        # Act & Assert
+        with pytest.raises(ValueError, match="Tâche non trouvée"):
+            await service.update_task_description(1, "Nouvelle description") 

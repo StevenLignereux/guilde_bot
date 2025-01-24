@@ -8,8 +8,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class TaskService:
-    def __init__(self):
-        self.repository = TaskRepository()
+    def __init__(self, repository: Optional[TaskRepository] = None):
+        self.repository = repository if repository is not None else TaskRepository()
     
     async def create_list(self, name: str, user_discord_id: str) -> Tuple[bool, str, Optional[TaskList]]:
         try:
@@ -48,8 +48,27 @@ class TaskService:
             if test_list is None:
                 return False, "Erreur de base de données : impossible de créer une liste de test"
             
-            await self.repository.db.delete(test_list)
-            await self.repository.db.commit()
+            try:
+                await self.repository.db.delete(test_list)
+                await self.repository.db.commit()
+            except Exception as e:
+                return False, f"Erreur de base de données : {str(e)}"
+                
             return True, "Base de données opérationnelle"
         except Exception as e:
-            return False, f"Erreur de base de données : {str(e)}" 
+            return False, f"Erreur de base de données : {str(e)}"
+
+    async def delete_list(self, list_id: int) -> bool:
+        """
+        Supprime une liste de tâches et toutes ses tâches associées.
+        
+        Args:
+            list_id: L'identifiant de la liste à supprimer
+            
+        Returns:
+            bool: True si la suppression a réussi, False sinon
+            
+        Raises:
+            ValueError: Si la liste n'existe pas
+        """
+        return await self.repository.delete_list(list_id) 

@@ -35,7 +35,8 @@ class Tasks(commands.Cog):
             ("Créer une liste", "create_list", discord.ButtonStyle.primary),
             ("Afficher mes listes", "view_lists", discord.ButtonStyle.secondary),
             ("Ajouter une tâche", "add_task", discord.ButtonStyle.success),
-            ("Modifier une tâche", "edit_task", discord.ButtonStyle.danger)
+            ("Modifier une tâche", "edit_task", discord.ButtonStyle.danger),
+            ("Supprimer une liste", "delete_list", discord.ButtonStyle.red)
         ]
 
         for label, custom_id, style in buttons:
@@ -62,7 +63,8 @@ class Tasks(commands.Cog):
             "create_list": self.handle_create_list,
             "view_lists": self.handle_view_lists,
             "add_task": self.handle_add_task,
-            "edit_task": self.handle_edit_task
+            "edit_task": self.handle_edit_task,
+            "delete_list": self.handle_delete_list
         }
         custom_id = interaction.data.get("custom_id")
         if handler := handlers.get(custom_id):
@@ -181,6 +183,47 @@ class Tasks(commands.Cog):
         )
         button.callback = lambda i, t=task: self.toggle_task_status(i, t.id)
         return button
+
+    async def handle_delete_list(self, interaction: discord.Interaction):
+        """Gère la suppression d'une liste de tâches."""
+        await interaction.response.defer()
+        
+        user_id = str(interaction.user.id)
+        user_lists = await self.task_service.get_user_lists(user_id)
+        
+        if not user_lists:
+            await interaction.followup.send("Vous n'avez aucune liste à supprimer.")
+            return
+            
+        # Crée un menu déroulant pour sélectionner la liste à supprimer
+        select = discord.ui.Select(
+            placeholder="Choisissez une liste à supprimer",
+            options=[
+                discord.SelectOption(
+                    label=task_list.name,
+                    value=str(task_list.id),
+                    description=f"Liste créée le {task_list.created_at.strftime('%d/%m/%Y')}"
+                )
+                for task_list in user_lists
+            ]
+        )
+        
+        async def select_callback(select_interaction: discord.Interaction):
+            list_id = int(select_interaction.data["values"][0])
+            try:
+                success = await self.task_service.delete_list(list_id)
+                if success:
+                    await select_interaction.response.send_message("✅ Liste supprimée avec succès !")
+                else:
+                    await select_interaction.response.send_message("❌ Erreur lors de la suppression de la liste.")
+            except ValueError as e:
+                await select_interaction.response.send_message(f"❌ Erreur : {str(e)}")
+        
+        select.callback = select_callback
+        view = discord.ui.View()
+        view.add_item(select)
+        
+        await interaction.followup.send("Sélectionnez la liste à supprimer :", view=view)
     # endregion
 
     # region Gestion des Tâches
