@@ -73,6 +73,19 @@ async def test_get_user_lists():
         mock_instance.get_user_lists.assert_called_once_with("123456789")
 
 @pytest.mark.asyncio
+async def test_get_user_lists_failure():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_instance.get_user_lists = AsyncMock(side_effect=Exception("Erreur de récupération des listes"))
+        service.repository = mock_instance
+        
+        # Act & Assert
+        with pytest.raises(Exception, match="Erreur de récupération des listes"):
+            await service.get_user_lists("123456789")
+
+@pytest.mark.asyncio
 async def test_add_task():
     # Arrange
     with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
@@ -237,3 +250,128 @@ async def test_create_list_unexpected_error():
         assert "Une erreur est survenue" in message
         assert task_list is None
         mock_instance.create_list.assert_called_once() 
+
+@pytest.mark.asyncio
+async def test_check_database_delete_failure():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_task_list = TaskList(name="__test__", user_discord_id="__test__")
+        mock_instance.create_list = AsyncMock(return_value=mock_task_list)
+        
+        # Créer un mock pour db qui simule une erreur lors de la suppression
+        mock_db = AsyncMock()
+        mock_db.delete = AsyncMock(side_effect=Exception("Erreur de suppression"))
+        mock_instance.db = mock_db
+        
+        service.repository = mock_instance
+        
+        # Act
+        success, message = await service.check_database()
+        
+        # Assert
+        assert success is False
+        assert "Erreur de base de données" in message
+        assert "Erreur de suppression" in message
+        mock_instance.db.delete.assert_awaited_once_with(mock_task_list) 
+
+@pytest.mark.asyncio
+async def test_check_database_commit_failure():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_task_list = TaskList(name="__test__", user_discord_id="__test__")
+        mock_instance.create_list = AsyncMock(return_value=mock_task_list)
+        
+        # Créer un mock pour db qui simule une erreur lors du commit
+        mock_db = AsyncMock()
+        mock_db.delete = AsyncMock()
+        mock_db.commit = AsyncMock(side_effect=Exception("Erreur de commit"))
+        mock_instance.db = mock_db
+        
+        service.repository = mock_instance
+        
+        # Act
+        success, message = await service.check_database()
+        
+        # Assert
+        assert success is False
+        assert "Erreur de base de données" in message
+        assert "Erreur de commit" in message
+        mock_instance.db.delete.assert_awaited_once_with(mock_task_list)
+        mock_instance.db.commit.assert_awaited_once() 
+
+@pytest.mark.asyncio
+async def test_add_task_failure():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_instance.add_task = AsyncMock(side_effect=Exception("Erreur d'ajout de tâche"))
+        service.repository = mock_instance
+        
+        # Act & Assert
+        with pytest.raises(Exception, match="Erreur d'ajout de tâche"):
+            await service.add_task("Test Task", 1)
+
+@pytest.mark.asyncio
+async def test_toggle_task_failure():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_instance.toggle_task = AsyncMock(side_effect=Exception("Erreur de basculement de tâche"))
+        service.repository = mock_instance
+        
+        # Act & Assert
+        with pytest.raises(Exception, match="Erreur de basculement de tâche"):
+            await service.toggle_task(1) 
+
+@pytest.mark.asyncio
+async def test_check_database_create_returns_none():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_instance.create_list = AsyncMock(return_value=None)
+        service.repository = mock_instance
+        
+        # Act
+        success, message = await service.check_database()
+        
+        # Assert
+        assert success is False
+        assert "impossible de créer une liste de test" in message 
+
+@pytest.mark.asyncio
+async def test_create_list_value_error():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        error_message = "Liste déjà existante"
+        mock_instance.create_list = AsyncMock(side_effect=ValueError(error_message))
+        service.repository = mock_instance
+        
+        # Act
+        success, message, task_list = await service.create_list("Test List", "123456789")
+        
+        # Assert
+        assert success is False
+        assert message == error_message
+        assert task_list is None 
+
+@pytest.mark.asyncio
+async def test_create_list_whitespace_name():
+    # Arrange
+    service = TaskService()
+    
+    # Act
+    success, message, task_list = await service.create_list("   ", "123456789")
+    
+    # Assert
+    assert success is False
+    assert "ne peut pas être vide" in message
+    assert task_list is None 
