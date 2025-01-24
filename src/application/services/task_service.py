@@ -37,6 +37,10 @@ class TaskService:
     async def toggle_task(self, task_id: int) -> Optional[Task]:
         return await self.repository.toggle_task(task_id)
     
+    async def update_task_description(self, task_id: int, new_description: str) -> Optional[Task]:
+        """Met à jour la description d'une tâche."""
+        return await self.repository.update_task_description(task_id, new_description)
+    
     async def check_database(self):
         """Vérifie l'état de la base de données."""
         try:

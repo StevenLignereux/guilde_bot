@@ -6,8 +6,6 @@ import traceback
 from src.application.services.task_service import TaskService
 
 # Structures de données
-user_tasks = {}
-task_id_counter = 1
 selected_lists = {}
 selected_tasks = {}
 
@@ -200,54 +198,56 @@ class Tasks(commands.Cog):
             await self.send_error(interaction)
 
     async def handle_add_task(self, interaction):
-            """Lance l'ajout de tâches"""
-            try:
-                user_id = str(interaction.user.id)
-                lists = user_tasks.get(user_id, {})
-
-                if not lists:
-                    return await interaction.response.send_message("ℹ️ Créez d'abord une liste", ephemeral=True)
-
-                select = Select(placeholder="Choisissez une liste")
-                select.options = [discord.SelectOption(label=name) for name in lists.keys()]
-
-                async def select_callback(interaction):
-                    try:
-                        # Stockage de la liste sélectionnée
-                        selected_lists[str(interaction.user.id)] = interaction.data["values"][0]
-                        
-                        # Création du modal avec custom_id
-                        modal = Modal(title="Ajouter des tâches", custom_id="add_task_modal")
-                        for i in range(1, 6):
-                            modal.add_item(TextInput(
-                                label=f"Tâche {i}",
-                                placeholder="[Optionnel]",
-                                required=False,
-                                custom_id=f"task_{i}"  # Ajout d'un custom_id unique
-                            ))
-                        await interaction.response.send_modal(modal)
-                    except Exception as e:
-                        self.log_error(e, "add_task_select")
-                        await self.send_error(interaction)
-
-                select.callback = select_callback
-                view = View()
-                view.add_item(select)
-
-                await interaction.response.send_message("Choisissez une liste :", view=view, ephemeral=True)
-
-            except Exception as e:
-                self.log_error(e, "add_task")
-                await self.send_error(interaction)
-
-    async def handle_add_task_modal(self, interaction):
-        """Traite l'ajout de tâches (version corrigée)"""
+        """Lance l'ajout de tâches"""
         try:
             user_id = str(interaction.user.id)
-            list_name = selected_lists.get(user_id)
+            lists = await self.task_service.get_user_lists(user_id)
+
+            if not lists:
+                return await interaction.response.send_message("ℹ️ Créez d'abord une liste", ephemeral=True)
+
+            select = Select(placeholder="Choisissez une liste")
+            select.options = [discord.SelectOption(label=task_list.name, value=str(task_list.id)) for task_list in lists]
+
+            async def select_callback(interaction):
+                try:
+                    # Stockage de l'ID de la liste sélectionnée
+                    selected_lists[str(interaction.user.id)] = int(interaction.data["values"][0])
+                    
+                    # Création du modal avec custom_id
+                    modal = Modal(title="Ajouter des tâches", custom_id="add_task_modal")
+                    for i in range(1, 6):
+                        modal.add_item(TextInput(
+                            label=f"Tâche {i}",
+                            placeholder="[Optionnel]",
+                            required=False,
+                            custom_id=f"task_{i}"  # Ajout d'un custom_id unique
+                        ))
+                    await interaction.response.send_modal(modal)
+                except Exception as e:
+                    self.log_error(e, "add_task_select")
+                    await self.send_error(interaction)
+
+            select.callback = select_callback
+            view = View()
+            view.add_item(select)
+
+            await interaction.response.send_message("Choisissez une liste :", view=view, ephemeral=True)
+
+        except Exception as e:
+            self.log_error(e, "add_task")
+            await self.send_error(interaction)
+
+    async def handle_add_task_modal(self, interaction):
+        """Traite l'ajout de tâches"""
+        try:
+            await interaction.response.defer(ephemeral=True)
             
-            if not list_name or not user_tasks.get(user_id) or list_name not in user_tasks[user_id]:
-                return await interaction.response.send_message("⚠️ Liste invalide", ephemeral=True)
+            user_id = str(interaction.user.id)
+            list_id = selected_lists.get(user_id)
+            
+            if list_id is None:
+                return await interaction.followup.send("⚠️ Liste invalide", ephemeral=True)
 
             # Récupération des valeurs du modal
             tasks = []
@@ -257,68 +257,79 @@ class Tasks(commands.Cog):
                     tasks.append(task_input["value"].strip())
 
             if not tasks:
-                return await interaction.response.send_message("ℹ️ Aucune tâche valide", ephemeral=True)
+                return await interaction.followup.send("ℹ️ Aucune tâche valide", ephemeral=True)
 
             # Ajout des tâches
-            global task_id_counter
+            added_tasks = []
             for task_desc in tasks:
-                user_tasks[user_id][list_name].append({
-                    "id": task_id_counter,
-                    "task": task_desc,
-                    "completed": False
-                })
-                task_id_counter += 1
+                task = await self.task_service.add_task(task_desc, list_id)
+                added_tasks.append(task)
 
-            await interaction.response.send_message(f"✅ {len(tasks)} tâche(s) ajoutée(s) à '{list_name}'!", ephemeral=True)
+            # Récupérer la liste mise à jour pour l'afficher
+            lists = await self.task_service.get_user_lists(user_id)
+            task_list = next(lst for lst in lists if lst.id == list_id)
+            
+            embed, view = await self.build_list_interface(task_list)
+            await interaction.followup.send(
+                content=f"✅ {len(added_tasks)} tâche(s) ajoutée(s) !",
+                embed=embed,
+                view=view,
+                ephemeral=True
+            )
+            
             del selected_lists[user_id]  # Nettoyage
 
         except Exception as e:
             self.log_error(e, "add_task_modal")
             await self.send_error(interaction)
 
-
     async def handle_edit_task(self, interaction):
         """Gère la modification d'une tâche"""
         try:
             user_id = str(interaction.user.id)
-            lists = user_tasks.get(user_id, {})
+            lists = await self.task_service.get_user_lists(user_id)
 
             if not lists:
                 return await interaction.response.send_message("ℹ️ Créez d'abord une liste", ephemeral=True)
 
             # Créez un menu déroulant pour sélectionner la liste
             select = Select(placeholder="Choisissez une liste")
-            select.options = [discord.SelectOption(label=name) for name in lists.keys()]
+            select.options = [discord.SelectOption(label=task_list.name, value=str(task_list.id)) for task_list in lists]
 
             async def select_callback(interaction):
                 try:
-                    selected_list = interaction.data["values"][0]
-                    tasks = lists[selected_list]
+                    list_id = int(interaction.data["values"][0])
+                    selected_list = next(lst for lst in lists if lst.id == list_id)
 
-                    if not tasks:
+                    if not selected_list.tasks:
                         return await interaction.response.send_message("ℹ️ Cette liste est vide", ephemeral=True)
 
                     # Créez un deuxième menu déroulant pour sélectionner la tâche
                     task_select = Select(placeholder="Choisissez une tâche à modifier")
-                    task_select.options = [discord.SelectOption(label=f"{task['id']}: {task['task']}") for task in tasks]
+                    task_select.options = [
+                        discord.SelectOption(
+                            label=task.description[:100],  # Limite la longueur pour l'affichage
+                            value=str(task.id)
+                        ) for task in selected_list.tasks
+                    ]
 
                     async def task_select_callback(interaction):
                         try:
-                            selected_task_id = int(interaction.data["values"][0].split(":")[0])
-                            selected_task = next(task for task in tasks if task["id"] == selected_task_id)
+                            task_id = int(interaction.data["values"][0])
+                            selected_task = next(task for task in selected_list.tasks if task.id == task_id)
 
-                            # Stockage de la liste ET de la tâche
+                            # Stockage de la tâche sélectionnée
                             selected_tasks[str(interaction.user.id)] = {
-                                "list": selected_list,
-                                "task_id": selected_task_id
+                                "list_id": list_id,
+                                "task_id": task_id
                             }
 
                             # Créez un modal pour modifier la tâche
                             modal = Modal(title="Modifier la tâche")
                             modal.add_item(TextInput(
                                 label="Nouvelle description",
-                                placeholder=selected_task["task"],
-                                default=selected_task["task"],
+                                placeholder=selected_task.description,
+                                default=selected_task.description,
                                 custom_id="new_task_description"
                             ))
                             modal.custom_id = "edit_task_modal"
@@ -347,27 +358,39 @@ class Tasks(commands.Cog):
             await self.send_error(interaction)
 
     async def handle_edit_task_modal(self, interaction):
-        """Traite la modification d'une tâche (version corrigée)"""
+        """Traite la modification d'une tâche"""
         try:
+            await interaction.response.defer(ephemeral=True)
+            
             user_id = str(interaction.user.id)
             data = selected_tasks.get(user_id)
             
             if not data:
-                return await interaction.response.send_message("⚠️ Session expirée", ephemeral=True)
+                return await interaction.followup.send("⚠️ Session expirée", ephemeral=True)
                 
-            list_name, task_id = data["list"], data["task_id"]
+            list_id, task_id = data["list_id"], data["task_id"]
             new_description = interaction.data["components"][0]["components"][0]["value"].strip()
 
             if not new_description:
-                return await interaction.response.send_message("❌ Description vide", ephemeral=True)
+                return await interaction.followup.send("❌ Description vide", ephemeral=True)
 
-            # Trouve et met à jour la tâche
-            for task in user_tasks[user_id][list_name]:
-                if task["id"] == task_id:
-                    task["task"] = new_description
-                    break
+            # Met à jour la tâche
+            task = await self.task_service.update_task_description(task_id, new_description)
+            if not task:
+                return await interaction.followup.send("❌ Tâche non trouvée", ephemeral=True)
 
-            await interaction.response.send_message("✅ Tâche modifiée !", ephemeral=True)
+            # Récupérer la liste mise à jour pour l'afficher
+            lists = await self.task_service.get_user_lists(user_id)
+            task_list = next(lst for lst in lists if lst.id == list_id)
+            
+            embed, view = await self.build_list_interface(task_list)
+            await interaction.followup.send(
+                content="✅ Tâche modifiée !",
+                embed=embed,
+                view=view,
+                ephemeral=True
+            )
+            
             del selected_tasks[user_id]  # Nettoyage
 
         except Exception as e:
