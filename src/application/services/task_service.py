@@ -1,6 +1,11 @@
 from typing import List, Optional, Tuple
+import logging
 from src.infrastructure.repositories.task_repository import TaskRepository
 from src.domain.entities.task import Task, TaskList
+
+# Configuration du logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class TaskService:
     def __init__(self):
@@ -20,7 +25,7 @@ class TaskService:
         except ValueError as e:
             return False, str(e), None
         except Exception as e:
-            print(f"Erreur inattendue lors de la création de la liste: {str(e)}")
+            logger.error(f"Erreur inattendue lors de la création de la liste: {str(e)}")
             return False, "Une erreur est survenue lors de la création de la liste", None
     
     async def get_user_lists(self, user_discord_id: str) -> List[TaskList]:

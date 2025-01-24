@@ -1,5 +1,8 @@
 import pytest
 from unittest.mock import Mock, patch, AsyncMock
+from io import StringIO
+import sys
+import logging
 from src.application.services.task_service import TaskService
 from src.domain.entities.task import Task, TaskList
 
@@ -104,13 +107,17 @@ async def test_toggle_task():
         mock_instance.toggle_task.assert_called_once_with(1)
 
 @pytest.mark.asyncio
-async def test_create_list_with_exception():
+async def test_create_list_with_exception(caplog):
     # Arrange
     with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
         service = TaskService()
         mock_instance = AsyncMock()
-        mock_instance.create_list = AsyncMock(side_effect=Exception("Test error"))
+        error_message = "Erreur inattendue de test"
+        mock_instance.create_list = AsyncMock(side_effect=RuntimeError(error_message))
         service.repository = mock_instance
+        
+        # Configurer la capture des logs
+        caplog.set_level(logging.ERROR)
         
         # Act
         success, message, task_list = await service.create_list("Test List", "123456789")
@@ -119,6 +126,9 @@ async def test_create_list_with_exception():
         assert success is False
         assert "Une erreur est survenue" in message
         assert task_list is None
+        # Vérifier que l'erreur a été loggée
+        assert "Erreur inattendue lors de la création de la liste" in caplog.text
+        assert error_message in caplog.text
 
 @pytest.mark.asyncio
 async def test_check_database_success():
@@ -209,3 +219,21 @@ async def test_add_task_with_invalid_list():
         # Act & Assert
         with pytest.raises(Exception, match="Liste invalide"):
             await service.add_task("Test Task", 999)  # ID de liste invalide 
+
+@pytest.mark.asyncio
+async def test_create_list_unexpected_error():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_instance.create_list = AsyncMock(side_effect=RuntimeError("Erreur inattendue"))
+        service.repository = mock_instance
+        
+        # Act
+        success, message, task_list = await service.create_list("Test List", "123456789")
+        
+        # Assert
+        assert success is False
+        assert "Une erreur est survenue" in message
+        assert task_list is None
+        mock_instance.create_list.assert_called_once() 
