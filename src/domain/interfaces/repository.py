@@ -6,8 +6,8 @@ T = TypeVar('T')
 class Repository(ABC, Generic[T]):
     @abstractmethod
     async def get(self, id: str) -> Optional[T]:
-        pass
+        pass  # pragma: no cover
 
     @abstractmethod
     async def save(self, entity: T) -> None:
-        pass 
+        pass  # pragma: no cover 
