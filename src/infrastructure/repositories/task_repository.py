@@ -38,6 +38,11 @@ class TaskRepository(PostgresRepository[Task]):
             raise
     
     async def add_task(self, description: str, task_list_id: int) -> Task:
+        # Vérifier si la liste existe
+        task_list = self.db.query(TaskList).filter(TaskList.id == task_list_id).first()
+        if not task_list:
+            raise ValueError(f"La liste avec l'ID {task_list_id} n'existe pas")
+            
         task = Task(description=description, task_list_id=task_list_id)
         self.db.add(task)
         self.db.commit()

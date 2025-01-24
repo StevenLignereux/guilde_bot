@@ -102,4 +102,37 @@ async def test_toggle_task_not_found(test_session):
     result = await repo.toggle_task(999)  # ID inexistant
     
     # Assert
-    assert result is None 
+    assert result is None
+
+@pytest.mark.asyncio
+async def test_add_task_with_invalid_list_id(test_session):
+    # Arrange
+    repo = TaskRepository()
+    repo.db = test_session
+    
+    # Act & Assert
+    with pytest.raises(ValueError, match="La liste avec l'ID 999 n'existe pas"):
+        await repo.add_task("Test Task", 999)  # ID de liste inexistant
+
+@pytest.mark.asyncio
+async def test_add_multiple_tasks_to_list(test_session):
+    # Arrange
+    repo = TaskRepository()
+    repo.db = test_session
+    task_list = TaskList(name="Test List", user_discord_id="123456789")
+    test_session.add(task_list)
+    test_session.commit()
+    
+    # Act
+    task1 = await repo.add_task("Task 1", task_list.id)
+    task2 = await repo.add_task("Task 2", task_list.id)
+    
+    # Assert
+    assert task1.description == "Task 1"
+    assert task2.description == "Task 2"
+    assert task1.task_list_id == task_list.id
+    assert task2.task_list_id == task_list.id
+    
+    # Vérifier que les tâches sont bien dans la liste
+    tasks = test_session.query(Task).filter(Task.task_list_id == task_list.id).all()
+    assert len(tasks) == 2 

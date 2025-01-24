@@ -177,3 +177,35 @@ async def test_check_database_none_result():
         # Assert
         assert result[0] is False  # Premier élément du tuple
         assert "Erreur de base de données" in result[1]  # Deuxième élément du tuple 
+
+@pytest.mark.asyncio
+async def test_add_task_to_existing_list():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_task = Task(description="Test Task", task_list_id=1)
+        mock_instance.add_task = AsyncMock(return_value=mock_task)
+        service.repository = mock_instance
+        
+        # Act
+        task = await service.add_task("Test Task", 1)
+        
+        # Assert
+        assert task is not None
+        assert task.description == "Test Task"
+        assert task.task_list_id == 1
+        mock_instance.add_task.assert_called_once_with("Test Task", 1)
+
+@pytest.mark.asyncio
+async def test_add_task_with_invalid_list():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_instance.add_task = AsyncMock(side_effect=Exception("Liste invalide"))
+        service.repository = mock_instance
+        
+        # Act & Assert
+        with pytest.raises(Exception, match="Liste invalide"):
+            await service.add_task("Test Task", 999)  # ID de liste invalide 
