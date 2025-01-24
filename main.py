@@ -1,45 +1,28 @@
 import discord
-from dotenv import load_dotenv
-import os
 import logging
 from discord.ext import commands
 from keep_alive import keep_alive
 import asyncio
+from src.config.environment import load_environment
+from src.infrastructure.config.database import init_db
 
-# Configurer le logging
-LOG_LEVEL = logging.INFO
-logging.basicConfig(level=LOG_LEVEL)
+# Configuration du logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-# Charger les variables d'environnement depuis le fichier .env
-load_dotenv()
-
-# Fonction pour récupérer les variables d'environnement
-def get_env_variable(name, default=None, required=True):
-    value = os.getenv(name, default)
-    if required and value is None:
-        logging.error(f"La variable d'environnement {name} est manquante.")
-        raise EnvironmentError(f"La variable d'environnement {name} est manquante.")
-    return value
-
-# Récupérer les variables d'environnement
-TOKEN = get_env_variable('TOKEN')
-CHANNEL_ID = int(get_env_variable('CHANNEL_ID'))
-SOCIAL_ID = int(get_env_variable('SOCIAL_ID'))
-OTHER_BOT_COMMAND = get_env_variable('OTHER_BOT_COMMAND', required=False)
-TWITCH_CLIENT_ID = get_env_variable('TWITCH_CLIENT_ID')
-TWITCH_CLIENT_SECRET = get_env_variable('TWITCH_CLIENT_SECRET')
-TWITCH_USERNAME = get_env_variable('TWITCH_USERNAME')
-WELCOME_CHANNEL_ID = int(get_env_variable('WELCOME_CHANNEL_ID'))
-WELCOME_IMAGE_PATH = get_env_variable('WELCOME_IMAGE_PATH')
-FONT_PATH = get_env_variable('FONT_PATH')
+# Charger la configuration
+try:
+    config = load_environment()
+    logger.info("Configuration chargée avec succès")
+except Exception as e:
+    logger.error(f"Erreur lors du chargement de la configuration : {str(e)}")
+    raise
 
 # Configuration du bot
 intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
 bot = commands.Bot(command_prefix='/', intents=intents)
-
-
 
 @bot.event
 async def on_ready():
@@ -50,15 +33,28 @@ async def on_ready():
     except Exception as e:
         print(f'Erreur lors de la synchronisation des commandes : {e}')
 
-async def main():
-    # # Charger les cogs
-    await bot.load_extension('cogs.events')
-    await bot.load_extension('cogs.commands')
-    await bot.load_extension('cogs.tasks')
-    
-    # Démarrer le bot
-    keep_alive()
-    await bot.start(TOKEN)
+async def setup():
+    try:
+        logger.info("Initialisation de la base de données...")
+        init_db()  # Initialise la base de données en premier
+        logger.info("Base de données initialisée avec succès")
+        
+        logger.info("Chargement des extensions...")
+        await bot.load_extension('cogs.events')
+        await bot.load_extension('cogs.commands')
+        await bot.load_extension('cogs.tasks')
+        logger.info("Extensions chargées avec succès")
+        
+        keep_alive()
+        await bot.start(config['TOKEN'])
+    except Exception as e:
+        logger.error(f"Erreur lors du setup : {str(e)}")
+        raise
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(setup())
+    except KeyboardInterrupt:
+        logger.info("Arrêt du bot...")
+    except Exception as e:
+        logger.error(f"Erreur fatale : {str(e)}")

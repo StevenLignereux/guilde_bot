@@ -1,0 +1,11 @@
+# Dépendances de base
+Flask==3.1.0
+discord.py==2.4.0
+python-dotenv==1.0.1
+requests==2.32.3
+pillow==11.0.0
+
+# Base de données
+psycopg2-binary==2.9.9
+SQLAlchemy==2.0.27
+alembic==1.13.1 

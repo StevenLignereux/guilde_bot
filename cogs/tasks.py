@@ -3,6 +3,7 @@ from discord.ext import commands
 from discord.ui import Button, View, Select, TextInput, Modal
 import asyncio
 import traceback
+from src.application.services.task_service import TaskService
 
 # Structures de données
 user_tasks = {}
@@ -14,6 +15,7 @@ selected_tasks = {}
 class Tasks(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.task_service = TaskService()
         # Ajout des paramètres requis name et callback
         self.ctx_menu = discord.app_commands.ContextMenu(
             name="Toggle Task",  # Nom du menu contextuel
@@ -95,66 +97,66 @@ class Tasks(commands.Cog):
     async def handle_create_list_modal(self, interaction):
         """Traite la création d'une liste"""
         try:
-            data = interaction.data["components"][0]["components"][0]
-            list_name = data["value"].strip()
+            # Différer la réponse immédiatement pour éviter l'expiration
+            await interaction.response.defer(ephemeral=True)
+            
+            list_name = interaction.data["components"][0]["components"][0]["value"].strip()
             user_id = str(interaction.user.id)
 
-            if not list_name:
-                return await interaction.response.send_message("❌ Le nom ne peut pas être vide", ephemeral=True)
-
-            user_tasks.setdefault(user_id, {})
-
-            if list_name in user_tasks[user_id]:
-                return await interaction.response.send_message("⚠️ Cette liste existe déjà", ephemeral=True)
-
-            user_tasks[user_id][list_name] = []
-            await interaction.response.send_message(f"✅ Liste '{list_name}' créée !", ephemeral=True)
+            success, message, task_list = await self.task_service.create_list(list_name, user_id)
+            
+            # Utiliser followup.send puisque nous avons différé la réponse
+            await interaction.followup.send(
+                f"✅ Liste '{list_name}' créée !" if success else f"❌ {message}",
+                ephemeral=True
+            )
 
         except Exception as e:
             self.log_error(e, "create_list_modal")
-            await self.send_error(interaction)
-    # endregion
+            try:
+                await interaction.followup.send("❌ Une erreur s'est produite", ephemeral=True)
+            except Exception as e:
+                print(f"Impossible d'envoyer le message d'erreur : {str(e)}")
 
-    # region Affichage des Listes
     async def handle_view_lists(self, interaction):
         """Affiche toutes les listes de l'utilisateur"""
         try:
             user_id = str(interaction.user.id)
-            if not user_tasks.get(user_id):
+            lists = await self.task_service.get_user_lists(user_id)
+            
+            if not lists:
                 return await interaction.response.send_message("ℹ️ Aucune liste disponible", ephemeral=True)
 
             await interaction.response.defer(ephemeral=True)
 
-            for list_name, tasks in user_tasks[user_id].items():
-                embed, view = await self.build_list_interface(list_name, tasks)
+            for task_list in lists:
+                embed, view = await self.build_list_interface(task_list)
                 await interaction.followup.send(embed=embed, view=view, ephemeral=True)
 
         except Exception as e:
             self.log_error(e, "view_lists")
             await self.send_error(interaction)
 
-    async def build_list_interface(self, list_name, tasks):
+    async def build_list_interface(self, task_list):
         """Construit l'interface d'une liste"""
         embed = discord.Embed(
-            title=f"📋 {list_name}", color=self.get_list_color(tasks))
+            title=f"📋 {task_list.name}",
+            color=self.get_list_color(task_list.tasks)
+        )
         view = View(timeout=None)
 
-        completed = sum(1 for t in tasks if t["completed"])
-        total = len(tasks)
+        completed = sum(1 for t in task_list.tasks if t.completed)
+        total = len(task_list.tasks)
 
-        # Construction des tâches
         tasks_display = []
-        for task in tasks:
-            task_str = f"~~{task['task']
-                            }~~" if task["completed"] else task["task"]
+        for task in task_list.tasks:
+            task_str = f"~~{task.description}~~" if task.completed else task.description
             btn = self.create_task_button(task)
             view.add_item(btn)
             tasks_display.append(f"{btn.emoji} {task_str}")
 
-        embed.add_field(name="Tâches", value="\n".join(
-            tasks_display) or "Aucune tâche", inline=False)
-        embed.add_field(name="Statut", value=f"{
-                        completed}/{total} terminées", inline=False)
+        embed.add_field(name="Tâches", value="\n".join(tasks_display) or "Aucune tâche", inline=False)
+        embed.add_field(name="Statut", value=f"{completed}/{total} terminées", inline=False)
 
         return embed, view
 
@@ -163,7 +165,7 @@ class Tasks(commands.Cog):
         if not tasks:
             return discord.Color.light_grey()
             
-        completed = sum(1 for t in tasks if t["completed"])
+        completed = sum(1 for t in tasks if t.completed)
         ratio = completed / len(tasks)
         
         return discord.Color.from_rgb(
@@ -176,24 +178,22 @@ class Tasks(commands.Cog):
         """Crée un bouton de tâche interactif"""
         button = Button(
             style=discord.ButtonStyle.secondary,
-            emoji="✅" if task["completed"] else "❌",
-            custom_id=f"task_toggle_{task['id']}"
+            emoji="✅" if task.completed else "❌",
+            custom_id=f"task_toggle_{task.id}"
         )
-        button.callback = lambda i, t=task: self.toggle_task_status(i, t)
+        button.callback = lambda i, t=task: self.toggle_task_status(i, t.id)
         return button
     # endregion
 
     # region Gestion des Tâches
-    async def toggle_task_status(self, interaction, task):
-        """Bascule l'état d'une tâche (version corrigée)"""
+    async def toggle_task_status(self, interaction, task_id):
+        """Bascule l'état d'une tâche"""
         try:
-            task["completed"] = not task["completed"]
-            
-            # Reconstruit l'interface mise à jour
-            embed, view = await self.build_list_interface(interaction.message.embeds[0].title[4:], [t for t in user_tasks[str(interaction.user.id)].values()][0])
-            
-            # Met à jour le message original
-            await interaction.response.edit_message(embed=embed, view=view)
+            task = await self.task_service.toggle_task(task_id)
+            if task:
+                task_list = task.task_list
+                embed, view = await self.build_list_interface(task_list)
+                await interaction.response.edit_message(embed=embed, view=view)
             
         except Exception as e:
             self.log_error(e, "toggle_task")
@@ -386,15 +386,11 @@ class Tasks(commands.Cog):
     async def send_error(self, interaction):
         """Envoie un message d'erreur générique"""
         try:
-            await interaction.response.send_message(
-                "❌ Une erreur s'est produite",
-                ephemeral=True
-            )
-        except discord.errors.InteractionResponded:
-            await interaction.followup.send(
-                "❌ Opération échouée",
-                ephemeral=True
-            )
+            if not interaction.response.is_done():
+                await interaction.response.defer(ephemeral=True)
+            await interaction.followup.send("❌ Une erreur s'est produite", ephemeral=True)
+        except Exception as e:
+            print(f"Impossible d'envoyer le message d'erreur : {str(e)}")
     # endregion
 
 

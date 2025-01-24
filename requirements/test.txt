@@ -1,0 +1,6 @@
+-r base.txt
+# Outils de test
+pytest==8.1.1
+pytest-cov==4.1.0
+pytest-mock==3.12.0
+pytest-asyncio==0.23.5 
