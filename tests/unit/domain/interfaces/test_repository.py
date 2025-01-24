@@ -12,4 +12,17 @@ def test_repository_methods_are_abstract():
         pass
     
     with pytest.raises(TypeError):
-        InvalidRepo() 
+        InvalidRepo()
+
+def test_repository_implementation():
+    # Créer une classe qui implémente correctement Repository
+    class ValidRepo(Repository):
+        async def get(self, id: str):
+            return None
+            
+        async def save(self, entity):
+            pass
+    
+    # Vérifier qu'on peut instancier la classe
+    repo = ValidRepo()
+    assert isinstance(repo, Repository) 
