@@ -36,7 +36,8 @@ class Tasks(commands.Cog):
             ("Afficher mes listes", "view_lists", discord.ButtonStyle.secondary),
             ("Ajouter une tâche", "add_task", discord.ButtonStyle.success),
             ("Modifier une tâche", "edit_task", discord.ButtonStyle.danger),
-            ("Supprimer une liste", "delete_list", discord.ButtonStyle.red)
+            ("Supprimer une liste", "delete_list", discord.ButtonStyle.red),
+            ("Supprimer une tâche", "delete_task", discord.ButtonStyle.red)
         ]
 
         for label, custom_id, style in buttons:
@@ -64,7 +65,8 @@ class Tasks(commands.Cog):
             "view_lists": self.handle_view_lists,
             "add_task": self.handle_add_task,
             "edit_task": self.handle_edit_task,
-            "delete_list": self.handle_delete_list
+            "delete_list": self.handle_delete_list,
+            "delete_task": self.handle_delete_task
         }
         custom_id = interaction.data.get("custom_id")
         if handler := handlers.get(custom_id):
@@ -438,6 +440,100 @@ class Tasks(commands.Cog):
 
         except Exception as e:
             self.log_error(e, "edit_task_modal")
+            await self.send_error(interaction)
+
+    async def handle_delete_task(self, interaction: discord.Interaction):
+        """Gère la suppression d'une tâche."""
+        try:
+            user_id = str(interaction.user.id)
+            lists = await self.task_service.get_user_lists(user_id)
+
+            if not lists:
+                return await interaction.response.send_message("ℹ️ Vous n'avez aucune liste", ephemeral=True)
+
+            # Créer un menu déroulant pour sélectionner la liste
+            select = Select(placeholder="Choisissez une liste")
+            select.options = [discord.SelectOption(label=task_list.name, value=str(task_list.id)) for task_list in lists]
+
+            async def select_callback(select_interaction):
+                try:
+                    list_id = int(select_interaction.data["values"][0])
+                    selected_lists[str(select_interaction.user.id)] = list_id
+                    
+                    # Trouver la liste sélectionnée
+                    task_list = next(lst for lst in lists if lst.id == list_id)
+                    
+                    if not task_list.tasks:
+                        await select_interaction.response.send_message("ℹ️ Cette liste ne contient aucune tâche", ephemeral=True)
+                        return
+
+                    # Créer un nouveau menu pour sélectionner la tâche à supprimer
+                    task_select = Select(placeholder="Choisissez une tâche à supprimer")
+                    task_select.options = [
+                        discord.SelectOption(
+                            label=task.description[:100],  # Limite la longueur de l'affichage
+                            value=str(task.id),
+                            description="✅ Complétée" if task.completed else "❌ Non complétée"
+                        ) for task in task_list.tasks
+                    ]
+
+                    async def task_select_callback(task_interaction):
+                        try:
+                            task_id = int(task_interaction.data["values"][0])
+                            success = await self.task_service.delete_task(task_id)
+                            
+                            if success:
+                                # Récupérer la liste mise à jour
+                                updated_lists = await self.task_service.get_user_lists(user_id)
+                                updated_list = next(lst for lst in updated_lists if lst.id == list_id)
+                                
+                                embed, view = await self.build_list_interface(updated_list)
+                                await task_interaction.response.send_message(
+                                    content="✅ Tâche supprimée avec succès !",
+                                    embed=embed,
+                                    view=view,
+                                    ephemeral=True
+                                )
+                            else:
+                                await task_interaction.response.send_message(
+                                    "❌ Erreur lors de la suppression de la tâche",
+                                    ephemeral=True
+                                )
+                        except ValueError as e:
+                            await task_interaction.response.send_message(
+                                f"❌ Erreur : {str(e)}",
+                                ephemeral=True
+                            )
+                        except Exception as e:
+                            self.log_error(e, "delete_task")
+                            await self.send_error(task_interaction)
+
+                    task_select.callback = task_select_callback
+                    task_view = View()
+                    task_view.add_item(task_select)
+                    
+                    await select_interaction.response.send_message(
+                        "Sélectionnez la tâche à supprimer :",
+                        view=task_view,
+                        ephemeral=True
+                    )
+                    
+                except Exception as e:
+                    self.log_error(e, "delete_task_list_select")
+                    await self.send_error(select_interaction)
+
+            select.callback = select_callback
+            view = View()
+            view.add_item(select)
+            
+            await interaction.response.send_message(
+                "Sélectionnez la liste contenant la tâche à supprimer :",
+                view=view,
+                ephemeral=True
+            )
+            
+        except Exception as e:
+            self.log_error(e, "delete_task")
             await self.send_error(interaction)
     # endregion
 

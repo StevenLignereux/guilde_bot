@@ -43,6 +43,8 @@ async def setup():
         await bot.load_extension('cogs.events')
         await bot.load_extension('cogs.commands')
         await bot.load_extension('cogs.tasks')
+        await bot.load_extension('cogs.news')
+        await bot.load_extension('cogs.stream')
         logger.info("Extensions chargées avec succès")
         
         keep_alive()

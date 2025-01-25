@@ -9,33 +9,23 @@ from src.infrastructure.repositories.postgres_repository import PostgresReposito
 logger = logging.getLogger(__name__)
 
 class TaskRepository(PostgresRepository[Task]):
-    def __init__(self):
-        super().__init__(Task)
+    def __init__(self, db: Optional[AsyncSession] = None):
+        super().__init__(db)
     
     async def get_user_lists(self, user_discord_id: str) -> List[TaskList]:
         try:
-            return self.db.query(TaskList).filter(TaskList.user_discord_id == user_discord_id).all()
+            lists = self.db.query(TaskList).filter(TaskList.user_discord_id == user_discord_id).all()
+            return lists
         except Exception as e:
             logger.error(f"Erreur lors de la récupération des listes: {str(e)}")
             raise
     
     async def create_list(self, name: str, user_discord_id: str) -> TaskList:
         try:
-            # Vérifier si une liste avec le même nom existe déjà pour cet utilisateur
-            existing_list = self.db.query(TaskList).filter(
-                TaskList.user_discord_id == user_discord_id,
-                TaskList.name == name
-            ).first()
-            
-            if existing_list:
-                raise ValueError(f"Une liste nommée '{name}' existe déjà")
-            
             task_list = TaskList(name=name, user_discord_id=user_discord_id)
             self.db.add(task_list)
             self.db.commit()
-            self.db.refresh(task_list)
             return task_list
-            
         except Exception as e:
             self.db.rollback()
             logger.error(f"Erreur lors de la création de la liste: {str(e)}")
@@ -82,6 +72,36 @@ class TaskRepository(PostgresRepository[Task]):
             self.db.rollback()
             logger.error(f"Erreur lors de la mise à jour de la description de la tâche: {str(e)}")
             raise
+
+    async def delete_task(self, task_id: int) -> bool:
+        """
+        Supprime une tâche spécifique.
+        
+        Args:
+            task_id: L'identifiant de la tâche à supprimer
+            
+        Returns:
+            bool: True si la suppression a réussi, False sinon
+            
+        Raises:
+            ValueError: Si la tâche n'existe pas
+        """
+        try:
+            task = self.db.query(Task).filter(Task.id == task_id).first()
+            if not task:
+                raise ValueError(f"La tâche avec l'ID {task_id} n'existe pas")
+            
+            self.db.delete(task)
+            self.db.commit()
+            return True
+            
+        except ValueError as e:
+            logger.error(f"Erreur lors de la suppression de la tâche: {str(e)}")
+            raise
+        except Exception as e:
+            self.db.rollback()
+            logger.error(f"Erreur lors de la suppression de la tâche: {str(e)}")
+            return False
 
     async def delete_list(self, list_id: int) -> bool:
         """

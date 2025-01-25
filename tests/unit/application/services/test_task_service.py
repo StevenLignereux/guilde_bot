@@ -446,3 +446,48 @@ async def test_update_task_description_failure():
         # Act & Assert
         with pytest.raises(ValueError, match="Tâche non trouvée"):
             await service.update_task_description(1, "Nouvelle description") 
+
+@pytest.mark.asyncio
+async def test_delete_task_success():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_instance.delete_task = AsyncMock(return_value=True)
+        service.repository = mock_instance
+        
+        # Act
+        result = await service.delete_task(1)
+        
+        # Assert
+        assert result is True
+        mock_instance.delete_task.assert_called_once_with(1)
+
+@pytest.mark.asyncio
+async def test_delete_task_not_found():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_instance.delete_task = AsyncMock(side_effect=ValueError("Tâche non trouvée"))
+        service.repository = mock_instance
+        
+        # Act & Assert
+        with pytest.raises(ValueError, match="Tâche non trouvée"):
+            await service.delete_task(999)
+
+@pytest.mark.asyncio
+async def test_delete_task_failure():
+    # Arrange
+    with patch('src.infrastructure.repositories.task_repository.TaskRepository') as mock_repo:
+        service = TaskService()
+        mock_instance = AsyncMock()
+        mock_instance.delete_task = AsyncMock(return_value=False)
+        service.repository = mock_instance
+        
+        # Act
+        result = await service.delete_task(1)
+        
+        # Assert
+        assert result is False
+        mock_instance.delete_task.assert_called_once_with(1) 

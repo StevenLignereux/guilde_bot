@@ -41,6 +41,28 @@ class TaskService:
         """Met à jour la description d'une tâche."""
         return await self.repository.update_task_description(task_id, new_description)
     
+    async def delete_task(self, task_id: int) -> bool:
+        """
+        Supprime une tâche spécifique.
+        
+        Args:
+            task_id: L'identifiant de la tâche à supprimer
+            
+        Returns:
+            bool: True si la suppression a réussi, False sinon
+            
+        Raises:
+            ValueError: Si la tâche n'existe pas
+        """
+        try:
+            return await self.repository.delete_task(task_id)
+        except ValueError as e:
+            logger.error(f"Erreur lors de la suppression de la tâche: {str(e)}")
+            raise
+        except Exception as e:
+            logger.error(f"Erreur inattendue lors de la suppression de la tâche: {str(e)}")
+            return False
+    
     async def check_database(self):
         """Vérifie l'état de la base de données."""
         try:

@@ -335,4 +335,54 @@ async def test_delete_list_sql_error_during_commit():
 
     # Assert
     assert result is False
+    repo.db.rollback.assert_called_once()
+
+@pytest.mark.asyncio
+async def test_delete_task_success():
+    # Arrange
+    repo = TaskRepository()
+    task = Task(id=1, description="Test Task")
+
+    # Mock de la session
+    repo.db = Mock()
+    repo.db.query.return_value.filter.return_value.first.return_value = task
+
+    # Act
+    result = await repo.delete_task(1)
+
+    # Assert
+    assert result is True
+    repo.db.delete.assert_called_once_with(task)
+    repo.db.commit.assert_called_once()
+
+@pytest.mark.asyncio
+async def test_delete_task_not_found():
+    # Arrange
+    repo = TaskRepository()
+    task_id = 999
+
+    # Mock de la session
+    repo.db = Mock()
+    repo.db.query.return_value.filter.return_value.first.return_value = None
+
+    # Act & Assert
+    with pytest.raises(ValueError, match=f"La tâche avec l'ID {task_id} n'existe pas"):
+        await repo.delete_task(task_id)
+
+@pytest.mark.asyncio
+async def test_delete_task_sql_error():
+    # Arrange
+    repo = TaskRepository()
+    task = Task(id=1, description="Test Task")
+
+    # Mock de la session avec une erreur SQL
+    repo.db = Mock()
+    repo.db.query.return_value.filter.return_value.first.return_value = task
+    repo.db.commit.side_effect = SQLAlchemyError("Erreur SQL")
+
+    # Act
+    result = await repo.delete_task(1)
+
+    # Assert
+    assert result is False
     repo.db.rollback.assert_called_once() 
