@@ -19,18 +19,17 @@ def load_environment():
         logger.info("Utilisation des variables d'environnement système")
     
     # Vérifier les variables requises
-    required_vars = {
-        'Database_URL': os.getenv('DATABASE_URL') or os.getenv('Database_URL'),  # Support des deux formats
-        'DISCORD_TOKEN': os.getenv('DISCORD_TOKEN')
-    }
+    database_url = os.getenv('DATABASE_URL') or os.getenv('Database_URL')  # Support des deux formats
+    discord_token = os.getenv('DISCORD_TOKEN')
     
-    missing_vars = [var for var, value in required_vars.items() if not value]
-    if missing_vars:
-        raise ValueError(f"Variables d'environnement manquantes : {', '.join(missing_vars)}")
+    if not database_url:
+        raise ValueError("La variable DATABASE_URL ou Database_URL est requise")
+    if not discord_token:
+        raise ValueError("La variable DISCORD_TOKEN est requise")
     
     return {
-        'Database_URL': required_vars['Database_URL'],
-        'DISCORD_TOKEN': required_vars['DISCORD_TOKEN'],
+        'database_url': database_url,  # Utilisation de la clé en minuscules
+        'DISCORD_TOKEN': discord_token,
         'WELCOME_CHANNEL_ID': os.getenv('WELCOME_CHANNEL_ID'),
         'STREAM_CHANNEL_ID': os.getenv('STREAM_CHANNEL_ID'),
         'NEWS_CHANNEL_ID': os.getenv('NEWS_CHANNEL_ID')
