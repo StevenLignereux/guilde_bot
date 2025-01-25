@@ -46,7 +46,10 @@ async def setup():
         logger.info("Extensions chargées avec succès")
         
         keep_alive()
-        await bot.start(config['TOKEN'])
+        token = config.get('DISCORD_TOKEN')
+        if not token:
+            raise ValueError("Token Discord manquant dans la configuration")
+        await bot.start(token)
     except Exception as e:
         logger.error(f"Erreur lors du setup : {str(e)}")
         raise
