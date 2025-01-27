@@ -913,3 +913,95 @@
 2025-01-27 10:17:02 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
 2025-01-27 10:17:02 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
 2025-01-27 10:17:02 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 10:20:49 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 10:20:49 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 10:20:49 [INFO] __main__ - [N/A] Logging configuré avec succès
+2025-01-27 10:20:49 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:20:49 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:20:49 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 10:20:49 [INFO] __main__ - [N/A] Configuration chargée avec succès
+2025-01-27 10:20:49 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 10:20:49 [INFO] __main__ - [N/A] Base de données initialisée avec succès
+2025-01-27 10:20:50 [INFO] src.infrastructure.commands.task_commands - [N/A] Commandes de tâches configurées
+2025-01-27 10:20:50 [INFO] __main__ - [N/A] Commandes configurées avec succès
+2025-01-27 10:20:50 [INFO] __main__ - [N/A] Commandes synchronisées avec Discord
+2025-01-27 10:20:52 [INFO] __main__ - [N/A] Bot connecté en tant que HK-A1K
+2025-01-27 10:21:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:21:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:21:17 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 10:21:17 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 10:22:05 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:22:05 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:22:05 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 10:22:05 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 10:24:36 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 10:24:36 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 10:24:36 [INFO] __main__ - [N/A] Logging configuré avec succès
+2025-01-27 10:24:36 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:24:36 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:24:36 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 10:24:36 [INFO] __main__ - [N/A] Configuration chargée avec succès
+2025-01-27 10:24:36 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 10:24:36 [INFO] __main__ - [N/A] Base de données initialisée avec succès
+2025-01-27 10:24:37 [INFO] src.infrastructure.commands.task_commands - [N/A] Commandes de tâches configurées
+2025-01-27 10:24:37 [INFO] __main__ - [N/A] Commandes configurées avec succès
+2025-01-27 10:24:37 [INFO] __main__ - [N/A] Commandes synchronisées avec Discord
+2025-01-27 10:24:40 [INFO] __main__ - [N/A] Bot connecté en tant que HK-A1K
+2025-01-27 10:24:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:24:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:24:56 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 10:24:56 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 10:25:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:25:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:25:17 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 10:25:17 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 10:25:33 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:25:33 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:25:33 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 10:25:33 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 10:25:59 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:25:59 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:25:59 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 10:25:59 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 10:29:01 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 10:29:01 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 10:29:01 [INFO] __main__ - [N/A] Logging configuré avec succès
+2025-01-27 10:29:01 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:29:01 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:29:01 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 10:29:01 [INFO] __main__ - [N/A] Configuration chargée avec succès
+2025-01-27 10:29:01 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 10:29:01 [INFO] __main__ - [N/A] Base de données initialisée avec succès
+2025-01-27 10:29:02 [INFO] src.infrastructure.commands.task_commands - [N/A] Commandes de tâches configurées
+2025-01-27 10:29:02 [INFO] __main__ - [N/A] Commandes configurées avec succès
+2025-01-27 10:29:02 [INFO] __main__ - [N/A] Commandes synchronisées avec Discord
+2025-01-27 10:29:05 [INFO] __main__ - [N/A] Bot connecté en tant que HK-A1K
+2025-01-27 10:29:23 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:29:23 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:29:23 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 10:29:23 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 10:29:55 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:29:55 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:29:55 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 10:29:55 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 10:30:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:30:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:30:17 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 10:30:17 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 10:34:45 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 10:34:45 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 10:34:45 [INFO] __main__ - [N/A] Logging configuré avec succès
+2025-01-27 10:34:45 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:34:45 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:34:45 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 10:34:45 [INFO] __main__ - [N/A] Configuration chargée avec succès
+2025-01-27 10:34:45 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 10:34:45 [INFO] __main__ - [N/A] Base de données initialisée avec succès
+2025-01-27 10:34:46 [INFO] src.infrastructure.commands.task_commands - [N/A] Commandes de tâches configurées
+2025-01-27 10:34:46 [INFO] __main__ - [N/A] Commandes configurées avec succès
+2025-01-27 10:34:46 [INFO] __main__ - [N/A] Commandes synchronisées avec Discord
+2025-01-27 10:34:49 [INFO] __main__ - [N/A] Bot connecté en tant que HK-A1K
+2025-01-27 10:35:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:35:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 10:35:04 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 10:35:04 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès

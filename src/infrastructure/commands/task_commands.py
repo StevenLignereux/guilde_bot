@@ -77,12 +77,13 @@ class TaskListSelect(ui.Select):
                 for task in task_list.tasks:
                     status = "✅" if task.completed else "⬜"
                     description = f"~~{task.description}~~" if task.completed else task.description
-                    tasks_content += f"{status} {description}\n"
+                    tasks_content += f"{status} {description}\n\n"
                     view.add_item(TaskButton(task.id, task.completed))
+                tasks_content = tasks_content.rstrip()
             else:
                 tasks_content = "*Cette liste est vide*"
             
-            embed.add_field(name="Tâches", value=tasks_content, inline=False)
+            embed.add_field(name="Tâches", value="\n" + tasks_content, inline=False)
             
             # Ajouter les boutons d'action
             view.add_item(AddTaskButton(task_list.id))
@@ -264,9 +265,10 @@ class TaskButton(ui.Button):
                     for t in task_list.tasks:
                         status = "✅" if t.completed else "⬜"
                         description = f"~~{t.description}~~" if t.completed else t.description
-                        tasks_content += f"{status} {description}\n"
+                        tasks_content += f"{status} {description}\n\n"
                         view.add_item(TaskButton(t.id, t.completed))
                     
+                    tasks_content = tasks_content.rstrip()
                     embed.add_field(name="Tâches", value=tasks_content, inline=False)
                     
                     # Ajouter les boutons d'action
@@ -301,12 +303,6 @@ class AddTaskButton(ui.Button):
         await interaction.response.send_modal(modal)
 
 class AddTaskModal(ui.Modal, title="Ajouter une tâche"):
-    list_name = ui.TextInput(
-        label="Nom de la liste",
-        placeholder="Dans quelle liste voulez-vous ajouter la tâche ?",
-        min_length=1,
-        max_length=100
-    )
     description = ui.TextInput(
         label="Tâche à faire",
         placeholder="Décrivez la tâche à accomplir",
@@ -317,43 +313,58 @@ class AddTaskModal(ui.Modal, title="Ajouter une tâche"):
     def __init__(self, task_list_id: int):
         super().__init__()
         self.task_list_id = task_list_id
+        self.task_service = TaskService()
 
     async def on_submit(self, interaction: discord.Interaction):
         try:
             await interaction.response.defer()
             
-            # Trouver la liste par son nom
+            task = await self.task_service.add_task(str(self.description), self.task_list_id)
+            
+            # Récupérer la liste mise à jour
             lists = await self.task_service.get_user_lists(str(interaction.user.id))
-            task_list = next((lst for lst in lists if lst.name.lower() == str(self.list_name).lower()), None)
+            task_list = next((lst for lst in lists if lst.id == self.task_list_id), None)
             
-            if not task_list:
-                await interaction.followup.send(f"❌ Liste '{self.list_name}' introuvable. Vérifiez le nom de la liste.", ephemeral=True)
-                return
-            
-            task = await self.task_service.add_task(str(self.description), task_list.id)
-            
-            # Afficher la liste mise à jour
-            embed = discord.Embed(
-                title=f"📋 {task_list.name}",
-                description="✅ Tâche ajoutée avec succès !",
-                color=discord.Color.green()
-            )
-            
-            tasks_content = ""
-            view = TaskListView()
-            
-            for t in task_list.tasks:
-                status = "✅" if t.completed else "⬜"
-                description = f"~~{t.description}~~" if t.completed else t.description
-                tasks_content += f"{status} {description}\n"
-                view.add_item(TaskButton(t.id, t.completed))
-            
-            embed.add_field(name="Tâches", value=tasks_content, inline=False)
-            await interaction.followup.send(embed=embed, view=view)
+            if task_list:
+                completed_tasks = sum(1 for task in task_list.tasks if task.completed)
+                total_tasks = len(task_list.tasks)
+                progress_bar = "▓" * completed_tasks + "░" * (total_tasks - completed_tasks)
+                
+                embed = discord.Embed(
+                    title=f"📋 {task_list.name}",
+                    description=f"✅ Tâche ajoutée avec succès !\nProgression : {progress_bar} ({completed_tasks}/{total_tasks})",
+                    color=discord.Color.green()
+                )
+                
+                embed.add_field(
+                    name="Créée le",
+                    value=task_list.created_at.strftime("%d/%m/%Y à %H:%M"),
+                    inline=True
+                )
+                
+                tasks_content = ""
+                view = TaskListView()
+                
+                for t in task_list.tasks:
+                    status = "✅" if t.completed else "⬜"
+                    description = f"~~{t.description}~~" if t.completed else t.description
+                    tasks_content += f"{status} {description}\n"
+                    view.add_item(TaskButton(t.id, t.completed))
+                
+                embed.add_field(name="Tâches", value=tasks_content, inline=False)
+                
+                # Ajouter les boutons d'action
+                view.add_item(AddTaskButton(task_list.id))
+                view.add_item(DeleteCompletedButton(task_list.id))
+                view.add_item(BackToMenuButton(lists))
+                
+                await interaction.followup.send(embed=embed, view=view)
+            else:
+                await interaction.followup.send("❌ Une erreur est survenue lors de l'ajout de la tâche !", ephemeral=True)
             
         except Exception as e:
             logger.error(f"Erreur lors de l'ajout de la tâche: {str(e)}")
-            await interaction.followup.send("❌ Une erreur est survenue lors de l'ajout de la tâche !")
+            await interaction.followup.send("❌ Une erreur est survenue lors de l'ajout de la tâche !", ephemeral=True)
 
 class DeleteCompletedButton(ui.Button):
     def __init__(self, task_list_id: int):
@@ -384,7 +395,6 @@ class MainMenuView(ui.View):
         super().__init__(timeout=None)
         self.add_item(ShowListsButton(task_service))
         self.add_item(CreateListButton(task_service))
-        self.add_item(AddTaskButton(task_service))
 
 class TaskCommands(BaseCommand):
     """Commandes de gestion des tâches"""
