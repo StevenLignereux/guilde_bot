@@ -1,85 +1,190 @@
 import pytest
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, patch, AsyncMock
 from sqlalchemy.exc import SQLAlchemyError
 from src.infrastructure.repositories.postgres_repository import PostgresRepository
-from src.domain.entities.user import User
+from src.domain.entities.task import Task
 
 @pytest.mark.asyncio
 async def test_postgres_repository_save():
+    """Test la sauvegarde d'une entité"""
     # Arrange
-    mock_db = Mock()
-    with patch('src.infrastructure.repositories.postgres_repository.get_db', return_value=iter([mock_db])):
-        repo = PostgresRepository(User)
-        user = User(username="test_user", email="test@example.com")
-        
-        # Act
-        await repo.save(user)
-        
-        # Assert
-        mock_db.add.assert_called_once_with(user)
-        mock_db.commit.assert_called_once()
-        mock_db.refresh.assert_called_once_with(user)
+    mock_db = AsyncMock()
+    mock_entity = Task(description="Test task")
+    
+    # Act
+    repo = PostgresRepository(Task)
+    repo.db = mock_db
+    await repo.save(mock_entity)
+    
+    # Assert
+    mock_db.add.assert_called_once_with(mock_entity)
+    mock_db.commit.assert_called_once()
+    mock_db.refresh.assert_called_once_with(mock_entity)
 
 @pytest.mark.asyncio
 async def test_postgres_repository_save_failure():
+    """Test la gestion des erreurs lors de la sauvegarde"""
     # Arrange
-    mock_db = Mock()
-    mock_entity = Mock()
+    mock_db = AsyncMock()
+    mock_entity = Task(description="Test task")
     mock_db.commit.side_effect = SQLAlchemyError("Test error")
     
-    with patch('src.infrastructure.repositories.postgres_repository.get_db', return_value=iter([mock_db])):
-        repo = PostgresRepository(Mock)
-        
-        # Act & Assert
-        with pytest.raises(SQLAlchemyError):
-            await repo.save(mock_entity)
-            
-        mock_db.add.assert_called_once_with(mock_entity)
-        mock_db.commit.assert_called_once() 
+    # Act & Assert
+    repo = PostgresRepository(Task)
+    repo.db = mock_db
+    with pytest.raises(SQLAlchemyError):
+        await repo.save(mock_entity)
+    
+    mock_db.rollback.assert_called_once()
 
 @pytest.mark.asyncio
 async def test_postgres_repository_get():
+    """Test la récupération d'une entité"""
     # Arrange
-    mock_db = Mock()
-    mock_query = Mock()
-    mock_filter = Mock()
-    mock_user = User(username="test_user", email="test@example.com")
+    mock_db = AsyncMock()
+    mock_result = AsyncMock()
+    mock_task = Task(id=1, description="Test task")
+    mock_result.scalar_one_or_none.return_value = mock_task
+    mock_db.execute.return_value = mock_result
     
-    mock_db.query.return_value = mock_query
-    mock_query.filter.return_value = mock_filter
-    mock_filter.first.return_value = mock_user
+    # Act
+    repo = PostgresRepository(Task)
+    repo.db = mock_db
+    result = await repo.get(1)
     
-    with patch('src.infrastructure.repositories.postgres_repository.get_db', return_value=iter([mock_db])):
-        repo = PostgresRepository(User)
-        
-        # Act
-        result = await repo.get("test_id")
-        
-        # Assert
-        assert result == mock_user
-        mock_db.query.assert_called_once_with(User)
-        mock_query.filter.assert_called_once()
-        mock_filter.first.assert_called_once()
+    # Assert
+    assert result == mock_task
+    mock_db.execute.assert_called_once()
 
 @pytest.mark.asyncio
 async def test_postgres_repository_get_not_found():
+    """Test la récupération d'une entité inexistante"""
     # Arrange
-    mock_db = Mock()
-    mock_query = Mock()
-    mock_filter = Mock()
+    mock_db = AsyncMock()
+    mock_result = AsyncMock()
+    mock_result.scalar_one_or_none.return_value = None
+    mock_db.execute.return_value = mock_result
     
-    mock_db.query.return_value = mock_query
-    mock_query.filter.return_value = mock_filter
-    mock_filter.first.return_value = None
+    # Act
+    repo = PostgresRepository(Task)
+    repo.db = mock_db
+    result = await repo.get(999)
     
-    with patch('src.infrastructure.repositories.postgres_repository.get_db', return_value=iter([mock_db])):
-        repo = PostgresRepository(User)
-        
-        # Act
-        result = await repo.get("test_id")
-        
-        # Assert
-        assert result is None
-        mock_db.query.assert_called_once_with(User)
-        mock_query.filter.assert_called_once()
-        mock_filter.first.assert_called_once() 
+    # Assert
+    assert result is None
+    mock_db.execute.assert_called_once()
+
+@pytest.mark.asyncio
+async def test_postgres_repository_update():
+    """Test la mise à jour d'une entité"""
+    # Arrange
+    mock_db = AsyncMock()
+    mock_result = AsyncMock()
+    mock_task = Task(id=1, description="Test task")
+    mock_result.scalar_one_or_none.return_value = mock_task
+    mock_db.execute.return_value = mock_result
+    
+    # Act
+    repo = PostgresRepository(Task)
+    repo.db = mock_db
+    mock_task.description = "Updated task"
+    result = await repo.update(mock_task)
+    
+    # Assert
+    assert result.description == "Updated task"
+    mock_db.commit.assert_called_once()
+    mock_db.refresh.assert_called_once_with(mock_task)
+
+@pytest.mark.asyncio
+async def test_postgres_repository_update_not_found():
+    """Test la mise à jour d'une entité inexistante"""
+    # Arrange
+    mock_db = AsyncMock()
+    mock_result = AsyncMock()
+    mock_result.scalar_one_or_none.return_value = None
+    mock_db.execute.return_value = mock_result
+    
+    # Act
+    repo = PostgresRepository(Task)
+    repo.db = mock_db
+    task = Task(id=999, description="Test task")
+    
+    # Assert
+    with pytest.raises(ValueError, match="L'entité avec l'ID 999 n'existe pas"):
+        await repo.update(task)
+
+@pytest.mark.asyncio
+async def test_postgres_repository_update_error():
+    """Test la gestion des erreurs lors de la mise à jour"""
+    # Arrange
+    mock_db = AsyncMock()
+    mock_result = AsyncMock()
+    mock_task = Task(id=1, description="Test task")
+    mock_result.scalar_one_or_none.return_value = mock_task
+    mock_db.execute.return_value = mock_result
+    mock_db.commit.side_effect = SQLAlchemyError("Test error")
+    
+    # Act
+    repo = PostgresRepository(Task)
+    repo.db = mock_db
+    
+    # Assert
+    with pytest.raises(SQLAlchemyError):
+        await repo.update(mock_task)
+    mock_db.rollback.assert_called_once()
+
+@pytest.mark.asyncio
+async def test_postgres_repository_delete():
+    """Test la suppression d'une entité"""
+    # Arrange
+    mock_db = AsyncMock()
+    mock_result = AsyncMock()
+    mock_task = Task(id=1, description="Test task")
+    mock_result.scalar_one_or_none.return_value = mock_task
+    mock_db.execute.return_value = mock_result
+    
+    # Act
+    repo = PostgresRepository(Task)
+    repo.db = mock_db
+    await repo.delete(1)
+    
+    # Assert
+    mock_db.delete.assert_called_once_with(mock_task)
+    mock_db.commit.assert_called_once()
+
+@pytest.mark.asyncio
+async def test_postgres_repository_delete_not_found():
+    """Test la suppression d'une entité inexistante"""
+    # Arrange
+    mock_db = AsyncMock()
+    mock_result = AsyncMock()
+    mock_result.scalar_one_or_none.return_value = None
+    mock_db.execute.return_value = mock_result
+    
+    # Act
+    repo = PostgresRepository(Task)
+    repo.db = mock_db
+    
+    # Assert
+    with pytest.raises(ValueError, match="L'entité avec l'ID 999 n'existe pas"):
+        await repo.delete(999)
+
+@pytest.mark.asyncio
+async def test_postgres_repository_delete_error():
+    """Test la gestion des erreurs lors de la suppression"""
+    # Arrange
+    mock_db = AsyncMock()
+    mock_result = AsyncMock()
+    mock_task = Task(id=1, description="Test task")
+    mock_result.scalar_one_or_none.return_value = mock_task
+    mock_db.execute.return_value = mock_result
+    mock_db.commit.side_effect = SQLAlchemyError("Test error")
+    
+    # Act
+    repo = PostgresRepository(Task)
+    repo.db = mock_db
+    
+    # Assert
+    with pytest.raises(SQLAlchemyError):
+        await repo.delete(1)
+    mock_db.rollback.assert_called_once() 

@@ -9,7 +9,7 @@ class TaskList(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
     user_discord_id = Column(String, index=True)
-    created_at = Column(DateTime, default=lambda: datetime.now(UTC))
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(UTC))
     
     tasks = relationship("Task", back_populates="task_list", cascade="all, delete-orphan")
 
@@ -19,7 +19,7 @@ class Task(Base):
     id = Column(Integer, primary_key=True, index=True)
     description = Column(String)
     completed = Column(Boolean, default=False)
-    created_at = Column(DateTime, default=lambda: datetime.now(UTC))
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(UTC))
     task_list_id = Column(Integer, ForeignKey("task_lists.id"))
     
     task_list = relationship("TaskList", back_populates="tasks") 

@@ -1,138 +1,149 @@
 from typing import List, Optional
 import logging
-from sqlalchemy import select, delete
+from datetime import datetime, UTC
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import joinedload
 from src.domain.entities.task import Task, TaskList
 from src.infrastructure.repositories.postgres_repository import PostgresRepository
+from src.infrastructure.config.database import get_session
 
 # Configuration du logging
 logger = logging.getLogger(__name__)
 
 class TaskRepository(PostgresRepository[Task]):
     def __init__(self, db: Optional[AsyncSession] = None):
-        super().__init__(db)
+        super().__init__(Task)
+        self._db = db
     
     async def get_user_lists(self, user_discord_id: str) -> List[TaskList]:
+        session = await get_session()
         try:
-            lists = self.db.query(TaskList).filter(TaskList.user_discord_id == user_discord_id).all()
-            return lists
+            query = select(TaskList).options(
+                joinedload(TaskList.tasks)
+            ).filter(TaskList.user_discord_id == user_discord_id)
+            result = await session.execute(query)
+            return result.unique().scalars().all()
         except Exception as e:
             logger.error(f"Erreur lors de la récupération des listes: {str(e)}")
             raise
+        finally:
+            await session.close()
     
-    async def create_list(self, name: str, user_discord_id: str) -> TaskList:
+    async def create_list(self, user_discord_id: str, name: str) -> TaskList:
+        session = await get_session()
         try:
-            task_list = TaskList(name=name, user_discord_id=user_discord_id)
-            self.db.add(task_list)
-            self.db.commit()
+            task_list = TaskList(
+                name=name,
+                user_discord_id=user_discord_id,
+                created_at=datetime.now(UTC)
+            )
+            session.add(task_list)
+            await session.commit()
+            await session.refresh(task_list)
             return task_list
         except Exception as e:
-            self.db.rollback()
+            await session.rollback()
             logger.error(f"Erreur lors de la création de la liste: {str(e)}")
             raise
+        finally:
+            await session.close()
     
     async def add_task(self, description: str, task_list_id: int) -> Task:
+        session = await get_session()
         try:
-            # Vérifier si la liste existe
-            task_list = self.db.query(TaskList).filter(TaskList.id == task_list_id).first()
-            if not task_list:
-                raise ValueError(f"La liste avec l'ID {task_list_id} n'existe pas")
-                
             task = Task(description=description, task_list_id=task_list_id)
-            self.db.add(task)
-            self.db.commit()
+            session.add(task)
+            await session.commit()
+            await session.refresh(task)
             return task
         except Exception as e:
-            self.db.rollback()
+            await session.rollback()
             logger.error(f"Erreur lors de l'ajout de la tâche: {str(e)}")
             raise
+        finally:
+            await session.close()
     
     async def toggle_task(self, task_id: int) -> Optional[Task]:
+        session = await get_session()
         try:
-            task = self.db.query(Task).filter(Task.id == task_id).first()
+            query = select(Task).filter(Task.id == task_id)
+            result = await session.execute(query)
+            task = result.scalar_one_or_none()
+            
             if task:
                 task.completed = not task.completed
-                self.db.commit()
+                await session.commit()
+                await session.refresh(task)
             return task
         except Exception as e:
-            self.db.rollback()
+            await session.rollback()
             logger.error(f"Erreur lors du basculement de la tâche: {str(e)}")
             raise
-        
+        finally:
+            await session.close()
+    
     async def update_task_description(self, task_id: int, new_description: str) -> Task:
-        try:
-            task = self.db.query(Task).filter(Task.id == task_id).first()
-            if not task:
-                raise ValueError(f"La tâche avec l'ID {task_id} n'existe pas")
-            task.description = new_description
-            self.db.commit()
-            self.db.refresh(task)
-            return task
-        except Exception as e:
-            self.db.rollback()
-            logger.error(f"Erreur lors de la mise à jour de la description de la tâche: {str(e)}")
-            raise
+        async with self._get_session() as session:
+            try:
+                query = select(Task).filter(Task.id == task_id)
+                result = await session.execute(query)
+                task = result.scalar_one_or_none()
+                
+                if not task:
+                    raise ValueError(f"La tâche avec l'ID {task_id} n'existe pas")
+                
+                task.description = new_description
+                await session.commit()
+                await session.refresh(task)
+                return task
+            except Exception as e:
+                await session.rollback()
+                logger.error(f"Erreur lors de la mise à jour de la description de la tâche: {str(e)}")
+                raise
 
     async def delete_task(self, task_id: int) -> bool:
-        """
-        Supprime une tâche spécifique.
-        
-        Args:
-            task_id: L'identifiant de la tâche à supprimer
-            
-        Returns:
-            bool: True si la suppression a réussi, False sinon
-            
-        Raises:
-            ValueError: Si la tâche n'existe pas
-        """
-        try:
-            task = self.db.query(Task).filter(Task.id == task_id).first()
-            if not task:
-                raise ValueError(f"La tâche avec l'ID {task_id} n'existe pas")
-            
-            self.db.delete(task)
-            self.db.commit()
-            return True
-            
-        except ValueError as e:
-            logger.error(f"Erreur lors de la suppression de la tâche: {str(e)}")
-            raise
-        except Exception as e:
-            self.db.rollback()
-            logger.error(f"Erreur lors de la suppression de la tâche: {str(e)}")
-            return False
+        async with self._get_session() as session:
+            try:
+                query = select(Task).filter(Task.id == task_id)
+                result = await session.execute(query)
+                task = result.scalar_one_or_none()
+                
+                if not task:
+                    raise ValueError(f"La tâche avec l'ID {task_id} n'existe pas")
+                
+                await session.delete(task)
+                await session.commit()
+                return True
+                
+            except Exception as e:
+                await session.rollback()
+                logger.error(f"Erreur lors de la suppression de la tâche: {str(e)}")
+                raise
 
     async def delete_list(self, list_id: int) -> bool:
-        """
-        Supprime une liste de tâches et toutes ses tâches associées.
-        
-        Args:
-            list_id: L'identifiant de la liste à supprimer
-            
-        Returns:
-            bool: True si la suppression a réussi, False sinon
-            
-        Raises:
-            ValueError: Si la liste n'existe pas
-        """
-        try:
-            task_list = self.db.query(TaskList).filter(TaskList.id == list_id).first()
-            if not task_list:
-                raise ValueError(f"La liste avec l'ID {list_id} n'existe pas")
-            
-            # Supprime d'abord toutes les tâches associées
-            self.db.query(Task).filter(Task.task_list_id == list_id).delete()
-            
-            # Puis supprime la liste
-            self.db.delete(task_list)
-            self.db.commit()
-            return True
-            
-        except ValueError as e:
-            logger.error(f"Erreur lors de la suppression de la liste: {str(e)}")
-            raise
-        except Exception as e:
-            self.db.rollback()
-            logger.error(f"Erreur lors de la suppression de la liste: {str(e)}")
-            return False 
+        async with self._get_session() as session:
+            try:
+                query = select(TaskList).filter(TaskList.id == list_id)
+                result = await session.execute(query)
+                task_list = result.scalar_one_or_none()
+                
+                if not task_list:
+                    raise ValueError(f"La liste avec l'ID {list_id} n'existe pas")
+                
+                # Supprimer d'abord toutes les tâches associées
+                query = select(Task).filter(Task.task_list_id == list_id)
+                result = await session.execute(query)
+                tasks = result.scalars().all()
+                for task in tasks:
+                    await session.delete(task)
+                
+                # Puis supprimer la liste
+                await session.delete(task_list)
+                await session.commit()
+                return True
+                
+            except Exception as e:
+                await session.rollback()
+                logger.error(f"Erreur lors de la suppression de la liste: {str(e)}")
+                return False

@@ -10,7 +10,15 @@ class Streams(commands.Cog):
         self.bot = bot
         self.session = requests.Session()
         self.stream_cache = set()
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        """Démarrer la tâche de vérification des streams une fois que le bot est prêt"""
         self.check_streams.start()
+
+    def cog_unload(self):
+        """Arrêter la tâche quand le cog est déchargé"""
+        self.check_streams.cancel()
 
     async def fetch_twitch_streams(self, username):
         client_id = os.getenv('TWITCH_CLIENT_ID')
@@ -29,52 +37,58 @@ class Streams(commands.Cog):
             'Client-ID': client_id,
             'Authorization': f'Bearer {access_token}'
         }
-        streams_url = f'https://api.twitch.tv/helix/streams?user_login={
-            username}'
+        streams_url = f'https://api.twitch.tv/helix/streams?user_login={username}'
         streams_response = self.session.get(streams_url, headers=headers)
         streams_response.raise_for_status()
         streams_data = streams_response.json()['data']
 
         return streams_data
 
-    async def send_streams_to_channel(self, channel, streams):
-        for stream in streams:
-            if stream['id'] not in self.stream_cache:
-                embed = discord.Embed(
-                    title=stream['title'],
-                    url=f"https://www.twitch.tv/{stream['user_name']}",
-                    description=stream['game_name'],
-                    color=discord.Color.purple()
-                )
-                embed.set_author(name=stream['user_name'])
-                embed.set_thumbnail(url=stream['thumbnail_url'])
-                embed.add_field(
-                    name="Viewers", value=stream['viewer_count'], inline=True)
-                try:
-                    await channel.send(embed=embed)
-                    self.stream_cache.add(stream['id'])
-                except discord.errors.Forbidden:
-                    logging.error(
-                        f"Le bot n'a pas les permissions nécessaires pour envoyer des messages dans le canal {channel.id}.")
-                except discord.errors.HTTPException as e:
-                    logging.error(
-                        f"Erreur HTTP lors de l'envoi du message : {e}")
-                except Exception as e:
-                    logging.error(f"Erreur inattendue : {e}")
-
-    @tasks.loop(seconds=5)
+    @tasks.loop(seconds=60)
     async def check_streams(self):
-        channel_id = int(os.getenv('SOCIAL_ID'))
-        twitch_username = os.getenv('TWITCH_USERNAME')
-        channel = self.bot.get_channel(channel_id)
-        if channel:
+        """Vérifie les streams toutes les minutes"""
+        try:
+            channel_id = int(os.getenv('STREAM_CHANNEL_ID'))
+            twitch_username = os.getenv('TWITCH_USERNAME')
+            
+            if not channel_id or not twitch_username:
+                logging.error("Configuration des streams manquante")
+                return
+                
+            channel = self.bot.get_channel(channel_id)
+            if not channel:
+                logging.error(f"Canal des streams non trouvé (ID: {channel_id})")
+                return
+                
             streams = await self.fetch_twitch_streams(twitch_username)
             await self.send_streams_to_channel(channel, streams)
+        except Exception as e:
+            logging.error(f"Erreur lors de la vérification des streams : {str(e)}")
 
-    @check_streams.before_loop
-    async def before_check_streams(self):
-        await self.bot.wait_until_ready()
+    async def send_streams_to_channel(self, channel, streams):
+        """Envoie les notifications de stream dans le canal approprié"""
+        if not streams:
+            return
 
+        for stream in streams:
+            stream_id = stream['id']
+            if stream_id not in self.stream_cache:
+                embed = discord.Embed(
+                    title=f"🎮 {stream['user_name']} est en live !",
+                    description=stream['title'],
+                    url=f"https://twitch.tv/{stream['user_login']}",
+                    color=discord.Color.purple()
+                )
+                
+                if stream.get('thumbnail_url'):
+                    thumbnail_url = stream['thumbnail_url'].replace('{width}', '1280').replace('{height}', '720')
+                    embed.set_image(url=thumbnail_url)
+                
+                embed.add_field(name="Jeu", value=stream['game_name'], inline=True)
+                embed.add_field(name="Viewers", value=str(stream['viewer_count']), inline=True)
+                
+                await channel.send(embed=embed)
+                self.stream_cache.add(stream_id)
 
 async def setup(bot):
     await bot.add_cog(Streams(bot))

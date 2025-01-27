@@ -2,6 +2,8 @@ from typing import List, Optional, Tuple
 import logging
 from src.infrastructure.repositories.task_repository import TaskRepository
 from src.domain.entities.task import Task, TaskList
+from src.infrastructure.config.database import init_db, async_session
+from src.config.config import load_config
 
 # Configuration du logging
 logging.basicConfig(level=logging.INFO)
@@ -10,16 +12,26 @@ logger = logging.getLogger(__name__)
 class TaskService:
     def __init__(self, repository: Optional[TaskRepository] = None):
         self.repository = repository if repository is not None else TaskRepository()
+        self._initialized = False
     
-    async def create_list(self, name: str, user_discord_id: str) -> Tuple[bool, str, Optional[TaskList]]:
+    async def _ensure_initialized(self):
+        if not self._initialized:
+            if not async_session:
+                config = load_config()
+                await init_db(config.database)
+            self._initialized = True
+    
+    async def create_list(self, user_discord_id: str, name: str) -> Tuple[bool, str, Optional[TaskList]]:
         try:
+            await self._ensure_initialized()
+            
             if not name or len(name.strip()) == 0:
                 return False, "Le nom de la liste ne peut pas être vide", None
                 
             if len(name) > 100:  # Limite raisonnable pour un nom de liste
                 return False, "Le nom de la liste est trop long (max 100 caractères)", None
             
-            task_list = await self.repository.create_list(name.strip(), user_discord_id)
+            task_list = await self.repository.create_list(user_discord_id, name.strip())
             return True, "Liste créée avec succès", task_list
             
         except ValueError as e:
@@ -29,10 +41,38 @@ class TaskService:
             return False, "Une erreur est survenue lors de la création de la liste", None
     
     async def get_user_lists(self, user_discord_id: str) -> List[TaskList]:
+        await self._ensure_initialized()
         return await self.repository.get_user_lists(user_discord_id)
     
-    async def add_task(self, description: str, task_list_id: int) -> Task:
-        return await self.repository.add_task(description, task_list_id)
+    async def add_task(self, description: str, task_list_id: int) -> Optional[Task]:
+        """
+        Ajoute une nouvelle tâche à une liste.
+        
+        Args:
+            description: La description de la tâche
+            task_list_id: L'identifiant de la liste à laquelle ajouter la tâche
+            
+        Returns:
+            Task: La tâche créée
+            
+        Raises:
+            ValueError: Si la description est vide ou si la liste n'existe pas
+        """
+        try:
+            if not description or len(description.strip()) == 0:
+                raise ValueError("La description de la tâche ne peut pas être vide")
+                
+            if len(description) > 500:  # Limite raisonnable pour une description
+                raise ValueError("La description de la tâche est trop longue (max 500 caractères)")
+            
+            return await self.repository.add_task(description.strip(), task_list_id)
+            
+        except ValueError as e:
+            logger.error(f"Erreur de validation lors de l'ajout de la tâche: {str(e)}")
+            raise
+        except Exception as e:
+            logger.error(f"Erreur inattendue lors de l'ajout de la tâche: {str(e)}")
+            raise
     
     async def toggle_task(self, task_id: int) -> Optional[Task]:
         return await self.repository.toggle_task(task_id)

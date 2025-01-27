@@ -12,9 +12,27 @@ class News(commands.Cog):
         self.bot = bot
         self.session = requests.Session()
         self.news_cache = set()
+        
+    @commands.Cog.listener()
+    async def on_ready(self):
+        """Démarrer la tâche de vérification des news une fois que le bot est prêt"""
         self.check_news.start()
 
+    def cog_unload(self):
+        """Arrêter la tâche quand le cog est déchargé"""
+        self.check_news.cancel()
+
+    @tasks.loop(minutes=30)
+    async def check_news(self):
+        """Vérifie les nouvelles de SWTOR toutes les 30 minutes"""
+        try:
+            news_items = await self.fetch_swtor_news()
+            await self.send_news_to_channel(news_items)
+        except Exception as e:
+            logging.error(f"Erreur lors de la vérification des news : {str(e)}")
+
     async def fetch_swtor_news(self):
+        """Récupère les dernières nouvelles de SWTOR"""
         url = 'https://www.swtor.com/fr/info/news'
         response = self.session.get(url)
         response.raise_for_status()
@@ -29,55 +47,41 @@ class News(commands.Cog):
             full_link = base_url + link
             image_tag = article.find('img')
             image_url = base_url + image_tag['src'] if image_tag else None
-            news_items.append({'title': title, 'description': description,
-                               'link': full_link, 'image_url': image_url})
+            news_items.append({
+                'title': title,
+                'description': description,
+                'link': full_link,
+                'image_url': image_url
+            })
 
         return news_items
 
-    async def send_news_to_channel(self, channel, news_items):
-        for item in news_items:
-            if item['link'] not in self.news_cache:
+    async def send_news_to_channel(self, news_items):
+        """Envoie les nouvelles dans le canal approprié"""
+        if not news_items:
+            return
+
+        channel_id = int(os.getenv('NEWS_CHANNEL_ID'))
+        channel = self.bot.get_channel(channel_id)
+        
+        if not channel:
+            logging.error(f"Canal des news non trouvé (ID: {channel_id})")
+            return
+
+        for news in news_items:
+            if news['link'] not in self.news_cache:
                 embed = discord.Embed(
-                    title=item['title'],
-                    url=item['link'],
-                    description=item['description'],
+                    title=news['title'],
+                    description=news['description'],
+                    url=news['link'],
                     color=discord.Color.blue()
                 )
-                embed.set_author(name="SWTOR News")
-                embed.set_footer(text="SWTOR News",
-                                 icon_url="https://www.swtor.com/favicon.ico")
-                if item['image_url']:
-                    embed.set_image(url=item['image_url'])
-                embed.add_field(
-                    name="Lien", value=f"[Lire plus]({item['link']})", inline=False)
-                try:
-                    await channel.send(embed=embed)
-                    self.news_cache.add(item['link'])
-                except discord.errors.Forbidden:
-                    logging.error(
-                        f"Le bot n'a pas les permissions nécessaires pour envoyer des messages dans le canal {channel.id}.")
-                except discord.errors.HTTPException as e:
-                    logging.error(
-                        f"Erreur HTTP lors de l'envoi du message : {e}")
-                except Exception as e:
-                    logging.error(f"Erreur inattendue : {e}")
+                
+                if news['image_url']:
+                    embed.set_image(url=news['image_url'])
+                
+                await channel.send(embed=embed)
+                self.news_cache.add(news['link'])
 
-    @commands.command(name='news')
-    async def news_command(self, ctx):
-        news_items = await self.fetch_swtor_news()
-        await self.send_news_to_channel(ctx.channel, news_items)
-
-    @tasks.loop(hours=1)
-    async def check_news(self):
-        channel_id = int(os.getenv('CHANNEL_ID'))
-        channel = self.bot.get_channel(channel_id)
-        if channel:
-            news_items = await self.fetch_swtor_news()
-            await self.send_news_to_channel(channel, news_items)
-
-    @check_news.before_loop
-    async def before_check_news(self):
-        await self.bot.wait_until_ready()
-
-async def setup(bot):  # Ajout de la fonction setup asynchrone
+async def setup(bot):
     await bot.add_cog(News(bot))

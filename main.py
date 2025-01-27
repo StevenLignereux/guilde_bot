@@ -1,65 +1,69 @@
 import discord
-import logging
 from discord.ext import commands
-from keep_alive import keep_alive
 import asyncio
-from src.config.environment import load_environment
+import logging
+from src.config.config import Config, load_config
 from src.infrastructure.config.database import init_db
+from src.infrastructure.logging.logger import setup_logging
+import os
+from dotenv import load_dotenv
+from src.infrastructure.commands.task_commands import TaskCommands
 
 # Configuration du logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Charger la configuration
-try:
-    config = load_environment()
-    logger.info("Configuration chargée avec succès")
-except Exception as e:
-    logger.error(f"Erreur lors du chargement de la configuration : {str(e)}")
-    raise
+# Charger les variables d'environnement
+load_dotenv()
 
-# Configuration du bot
-intents = discord.Intents.default()
-intents.members = True
-intents.message_content = True
-bot = commands.Bot(command_prefix='/', intents=intents)
+class GuildeBot(commands.Bot):
+    def __init__(self):
+        intents = discord.Intents.default()
+        intents.message_content = True
+        intents.members = True
+        super().__init__(command_prefix="!", intents=intents)
+    
+    async def setup_hook(self) -> None:
+        """Configure le bot avant son démarrage"""
+        try:
+            # Configurer les commandes
+            await TaskCommands(self).setup()
+            logger.info("Commandes configurées avec succès")
+            
+            # Synchroniser les commandes avec Discord
+            await self.tree.sync()
+            logger.info("Commandes synchronisées avec Discord")
+            
+        except Exception as e:
+            logger.error(f"Erreur lors de la configuration du bot: {e}")
+            raise
 
-@bot.event
-async def on_ready():
-    print(f'Bot connecté en tant que {bot.user}')
+    async def on_ready(self):
+        """Appelé quand le bot est prêt"""
+        logger.info(f"Bot connecté en tant que {self.user.name}")
+
+async def main():
+    """Point d'entrée principal du bot"""
     try:
-        synced = await bot.tree.sync()
-        print(f'Commandes slash synchronisées : {len(synced)} commande(s)')
-    except Exception as e:
-        print(f'Erreur lors de la synchronisation des commandes : {e}')
-
-async def setup():
-    try:
-        logger.info("Initialisation de la base de données...")
-        init_db()  # Initialise la base de données en premier
+        # Configurer le logging
+        setup_logging()
+        logger.info("Logging configuré avec succès")
+        
+        # Charger la configuration
+        config = load_config()
+        logger.info("Configuration chargée avec succès")
+        
+        # Initialiser la base de données
+        await init_db(config.database)
         logger.info("Base de données initialisée avec succès")
         
-        logger.info("Chargement des extensions...")
-        await bot.load_extension('cogs.events')
-        await bot.load_extension('cogs.commands')
-        await bot.load_extension('cogs.tasks')
-        await bot.load_extension('cogs.news')
-        await bot.load_extension('cogs.stream')
-        logger.info("Extensions chargées avec succès")
-        
-        keep_alive()
-        token = config.get('DISCORD_TOKEN')
-        if not token:
-            raise ValueError("Token Discord manquant dans la configuration")
-        await bot.start(token)
+        # Créer et démarrer le bot
+        async with GuildeBot() as bot:
+            await bot.start(os.getenv("DISCORD_TOKEN"))
+            
     except Exception as e:
-        logger.error(f"Erreur lors du setup : {str(e)}")
+        logger.error(f"Erreur lors du démarrage du bot: {e}")
         raise
 
 if __name__ == "__main__":
-    try:
-        asyncio.run(setup())
-    except KeyboardInterrupt:
-        logger.info("Arrêt du bot...")
-    except Exception as e:
-        logger.error(f"Erreur fatale : {str(e)}")
+    asyncio.run(main())

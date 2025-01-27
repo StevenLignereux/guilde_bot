@@ -1,49 +1,52 @@
 import os
 import logging
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
-from sqlalchemy.engine.url import make_url
-from sqlalchemy.exc import SQLAlchemyError
-from src.config.environment import load_environment
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
+from sqlalchemy.orm import declarative_base
+from src.config.config import DatabaseConfig
 
 # Configuration du logging
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-# Charger la configuration
-config = load_environment()
-
-# Créer l'URL de la base de données
-DATABASE_URL = config['database_url']
-if DATABASE_URL.startswith('postgres://'):
-    DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
-
-try:
-    # Créer le moteur de base de données
-    engine = create_engine(DATABASE_URL, echo=True)
-except SQLAlchemyError as e:
-    print(f"❌ Erreur lors de la création du moteur de base de données : {str(e)}")
-    raise
 
 # Créer une classe de base pour les modèles
 Base = declarative_base()
 
-# Créer une classe de session
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+# Variables globales pour le moteur et la session
+engine = None
+async_session = None
+DATABASE_URL = os.getenv('Database_URL', 'postgresql://postgres:postgres@localhost:5432/guilde_bot')
 
-def init_db():
-    """Initialise la base de données en créant toutes les tables."""
+async def init_db(config: DatabaseConfig) -> None:
+    """
+    Initialise la connexion à la base de données.
+    """
+    global engine, async_session
+    
     try:
-        Base.metadata.create_all(bind=engine)
-        print("✅ Tables créées avec succès")
+        # Convertir l'URL PostgreSQL standard en URL asyncpg si nécessaire
+        db_url = DATABASE_URL
+        if db_url.startswith('postgresql://'):
+            db_url = db_url.replace('postgresql://', 'postgresql+asyncpg://', 1)
+        
+        # Créer le moteur
+        engine = create_async_engine(db_url)
+        
+        # Créer la factory de sessions
+        async_session = async_sessionmaker(
+            engine,
+            class_=AsyncSession,
+            expire_on_commit=False
+        )
+        
+        logger.info("Base de données initialisée avec succès")
+        
     except Exception as e:
-        print(f"❌ Erreur lors de la création des tables : {str(e)}")
+        logger.error(f"Erreur lors de l'initialisation de la base de données: {e}")
         raise
 
-def get_db():
-    """Générateur de session de base de données."""
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close() 
+async def get_session() -> AsyncSession:
+    """
+    Retourne une nouvelle session de base de données.
+    """
+    if not async_session:
+        raise RuntimeError("La session de base de données n'est pas initialisée")
+    return async_session() 

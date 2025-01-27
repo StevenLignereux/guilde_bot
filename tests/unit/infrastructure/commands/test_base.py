@@ -13,7 +13,7 @@ from src.infrastructure.errors.exceptions import PermissionError, CommandError
 
 @pytest.fixture
 def mock_bot():
-    bot = MagicMock(spec=commands.Bot)
+    bot = MagicMock()
     bot.error_handler = MagicMock()
     bot.error_handler.handle_error = AsyncMock()
     return bot
@@ -32,6 +32,9 @@ def mock_interaction():
     interaction = AsyncMock(spec=discord.Interaction)
     interaction.response = AsyncMock()
     interaction.response.send_message = AsyncMock()
+    interaction.user = MagicMock(spec=discord.Member)
+    interaction.channel = MagicMock(spec=discord.TextChannel)
+    interaction.guild = MagicMock(spec=discord.Guild)
     return interaction
 
 class TestCog(BaseCommand):
@@ -95,6 +98,100 @@ async def test_command_error_handler(mock_bot, mock_ctx):
     error = mock_bot.error_handler.handle_error.call_args[0][0]
     assert isinstance(error, CommandError)
     assert "Test error" in str(error)
+
+@pytest.mark.asyncio
+async def test_slash_command_group_creation(mock_bot):
+    """Test la création d'un groupe de commandes slash"""
+    class TestCog(BaseCommand):
+        def __init__(self, bot):
+            super().__init__(bot)
+            self.group = SlashCommandGroup("test", "Test group")
+            
+            @self.group.command(name="hello", description="Test command")
+            async def hello_command(self, interaction: discord.Interaction):
+                await interaction.response.send_message("Hello!")
+    
+    # Créer une instance du cog
+    cog = TestCog(mock_bot)
+    
+    # Vérifier que le groupe est créé correctement
+    assert isinstance(cog.group, app_commands.Group)
+    assert cog.group.name == "test"
+    assert len(cog.group.commands) == 1
+    assert cog.group.commands[0].name == "hello"
+
+@pytest.mark.asyncio
+async def test_slash_command_execution(mock_bot, mock_interaction):
+    """Test l'exécution d'une commande slash"""
+    class TestCog(BaseCommand):
+        def __init__(self, bot):
+            super().__init__(bot)
+            self.group = SlashCommandGroup("test", "Test group")
+            
+            @self.group.command(name="hello", description="Test command")
+            async def hello_command(self, interaction: discord.Interaction):
+                await interaction.response.send_message("Hello!")
+    
+    # Créer une instance du cog
+    cog = TestCog(mock_bot)
+    
+    # Exécuter la commande
+    command = cog.group.commands[0]
+    await command.callback(cog, mock_interaction)
+    
+    # Vérifier que la réponse a été envoyée
+    mock_interaction.response.send_message.assert_called_once_with("Hello!")
+
+@pytest.mark.asyncio
+async def test_slash_command_error_handling(mock_bot, mock_interaction):
+    """Test la gestion des erreurs pour une commande slash"""
+    class TestCog(BaseCommand):
+        def __init__(self, bot):
+            super().__init__(bot)
+            self.group = SlashCommandGroup("test", "Test group")
+            
+            @self.group.command(name="error", description="Command with error")
+            async def error_command(self, interaction: discord.Interaction):
+                raise ValueError("Test error")
+    
+    # Créer une instance du cog
+    cog = TestCog(mock_bot)
+    
+    # Exécuter la commande qui lève une erreur
+    command = cog.group.commands[0]
+    await command.callback(cog, mock_interaction)
+    
+    # Vérifier que l'erreur est gérée
+    mock_bot.error_handler.handle_error.assert_called_once()
+    args = mock_bot.error_handler.handle_error.call_args[0]
+    assert isinstance(args[0], ValueError)
+    assert str(args[0]) == "Test error"
+
+@pytest.mark.asyncio
+async def test_slash_command_help_setup(mock_bot):
+    """Test la configuration de l'aide pour les commandes slash"""
+    class TestCog(BaseCommand):
+        """Test cog description"""
+        def __init__(self, bot):
+            super().__init__(bot)
+            self.group = SlashCommandGroup("test", "Test group")
+            
+            @self.group.command(name="cmd1", description="First command")
+            async def first_command(self, interaction: discord.Interaction):
+                pass
+            
+            @self.group.command(name="cmd2", description="Second command")
+            async def second_command(self, interaction: discord.Interaction):
+                pass
+    
+    # Créer une instance du cog
+    cog = TestCog(mock_bot)
+    
+    # Vérifier que l'aide est configurée
+    assert cog.__doc__ is not None
+    assert "Test cog description" in cog.__doc__
+    assert "cmd1" in str(cog.group.commands[0])
+    assert "cmd2" in str(cog.group.commands[1])
 
 @pytest.mark.asyncio
 async def test_slash_command_group():
@@ -418,4 +515,47 @@ async def test_slash_command_cooldown_guild(mock_bot, mock_interaction):
     # Après le cooldown - devrait réussir
     mock_interaction.created_at.timestamp.return_value = 1031.0
     result = await command.callback(cog, mock_interaction)
-    assert result is True 
+    assert result is True
+
+@pytest.mark.asyncio
+async def test_slash_command_with_aliases(mock_bot, mock_interaction):
+    """Test une commande slash avec des alias"""
+    
+    class TestCog(BaseCommand):
+        def __init__(self, bot):
+            super().__init__(bot)
+            self.group = SlashCommandGroup(name="test", description="Test group")
+        
+        @create_slash_command(
+            name="hello",
+            description="Test command",
+            aliases=["hi", "hey"]
+        )
+        async def hello_command(self, interaction: discord.Interaction):
+            await interaction.response.send_message("Hello!")
+            return True
+    
+    # Créer une instance du cog
+    cog = TestCog(mock_bot)
+    command = cog.hello_command
+    
+    # Vérifier que la commande est créée correctement
+    assert isinstance(command, app_commands.Command)
+    assert command.name == "hello"
+    
+    # Simuler l'exécution de la commande
+    result = await command.callback(cog, mock_interaction)
+    assert result is True
+    mock_interaction.response.send_message.assert_called_once_with("Hello!")
+    
+    # Vérifier que les alias sont enregistrés
+    if isinstance(cog.group, SlashCommandGroup):
+        assert cog.group.get_command_name("hi") == "hello"
+        assert cog.group.get_command_name("hey") == "hello"
+        assert cog.group.get_command_usage("hello") == 1
+        
+        # Vérifier les alias
+        aliases = cog.group.get_command_aliases("hello")
+        assert len(aliases) == 2
+        assert "hi" in aliases
+        assert "hey" in aliases 
