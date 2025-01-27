@@ -133,4 +133,22 @@ class TaskService:
         Raises:
             ValueError: Si la liste n'existe pas
         """
-        return await self.repository.delete_list(list_id) 
+        return await self.repository.delete_list(list_id)
+
+    async def delete_completed_tasks(self, task_list_id: int) -> bool:
+        try:
+            task_list = await self.repository.get_list(task_list_id)
+            if not task_list:
+                return False
+            
+            completed_tasks = [task for task in task_list.tasks if task.completed]
+            if not completed_tasks:
+                return False
+            
+            for task in completed_tasks:
+                await self.repository.delete_task(task.id)
+            
+            return True
+        except Exception as e:
+            logger.error(f"Erreur lors de la suppression des tâches complétées: {str(e)}")
+            return False 

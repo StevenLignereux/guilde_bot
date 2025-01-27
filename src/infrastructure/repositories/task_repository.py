@@ -103,23 +103,25 @@ class TaskRepository(PostgresRepository[Task]):
                 raise
 
     async def delete_task(self, task_id: int) -> bool:
-        async with self._get_session() as session:
-            try:
-                query = select(Task).filter(Task.id == task_id)
-                result = await session.execute(query)
-                task = result.scalar_one_or_none()
-                
-                if not task:
-                    raise ValueError(f"La tâche avec l'ID {task_id} n'existe pas")
-                
-                await session.delete(task)
-                await session.commit()
-                return True
-                
-            except Exception as e:
-                await session.rollback()
-                logger.error(f"Erreur lors de la suppression de la tâche: {str(e)}")
-                raise
+        session = await get_session()
+        try:
+            query = select(Task).filter(Task.id == task_id)
+            result = await session.execute(query)
+            task = result.scalar_one_or_none()
+            
+            if not task:
+                raise ValueError(f"La tâche avec l'ID {task_id} n'existe pas")
+            
+            await session.delete(task)
+            await session.commit()
+            return True
+            
+        except Exception as e:
+            await session.rollback()
+            logger.error(f"Erreur lors de la suppression de la tâche: {str(e)}")
+            raise
+        finally:
+            await session.close()
 
     async def delete_list(self, list_id: int) -> bool:
         async with self._get_session() as session:
@@ -147,3 +149,17 @@ class TaskRepository(PostgresRepository[Task]):
                 await session.rollback()
                 logger.error(f"Erreur lors de la suppression de la liste: {str(e)}")
                 return False
+
+    async def get_list(self, list_id: int) -> Optional[TaskList]:
+        session = await get_session()
+        try:
+            query = select(TaskList).options(
+                joinedload(TaskList.tasks)
+            ).filter(TaskList.id == list_id)
+            result = await session.execute(query)
+            return result.unique().scalar_one_or_none()
+        except Exception as e:
+            logger.error(f"Erreur lors de la récupération de la liste: {str(e)}")
+            raise
+        finally:
+            await session.close()
