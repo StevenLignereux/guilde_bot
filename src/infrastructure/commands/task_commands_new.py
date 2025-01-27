@@ -76,7 +76,7 @@ class TaskListSelect(ui.Select):
             if task_list.tasks:
                 for i, task in enumerate(task_list.tasks, 1):
                     status = "✅" if task.completed else "⬜"
-                    description = f"~~{task.description}~~" if task.completed else t.description
+                    description = f"~~{task.description}~~" if task.completed else task.description
                     tasks_content += f"{i}. {status} {description}\n\n"
                     view.add_item(TaskButton(task.id, task.completed, f"Marquer #{i}"))
                 tasks_content = tasks_content.rstrip()
