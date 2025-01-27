@@ -124,31 +124,30 @@ class TaskRepository(PostgresRepository[Task]):
             await session.close()
 
     async def delete_list(self, list_id: int) -> bool:
-        async with self._get_session() as session:
-            try:
-                query = select(TaskList).filter(TaskList.id == list_id)
-                result = await session.execute(query)
-                task_list = result.scalar_one_or_none()
-                
-                if not task_list:
-                    raise ValueError(f"La liste avec l'ID {list_id} n'existe pas")
-                
-                # Supprimer d'abord toutes les tâches associées
-                query = select(Task).filter(Task.task_list_id == list_id)
-                result = await session.execute(query)
-                tasks = result.scalars().all()
-                for task in tasks:
-                    await session.delete(task)
-                
-                # Puis supprimer la liste
-                await session.delete(task_list)
-                await session.commit()
-                return True
-                
-            except Exception as e:
-                await session.rollback()
-                logger.error(f"Erreur lors de la suppression de la liste: {str(e)}")
+        """Supprime une liste et toutes ses tâches associées"""
+        session = await get_session()
+        try:
+            # Récupérer la liste
+            query = select(TaskList).filter(TaskList.id == list_id)
+            result = await session.execute(query)
+            task_list = result.scalar_one_or_none()
+            
+            if not task_list:
+                logger.warning(f"Tentative de suppression d'une liste inexistante (ID: {list_id})")
                 return False
+            
+            # Supprimer la liste (les tâches seront supprimées automatiquement grâce à cascade="all, delete-orphan")
+            await session.delete(task_list)
+            await session.commit()
+            logger.info(f"Liste supprimée avec succès (ID: {list_id})")
+            return True
+            
+        except Exception as e:
+            await session.rollback()
+            logger.error(f"Erreur lors de la suppression de la liste {list_id}: {str(e)}")
+            raise
+        finally:
+            await session.close()
 
     async def get_list(self, list_id: int) -> Optional[TaskList]:
         session = await get_session()

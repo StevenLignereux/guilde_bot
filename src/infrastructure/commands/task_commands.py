@@ -10,91 +10,77 @@ logger = logging.getLogger(__name__)
 
 class TaskListSelect(ui.Select):
     def __init__(self, task_lists: List[TaskList], task_service: Optional[TaskService] = None):
-        self.task_service = task_service
         options = []
         for task_list in task_lists:
             completed_tasks = sum(1 for task in task_list.tasks if task.completed)
             total_tasks = len(task_list.tasks)
-            progress = f"[{completed_tasks}/{total_tasks}]"
-            
-            # Emoji basé sur le nom de la liste
-            emoji = "📋"
-            if "course" in task_list.name.lower():
-                emoji = "🛒"
-            elif "maison" in task_list.name.lower():
-                emoji = "🏠"
-            elif "travail" in task_list.name.lower():
-                emoji = "💼"
-            elif "urgent" in task_list.name.lower():
-                emoji = "🚨"
-            
             options.append(
                 discord.SelectOption(
-                    label=f"{task_list.name}",
-                    description=f"{progress} • Créée le {task_list.created_at.strftime('%d/%m/%Y')}",
-                    value=str(task_list.id),
-                    emoji=emoji
+                    label=task_list.name,
+                    description=f"Tâches: {completed_tasks}/{total_tasks}",
+                    value=str(task_list.id)
                 )
             )
         
         super().__init__(
-            placeholder="📋 Sélectionnez une liste",
+            placeholder="Sélectionnez une liste",
             min_values=1,
             max_values=1,
             options=options
         )
-        self.task_lists = {str(tl.id): tl for tl in task_lists}
+        self.task_lists = task_lists
+        self.task_service = task_service
 
     async def callback(self, interaction: discord.Interaction):
         try:
-            list_id = self.values[0]
-            task_list = self.task_lists[list_id]
+            await interaction.response.defer()
             
-            if self.task_service:
-                lists = await self.task_service.get_user_lists(str(interaction.user.id))
-                task_list = next((lst for lst in lists if lst.id == int(list_id)), task_list)
-            
-            completed_tasks = sum(1 for task in task_list.tasks if task.completed)
-            total_tasks = len(task_list.tasks)
-            progress_bar = "▓" * completed_tasks + "░" * (total_tasks - completed_tasks)
-            
-            embed = discord.Embed(
-                title=f"📋 {task_list.name}",
-                description=f"Progression : {progress_bar} ({completed_tasks}/{total_tasks})",
-                color=discord.Color.blue()
+            # Récupérer la liste sélectionnée
+            selected_list = next(
+                (lst for lst in self.task_lists if str(lst.id) == self.values[0]),
+                None
             )
             
-            embed.add_field(
-                name="Créée le",
-                value=task_list.created_at.strftime("%d/%m/%Y à %H:%M"),
-                inline=True
-            )
-            
-            tasks_content = ""
-            view = TaskListView()
-            
-            if task_list.tasks:
-                for i, task in enumerate(task_list.tasks, 1):
+            if selected_list:
+                completed_tasks = sum(1 for task in selected_list.tasks if task.completed)
+                total_tasks = len(selected_list.tasks)
+                progress_bar = "▓" * completed_tasks + "░" * (total_tasks - completed_tasks)
+                
+                embed = discord.Embed(
+                    title=f"📋 {selected_list.name}",
+                    description=f"Progression : {progress_bar} ({completed_tasks}/{total_tasks})",
+                    color=discord.Color.blue()
+                )
+                
+                embed.add_field(
+                    name="Créée le",
+                    value=selected_list.created_at.strftime("%d/%m/%Y à %H:%M"),
+                    inline=True
+                )
+                
+                tasks_content = ""
+                view = TaskListView()
+                await view.update_list_id(selected_list.id)
+                
+                for i, task in enumerate(selected_list.tasks, 1):
                     status = "✅" if task.completed else "⬜"
-                    description = f"~~{task.description}~~" if task.completed else t.description
+                    description = f"~~{task.description}~~" if task.completed else task.description
                     tasks_content += f"{i}. {status} {description}\n\n"
                     view.add_item(TaskButton(task.id, task.completed, f"Marquer #{i}"))
+                
                 tasks_content = tasks_content.rstrip()
+                if tasks_content:
+                    embed.add_field(name="Tâches", value=tasks_content, inline=False)
+                else:
+                    embed.add_field(name="Tâches", value="Aucune tâche pour le moment", inline=False)
+                
+                await interaction.edit_original_response(embed=embed, view=view)
             else:
-                tasks_content = "*Cette liste est vide*"
-            
-            embed.add_field(name="Tâches", value="\n" + tasks_content, inline=False)
-            
-            # Ajouter les boutons d'action
-            view.add_item(AddTaskButton(task_list.id))
-            view.add_item(DeleteCompletedButton(task_list.id))
-            view.add_item(BackToMenuButton(list(self.task_lists.values())))
-            
-            await interaction.response.edit_message(embed=embed, view=view)
-            
+                await interaction.followup.send("❌ Liste non trouvée !", ephemeral=True)
+                
         except Exception as e:
             logger.error(f"Erreur lors de l'affichage de la liste: {str(e)}")
-            await interaction.response.send_message("❌ Une erreur est survenue !", ephemeral=True)
+            await interaction.followup.send("❌ Une erreur est survenue lors de l'affichage de la liste !", ephemeral=True)
 
 class BackToMenuButton(ui.Button):
     def __init__(self, task_lists: List[TaskList]):
@@ -216,13 +202,14 @@ class CreateListModal(ui.Modal, title="Créer une nouvelle liste"):
 
 class TaskButton(ui.Button):
     def __init__(self, task_id: int, completed: bool, label: str):
+        style = discord.ButtonStyle.success if completed else discord.ButtonStyle.secondary
         super().__init__(
-            style=discord.ButtonStyle.success if not completed else discord.ButtonStyle.secondary,
+            style=style,
             label=label,
             custom_id=f"task_{task_id}"
         )
-        self.task_id = task_id
-        self.completed = completed
+        self.task_id = int(task_id)
+        self.completed = bool(completed)
 
     async def callback(self, interaction: discord.Interaction):
         try:
@@ -231,7 +218,7 @@ class TaskButton(ui.Button):
             task_service = TaskService()
             task = await task_service.toggle_task(self.task_id)
             
-            if task:
+            if task is not None:
                 lists = await task_service.get_user_lists(str(interaction.user.id))
                 task_list = next((lst for lst in lists if any(t.id == task.id for t in lst.tasks)), None)
                 
@@ -254,20 +241,16 @@ class TaskButton(ui.Button):
                     
                     tasks_content = ""
                     view = TaskListView()
+                    await view.update_list_id(task_list.id)
                     
-                    for i, t in enumerate(task_list.tasks, 1):
-                        status = "✅" if t.completed else "⬜"
-                        description = f"~~{t.description}~~" if t.completed else t.description
+                    for i, task in enumerate(task_list.tasks, 1):
+                        status = "✅" if task.completed else "⬜"
+                        description = f"~~{task.description}~~" if task.completed else task.description
                         tasks_content += f"{i}. {status} {description}\n\n"
-                        view.add_item(TaskButton(t.id, t.completed, f"Marquer #{i}"))
+                        view.add_item(TaskButton(task.id, task.completed, f"Marquer #{i}"))
                     
                     tasks_content = tasks_content.rstrip()
-                    embed.add_field(name="Tâches", value="\n" + tasks_content, inline=False)
-                    
-                    # Ajouter les boutons d'action
-                    view.add_item(AddTaskButton(task_list.id))
-                    view.add_item(DeleteCompletedButton(task_list.id))
-                    view.add_item(BackToMenuButton(lists))
+                    embed.add_field(name="Tâches", value=tasks_content, inline=False)
                     
                     await interaction.edit_original_response(embed=embed, view=view)
                 else:
@@ -280,14 +263,32 @@ class TaskButton(ui.Button):
 
 class TaskListView(ui.View):
     def __init__(self):
-        super().__init__(timeout=None)
+        super().__init__()
+        self._next_button_id = 0
+        self.add_item(BackToMenuButton([]))  # Bouton retour
+
+    def _get_unique_id(self) -> int:
+        """Génère un ID unique pour les boutons"""
+        self._next_button_id += 1
+        return self._next_button_id
+
+    async def update_list_id(self, list_id: int):
+        """Met à jour l'ID de la liste et ajoute les boutons d'action"""
+        # Supprimer tous les boutons existants sauf le bouton retour
+        self.clear_items()
+        self.add_item(BackToMenuButton([]))
+
+        # Ajouter les boutons avec des IDs uniques
+        self.add_item(AddTaskButton(list_id, f"add_task_{list_id}_{self._get_unique_id()}"))
+        self.add_item(DeleteCompletedButton(list_id, f"delete_completed_{list_id}_{self._get_unique_id()}"))
+        self.add_item(DeleteListButton(list_id, f"delete_list_{list_id}_{self._get_unique_id()}"))
 
 class AddTaskButton(ui.Button):
-    def __init__(self, task_list_id: int):
+    def __init__(self, task_list_id: int, custom_id: str):
         super().__init__(
             style=discord.ButtonStyle.success,
             label="➕ Ajouter une tâche",
-            custom_id=f"add_task_{task_list_id}"
+            custom_id=custom_id
         )
         self.task_list_id = task_list_id
 
@@ -297,8 +298,8 @@ class AddTaskButton(ui.Button):
 
 class AddTaskModal(ui.Modal, title="Ajouter une tâche"):
     description = ui.TextInput(
-        label="Tâche à faire",
-        placeholder="Décrivez la tâche à accomplir",
+        label="Description de la tâche",
+        placeholder="Par exemple : Faire les courses, Ranger ma chambre, etc.",
         min_length=1,
         max_length=100
     )
@@ -337,6 +338,7 @@ class AddTaskModal(ui.Modal, title="Ajouter une tâche"):
                 
                 tasks_content = ""
                 view = TaskListView()
+                await view.update_list_id(task_list.id)
                 
                 for i, t in enumerate(task_list.tasks, 1):
                     status = "✅" if t.completed else "⬜"
@@ -347,11 +349,6 @@ class AddTaskModal(ui.Modal, title="Ajouter une tâche"):
                 tasks_content = tasks_content.rstrip()
                 embed.add_field(name="Tâches", value="\n" + tasks_content, inline=False)
                 
-                # Ajouter les boutons d'action
-                view.add_item(AddTaskButton(task_list.id))
-                view.add_item(DeleteCompletedButton(task_list.id))
-                view.add_item(BackToMenuButton(lists))
-                
                 await interaction.followup.send(embed=embed, view=view)
             else:
                 await interaction.followup.send("❌ Une erreur est survenue lors de l'ajout de la tâche !", ephemeral=True)
@@ -361,11 +358,11 @@ class AddTaskModal(ui.Modal, title="Ajouter une tâche"):
             await interaction.followup.send("❌ Une erreur est survenue lors de l'ajout de la tâche !", ephemeral=True)
 
 class DeleteCompletedButton(ui.Button):
-    def __init__(self, task_list_id: int):
+    def __init__(self, task_list_id: int, custom_id: str):
         super().__init__(
             style=discord.ButtonStyle.danger,
             label="🗑️ Supprimer les tâches complétées",
-            custom_id=f"delete_completed_{task_list_id}"
+            custom_id=custom_id
         )
         self.task_list_id = task_list_id
 
@@ -400,6 +397,7 @@ class DeleteCompletedButton(ui.Button):
                     
                     tasks_content = ""
                     view = TaskListView()
+                    await view.update_list_id(task_list.id)
                     
                     for i, t in enumerate(task_list.tasks, 1):
                         status = "✅" if t.completed else "⬜"
@@ -410,11 +408,6 @@ class DeleteCompletedButton(ui.Button):
                     tasks_content = tasks_content.rstrip()
                     embed.add_field(name="Tâches", value="\n" + tasks_content, inline=False)
                     
-                    # Ajouter les boutons d'action
-                    view.add_item(AddTaskButton(task_list.id))
-                    view.add_item(DeleteCompletedButton(task_list.id))
-                    view.add_item(BackToMenuButton(lists))
-                    
                     await interaction.edit_original_response(embed=embed, view=view)
                 else:
                     await interaction.followup.send("❌ Liste non trouvée !", ephemeral=True)
@@ -424,11 +417,117 @@ class DeleteCompletedButton(ui.Button):
             logger.error(f"Erreur lors de la suppression des tâches complétées: {str(e)}")
             await interaction.followup.send("❌ Une erreur est survenue lors de la suppression des tâches complétées !", ephemeral=True)
 
+class DeleteListButton(ui.Button):
+    def __init__(self, task_list_id: int, custom_id: str):
+        super().__init__(
+            style=discord.ButtonStyle.danger,
+            label="Supprimer la liste",
+            custom_id=custom_id
+        )
+        self.task_list_id = task_list_id
+
+    async def callback(self, interaction: discord.Interaction):
+        """Gère le clic sur le bouton de suppression de liste"""
+        try:
+            # Confirmation de suppression
+            confirm = await interaction.response.send_message(
+                "⚠️ Êtes-vous sûr de vouloir supprimer cette liste et toutes ses tâches ? Cette action est irréversible.",
+                ephemeral=True,
+                view=ConfirmDeleteView(self.task_list_id)
+            )
+        except Exception as e:
+            await interaction.response.send_message(
+                "❌ Une erreur est survenue lors de la tentative de suppression de la liste.",
+                ephemeral=True
+            )
+            logger.error(f"Erreur lors de la suppression de la liste {self.task_list_id}: {str(e)}")
+
+class ConfirmDeleteView(ui.View):
+    """Vue de confirmation pour la suppression d'une liste"""
+    def __init__(self, task_list_id: int):
+        super().__init__(timeout=60)
+        self.task_list_id = task_list_id
+
+    @ui.button(label="Confirmer", style=discord.ButtonStyle.danger)
+    async def confirm(self, interaction: discord.Interaction, button: ui.Button):
+        try:
+            await interaction.response.defer(ephemeral=True)
+            
+            # S'assurer que la base de données est initialisée
+            from src.infrastructure.config.db_state import DatabaseState
+            await DatabaseState.ensure_initialized()
+            
+            task_service = TaskService()
+            success = await task_service.delete_list(self.task_list_id)
+            
+            if success:
+                # Créer un nouvel embed pour le menu principal
+                embed = discord.Embed(
+                    title="📋 Gestionnaire de tâches",
+                    description="✅ La liste a été supprimée avec succès !",
+                    color=discord.Color.green()
+                )
+                
+                # Créer une nouvelle vue avec les boutons du menu principal
+                view = MainMenuView(task_service)
+                
+                # Envoyer un nouveau message
+                await interaction.followup.send(
+                    embed=embed,
+                    view=view,
+                    ephemeral=True
+                )
+            else:
+                await interaction.followup.send(
+                    "❌ La liste n'a pas pu être supprimée.",
+                    ephemeral=True
+                )
+        except Exception as e:
+            logger.error(f"Erreur lors de la suppression de la liste {self.task_list_id}: {str(e)}")
+            await interaction.followup.send(
+                "❌ Une erreur est survenue lors de la suppression de la liste.",
+                ephemeral=True
+            )
+
+    @ui.button(label="Annuler", style=discord.ButtonStyle.secondary)
+    async def cancel(self, interaction: discord.Interaction, button: ui.Button):
+        await interaction.response.send_message(
+            content="❌ Suppression annulée.",
+            ephemeral=True
+        )
+
 class MainMenuView(ui.View):
     def __init__(self, task_service: TaskService):
-        super().__init__(timeout=None)
+        super().__init__()
+        self.task_service = task_service
         self.add_item(ShowListsButton(task_service))
         self.add_item(CreateListButton(task_service))
+
+    async def refresh_lists(self, interaction: discord.Interaction):
+        """Rafraîchit l'affichage des listes"""
+        try:
+            user_lists = await self.task_service.get_user_lists(str(interaction.user.id))
+            
+            # Créer un nouvel embed pour le menu principal
+            embed = discord.Embed(
+                title="📋 Gestionnaire de tâches",
+                description="Que souhaitez-vous faire ?",
+                color=discord.Color.blue()
+            )
+            
+            # Envoyer un nouveau message au lieu de modifier l'ancien
+            await interaction.followup.send(
+                embed=embed,
+                view=self,
+                ephemeral=True
+            )
+            
+        except Exception as e:
+            logger.error(f"Erreur lors du rafraîchissement des listes : {str(e)}")
+            await interaction.followup.send(
+                "❌ Une erreur est survenue lors du rafraîchissement des listes.",
+                ephemeral=True
+            )
 
 class TaskCommands(BaseCommand):
     """Commandes de gestion des tâches"""

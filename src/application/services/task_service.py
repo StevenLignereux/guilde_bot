@@ -4,6 +4,7 @@ from src.infrastructure.repositories.task_repository import TaskRepository
 from src.domain.entities.task import Task, TaskList
 from src.infrastructure.config.database import init_db, async_session
 from src.config.config import load_config
+from src.infrastructure.config.db_state import DatabaseState
 
 # Configuration du logging
 logging.basicConfig(level=logging.INFO)
@@ -16,9 +17,10 @@ class TaskService:
     
     async def _ensure_initialized(self):
         if not self._initialized:
-            if not async_session:
-                config = load_config()
-                await init_db(config.database)
+            config = load_config()
+            await init_db(config.database)
+            # S'assurer que la session est disponible
+            await DatabaseState.ensure_initialized()
             self._initialized = True
     
     async def create_list(self, user_discord_id: str, name: str) -> Tuple[bool, str, Optional[TaskList]]:
@@ -133,7 +135,12 @@ class TaskService:
         Raises:
             ValueError: Si la liste n'existe pas
         """
-        return await self.repository.delete_list(list_id)
+        try:
+            await self._ensure_initialized()
+            return await self.repository.delete_list(list_id)
+        except Exception as e:
+            logger.error(f"Erreur lors de la suppression de la liste {list_id}: {str(e)}")
+            return False
 
     async def delete_completed_tasks(self, task_list_id: int) -> bool:
         try:
