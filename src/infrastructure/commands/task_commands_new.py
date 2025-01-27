@@ -201,11 +201,15 @@ class CreateListModal(ui.Modal, title="Créer une nouvelle liste"):
                 select = TaskListSelect(lists, self.task_service)
                 view.add_item(select)
                 
-                embed = discord.Embed(
-                    title="📋 Vos listes de tâches",
-                    description=f"✅ Liste '{task_list.name}' créée avec succès !",
-                    color=discord.Color.green()
-                )
+                if task_list and hasattr(task_list, 'name'):
+                    embed = discord.Embed(
+                        title="📋 Vos listes de tâches",
+                        description=f"✅ Liste '{task_list.name}' créée avec succès !",
+                        color=discord.Color.green()
+                    )
+                else:
+                    await interaction.followup.send("❌ Erreur lors de la création de la liste", ephemeral=True)
+                    return
                 
                 await interaction.followup.send(embed=embed, view=view)
             else:
@@ -312,6 +316,8 @@ class AddTaskModal(ui.Modal, title="Ajouter une tâche"):
         try:
             await interaction.response.defer()
             
+            if not self.task_service:
+                self.task_service = TaskService()
             task = await self.task_service.add_task(str(self.description), self.task_list_id)
             
             # Récupérer la liste mise à jour
@@ -462,6 +468,9 @@ class TaskCommands(BaseCommand):
         try:
             await interaction.response.defer()
             
+            if not self.task_service:
+                self.task_service = TaskService()
+                
             embed = discord.Embed(
                 title="📋 Gestionnaire de tâches",
                 description="Que souhaitez-vous faire ?",
@@ -488,6 +497,8 @@ class TaskCommands(BaseCommand):
         """Ajoute une tâche à une liste"""
         try:
             await interaction.response.defer()
+            if not self.task_service:
+                self.task_service = TaskService()
             task = await self.task_service.add_task(description, list_id)
             await interaction.followup.send(f"✅ Tâche ajoutée avec succès à la liste {list_id} !")
         except Exception as e:
@@ -506,6 +517,8 @@ class TaskCommands(BaseCommand):
         """Supprime une tâche"""
         try:
             await interaction.response.defer()
+            if not self.task_service:
+                self.task_service = TaskService()
             success = await self.task_service.delete_task(task_id)
             if success:
                 await interaction.followup.send("✅ Tâche supprimée avec succès !")
@@ -527,6 +540,8 @@ class TaskCommands(BaseCommand):
         """Supprime une liste de tâches"""
         try:
             await interaction.response.defer()
+            if not self.task_service:
+                self.task_service = TaskService()
             success = await self.task_service.delete_list(list_id)
             if success:
                 await interaction.followup.send("✅ Liste supprimée avec succès !")

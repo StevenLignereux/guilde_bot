@@ -5,6 +5,7 @@ from src.domain.entities.task import Task, TaskList
 from src.infrastructure.config.database import init_db, async_session
 from src.config.config import load_config
 from src.infrastructure.config.db_state import DatabaseState
+from src.domain.exceptions import TaskNotFoundError, InvalidTaskStateError, DatabaseConnectionError
 
 # Configuration du logging
 logging.basicConfig(level=logging.INFO)
@@ -97,12 +98,10 @@ class TaskService:
             ValueError: Si la tâche n'existe pas
         """
         try:
-            return await self.repository.delete_task(task_id)
+            result = await self.repository.delete_task(task_id)
+            return bool(result)  # Convertit explicitement en bool
         except ValueError as e:
             logger.error(f"Erreur lors de la suppression de la tâche: {str(e)}")
-            raise
-        except Exception as e:
-            logger.error(f"Erreur inattendue lors de la suppression de la tâche: {str(e)}")
             return False
     
     async def check_database(self):
@@ -113,8 +112,9 @@ class TaskService:
                 return False, "Erreur de base de données : impossible de créer une liste de test"
             
             try:
-                await self.repository.db.delete(test_list)
-                await self.repository.db.commit()
+                async with self.repository._get_session() as session:
+                    await session.delete(test_list)
+                    await session.commit()
             except Exception as e:
                 return False, f"Erreur de base de données : {str(e)}"
                 
@@ -137,7 +137,8 @@ class TaskService:
         """
         try:
             await self._ensure_initialized()
-            return await self.repository.delete_list(list_id)
+            result = await self.repository.delete_list(list_id)
+            return bool(result)
         except Exception as e:
             logger.error(f"Erreur lors de la suppression de la liste {list_id}: {str(e)}")
             return False
@@ -158,4 +159,26 @@ class TaskService:
             return True
         except Exception as e:
             logger.error(f"Erreur lors de la suppression des tâches complétées: {str(e)}")
-            return False 
+            return False
+
+    async def complete_task(self, task_id: str) -> Task:
+        try:
+            return await self.repository.update_task_status(task_id, "completed")
+        except TaskNotFoundError as e:
+            logger.warning(f"Tentative de compléter une tâche inexistante: {e.task_id}")
+            raise
+        except InvalidTaskStateError as e:
+            logger.warning(
+                f"Tentative de transition invalide de '{e.current_state}' vers '{e.attempted_state}'"
+            )
+            raise
+        except DatabaseConnectionError as e:
+            logger.error(f"Problème de base de données lors de la complétion de la tâche: {str(e)}")
+            raise
+
+    async def get_list(self, list_id: int) -> Optional[TaskList]:
+        try:
+            return await self.repository.get_list_by_id(list_id)
+        except Exception as e:
+            logger.error(f"Erreur lors de la récupération de la liste {list_id}: {str(e)}")
+            return None 

@@ -1,4 +1,4 @@
-from typing import Optional, TypeVar, Generic, Type
+from typing import Optional, TypeVar, Generic, Type, Protocol
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
@@ -10,7 +10,10 @@ from contextlib import asynccontextmanager
 
 logger = logging.getLogger(__name__)
 
-T = TypeVar('T')
+class HasId(Protocol):
+    id: int
+
+T = TypeVar('T', bound=HasId)
 
 class PostgresRepository(Repository[T]):
     def __init__(self, entity_type: Type[T]):
@@ -19,6 +22,7 @@ class PostgresRepository(Repository[T]):
         self._initialized = False
     
     async def _ensure_initialized(self):
+        """S'assure que la base de données est initialisée"""
         if not self._initialized:
             if not async_session:
                 config = load_config()
@@ -29,14 +33,15 @@ class PostgresRepository(Repository[T]):
     async def _get_session(self):
         """Récupère une session de base de données dans un contexte"""
         await self._ensure_initialized()
-        if async_session:
-            async with async_session() as session:
-                try:
-                    yield session
-                finally:
-                    await session.close()
+        
+        if self._db is not None:
+            yield self._db
         else:
-            raise RuntimeError("La session de base de données n'est pas initialisée")
+            session = await get_session()
+            try:
+                yield session
+            finally:
+                await session.close()
 
     async def get(self, id: int) -> Optional[T]:
         async with self._get_session() as session:

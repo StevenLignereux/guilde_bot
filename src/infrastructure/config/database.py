@@ -3,6 +3,7 @@ import logging
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import declarative_base
 from src.config.config import DatabaseConfig
+from contextlib import asynccontextmanager
 
 # Configuration du logging
 logger = logging.getLogger(__name__)
@@ -14,6 +15,30 @@ Base = declarative_base()
 engine = None
 async_session = None
 DATABASE_URL = os.getenv('Database_URL', 'postgresql://postgres:postgres@localhost:5432/guilde_bot')
+
+@asynccontextmanager
+async def get_db():
+    """
+    Retourne une session de base de données dans un contexte.
+    La session est automatiquement fermée à la fin du contexte.
+    """
+    if not async_session:
+        raise RuntimeError("La session de base de données n'est pas initialisée")
+    
+    session = async_session()
+    try:
+        yield session
+    finally:
+        await session.close()
+
+def get_test_session() -> AsyncSession:
+    """
+    Retourne une session de test.
+    À utiliser uniquement dans les tests.
+    """
+    if not async_session:
+        raise RuntimeError("La session de base de données n'est pas initialisée")
+    return async_session()
 
 async def init_db(config: DatabaseConfig) -> None:
     """

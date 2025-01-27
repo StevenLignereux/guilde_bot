@@ -5,13 +5,16 @@ from discord import app_commands, ui
 from src.infrastructure.commands.base import BaseCommand
 from src.application.services.task_service import TaskService
 from src.domain.entities.task import Task, TaskList
+from src.infrastructure.config.db_state import DatabaseState
+from sqlalchemy.exc import SQLAlchemyError
 
 logger = logging.getLogger(__name__)
 
 class TaskListSelect(ui.Select):
     def __init__(self, task_lists: List[TaskList], task_service: Optional[TaskService] = None):
         options = []
-        for task_list in task_lists:
+        valid_lists = [tl for tl in task_lists if tl is not None]
+        for task_list in valid_lists:
             completed_tasks = sum(1 for task in task_list.tasks if task.completed)
             total_tasks = len(task_list.tasks)
             options.append(
@@ -181,7 +184,7 @@ class CreateListModal(ui.Modal, title="Créer une nouvelle liste"):
             await interaction.response.defer()
             success, message, task_list = await self.task_service.create_list(str(interaction.user.id), str(self.name))
             
-            if success:
+            if success and task_list:
                 lists = await self.task_service.get_user_lists(str(interaction.user.id))
                 view = discord.ui.View(timeout=None)
                 select = TaskListSelect(lists, self.task_service)
@@ -195,7 +198,8 @@ class CreateListModal(ui.Modal, title="Créer une nouvelle liste"):
                 
                 await interaction.followup.send(embed=embed, view=view)
             else:
-                await interaction.followup.send(f"❌ {message}", ephemeral=True)
+                await interaction.followup.send(f"❌ Erreur : {message}", ephemeral=True)
+                return
         except Exception as e:
             logger.error(f"Erreur lors de la création de la liste: {str(e)}")
             await interaction.followup.send("❌ Une erreur est survenue lors de la création de la liste !", ephemeral=True)
@@ -313,6 +317,8 @@ class AddTaskModal(ui.Modal, title="Ajouter une tâche"):
         try:
             await interaction.response.defer()
             
+            if not self.task_service:
+                self.task_service = TaskService()
             task = await self.task_service.add_task(str(self.description), self.task_list_id)
             
             # Récupérer la liste mise à jour
@@ -454,10 +460,14 @@ class ConfirmDeleteView(ui.View):
             await interaction.response.defer(ephemeral=True)
             
             # S'assurer que la base de données est initialisée
-            from src.infrastructure.config.db_state import DatabaseState
             await DatabaseState.ensure_initialized()
             
             task_service = TaskService()
+            task_list = await task_service.get_list(self.task_list_id)
+            if task_list is None:
+                await interaction.followup.send("❌ La liste n'existe pas.", ephemeral=True)
+                return
+                
             success = await task_service.delete_list(self.task_list_id)
             
             if success:
@@ -561,6 +571,9 @@ class TaskCommands(BaseCommand):
         try:
             await interaction.response.defer()
             
+            if not self.task_service:
+                self.task_service = TaskService()
+                
             embed = discord.Embed(
                 title="📋 Gestionnaire de tâches",
                 description="Que souhaitez-vous faire ?",
@@ -587,6 +600,8 @@ class TaskCommands(BaseCommand):
         """Ajoute une tâche à une liste"""
         try:
             await interaction.response.defer()
+            if not self.task_service:
+                self.task_service = TaskService()
             task = await self.task_service.add_task(description, list_id)
             await interaction.followup.send(f"✅ Tâche ajoutée avec succès à la liste {list_id} !")
         except Exception as e:
@@ -605,6 +620,8 @@ class TaskCommands(BaseCommand):
         """Supprime une tâche"""
         try:
             await interaction.response.defer()
+            if not self.task_service:
+                self.task_service = TaskService()
             success = await self.task_service.delete_task(task_id)
             if success:
                 await interaction.followup.send("✅ Tâche supprimée avec succès !")
@@ -626,6 +643,8 @@ class TaskCommands(BaseCommand):
         """Supprime une liste de tâches"""
         try:
             await interaction.response.defer()
+            if not self.task_service:
+                self.task_service = TaskService()
             success = await self.task_service.delete_list(list_id)
             if success:
                 await interaction.followup.send("✅ Liste supprimée avec succès !")

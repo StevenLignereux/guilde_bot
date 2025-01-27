@@ -8,6 +8,7 @@ from src.infrastructure.logging.logger import setup_logging
 import os
 from dotenv import load_dotenv
 from src.infrastructure.commands.task_commands import TaskCommands
+from src.application.services.task_service import TaskService
 
 # Configuration du logging
 logging.basicConfig(level=logging.INFO)
@@ -40,7 +41,10 @@ class GuildeBot(commands.Bot):
 
     async def on_ready(self):
         """Appelé quand le bot est prêt"""
-        logger.info(f"Bot connecté en tant que {self.user.name}")
+        if self.user:
+            logger.info(f"Bot connecté en tant que {self.user.name}")
+        else:
+            logger.error("Bot connecté mais self.user est None")
 
 async def main():
     """Point d'entrée principal du bot"""
@@ -58,8 +62,12 @@ async def main():
         logger.info("Base de données initialisée avec succès")
         
         # Créer et démarrer le bot
+        token = os.getenv("DISCORD_TOKEN")
+        if not token:
+            raise ValueError("DISCORD_TOKEN n'est pas défini dans les variables d'environnement")
+            
         async with GuildeBot() as bot:
-            await bot.start(os.getenv("DISCORD_TOKEN"))
+            await bot.start(token)
             
     except Exception as e:
         logger.error(f"Erreur lors du démarrage du bot: {e}")

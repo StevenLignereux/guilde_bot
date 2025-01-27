@@ -1532,3 +1532,2198 @@ In components.1.components.4.custom_id: Component custom id cannot be duplicated
 2025-01-27 12:24:21 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
 2025-01-27 12:24:21 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
 2025-01-27 12:24:21 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:32:10 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 17:32:11 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 17:32:11 [INFO] __main__ - [N/A] Logging configuré avec succès
+2025-01-27 17:32:11 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:32:11 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:32:11 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:32:11 [INFO] __main__ - [N/A] Configuration chargée avec succès
+2025-01-27 17:32:11 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:32:11 [INFO] __main__ - [N/A] Base de données initialisée avec succès
+2025-01-27 17:32:12 [INFO] src.infrastructure.commands.task_commands - [N/A] Commandes de tâches configurées
+2025-01-27 17:32:12 [INFO] __main__ - [N/A] Commandes configurées avec succès
+2025-01-27 17:32:12 [INFO] __main__ - [N/A] Commandes synchronisées avec Discord
+2025-01-27 17:32:15 [INFO] __main__ - [N/A] Bot connecté en tant que HK-A1K
+2025-01-27 17:32:26 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:32:26 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:32:26 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:32:26 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:32:26 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:32:26 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:32:26 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:32:26 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:32:26 [INFO] src.infrastructure.config.db_state - [N/A] Base de données initialisée avec succès
+2025-01-27 17:32:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:32:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:32:41 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:32:41 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:32:47 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:32:47 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:32:47 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:32:47 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:32:58 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:32:58 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:32:58 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:32:58 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:37:41 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 17:37:41 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:37:41 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:37:41 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:37:41 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:37:41 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:37:41 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:37:41 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:37:41 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:37:41 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:37:41 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:37:41 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:37:41 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:45 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la création de la liste: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $2: 123 (expected str, got int)
+[SQL: INSERT INTO task_lists (name, user_discord_id, created_at) VALUES ($1::VARCHAR, $2::VARCHAR, $3::TIMESTAMP WITH TIME ZONE) RETURNING task_lists.id]
+[parameters: ('Test List', 123, datetime.datetime(2025, 1, 27, 16, 37, 41, 971498, tzinfo=datetime.timezone.utc))]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2025-01-27 17:37:45 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:45 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:45 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la récupération des listes: Event loop is closed
+2025-01-27 17:37:46 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:46 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:46 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la création de la liste: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO task_lists (name, user_discord_id, created_at) VALUES ($1::VARCHAR, $2::VARCHAR, $3::TIMESTAMP WITH TIME ZONE) RETURNING task_lists.id]
+[parameters: (123, 'Test List', datetime.datetime(2025, 1, 27, 16, 37, 46, 404944, tzinfo=datetime.timezone.utc))]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:46 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:46 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:46 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Test Task', False, datetime.datetime(2025, 1, 27, 16, 37, 46, 963681, tzinfo=datetime.timezone.utc), 1)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:47 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:47 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:47 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:47 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:47 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:47 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la récupération des listes: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at, tasks_1.id AS id_1, tasks_1.description, tasks_1.completed, tasks_1.created_at AS created_at_1, tasks_1.task_list_id 
+FROM task_lists LEFT OUTER JOIN tasks AS tasks_1 ON task_lists.id = tasks_1.task_list_id 
+WHERE task_lists.user_discord_id = $1::VARCHAR]
+[parameters: ('123456789',)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:47 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:47 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:47 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:48 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:48 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:48 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Test Task', False, datetime.datetime(2025, 1, 27, 16, 37, 48, 308156, tzinfo=datetime.timezone.utc), 999)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:48 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:48 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:48 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Task 1', False, datetime.datetime(2025, 1, 27, 16, 37, 48, 315495, tzinfo=datetime.timezone.utc), 1)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:48 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:48 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:48 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la création de la liste: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO task_lists (name, user_discord_id, created_at) VALUES ($1::VARCHAR, $2::VARCHAR, $3::TIMESTAMP WITH TIME ZONE) RETURNING task_lists.id]
+[parameters: ('Test List', 123, datetime.datetime(2025, 1, 27, 16, 37, 48, 859468, tzinfo=datetime.timezone.utc))]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:48 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:48 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Test Task', False, datetime.datetime(2025, 1, 27, 16, 37, 48, 919923, tzinfo=datetime.timezone.utc), 1)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:48 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:48 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:48 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:49 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:49 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:49 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la mise à jour de la description de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:49 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:49 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:49 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:49 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:49 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:49 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 999: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:50 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:50 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:50 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:50 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:50 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:50 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:50 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:50 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:50 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:50 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:50 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:50 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:50 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:50 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:51 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:51 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:51 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:51 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la mise à jour de la description de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:51 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:51 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:51 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 999: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:52 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:52 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:37:52 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la mise à jour de la description de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:37:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 17:41:04 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:04 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:04 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:04 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:04 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:04 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:04 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:04 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:04 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:04 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:04 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:04 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:04 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:06 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la création de la liste: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $2: 123 (expected str, got int)
+[SQL: INSERT INTO task_lists (name, user_discord_id, created_at) VALUES ($1::VARCHAR, $2::VARCHAR, $3::TIMESTAMP WITH TIME ZONE) RETURNING task_lists.id]
+[parameters: ('Test List', 123, datetime.datetime(2025, 1, 27, 16, 41, 4, 543783, tzinfo=datetime.timezone.utc))]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2025-01-27 17:41:07 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:07 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:07 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la récupération des listes: Event loop is closed
+2025-01-27 17:41:08 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:08 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:08 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la création de la liste: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO task_lists (name, user_discord_id, created_at) VALUES ($1::VARCHAR, $2::VARCHAR, $3::TIMESTAMP WITH TIME ZONE) RETURNING task_lists.id]
+[parameters: (123, 'Test List', datetime.datetime(2025, 1, 27, 16, 41, 8, 66851, tzinfo=datetime.timezone.utc))]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:08 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:08 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:08 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Test Task', False, datetime.datetime(2025, 1, 27, 16, 41, 8, 594004, tzinfo=datetime.timezone.utc), 1)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:09 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:09 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:09 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:09 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:09 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:09 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la récupération des listes: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at, tasks_1.id AS id_1, tasks_1.description, tasks_1.completed, tasks_1.created_at AS created_at_1, tasks_1.task_list_id 
+FROM task_lists LEFT OUTER JOIN tasks AS tasks_1 ON task_lists.id = tasks_1.task_list_id 
+WHERE task_lists.user_discord_id = $1::VARCHAR]
+[parameters: ('123456789',)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:09 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:09 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:09 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:09 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:09 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:09 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Test Task', False, datetime.datetime(2025, 1, 27, 16, 41, 9, 953779, tzinfo=datetime.timezone.utc), 999)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:09 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:09 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:09 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Task 1', False, datetime.datetime(2025, 1, 27, 16, 41, 9, 960174, tzinfo=datetime.timezone.utc), 1)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:10 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:10 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:10 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la création de la liste: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO task_lists (name, user_discord_id, created_at) VALUES ($1::VARCHAR, $2::VARCHAR, $3::TIMESTAMP WITH TIME ZONE) RETURNING task_lists.id]
+[parameters: ('Test List', 123, datetime.datetime(2025, 1, 27, 16, 41, 10, 479032, tzinfo=datetime.timezone.utc))]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:10 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:10 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Test Task', False, datetime.datetime(2025, 1, 27, 16, 41, 10, 548124, tzinfo=datetime.timezone.utc), 1)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:10 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:10 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:10 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:10 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:10 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:10 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la mise à jour de la description de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:11 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:11 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:11 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:11 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:11 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:11 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 999: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:11 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:11 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:11 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:11 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:11 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:11 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: Test error
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: 'coroutine' object has no attribute 'completed'
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la mise à jour de la description de la tâche: 'coroutine' object has no attribute 'description'
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 999: 'coroutine' object has no attribute 'all'
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: 'coroutine' object has no attribute 'all'
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: 'coroutine' object has no attribute 'completed'
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:12 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la mise à jour de la description de la tâche: 'coroutine' object has no attribute 'description'
+2025-01-27 17:41:12 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 17:41:32 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:32 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:32 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:32 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:32 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:32 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:32 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:32 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:32 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:32 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:33 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:33 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:33 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:33 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:33 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:33 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:33 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:33 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:33 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:41:33 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:41:33 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:41:33 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:33 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:35 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la création de la liste: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $2: 123 (expected str, got int)
+[SQL: INSERT INTO task_lists (name, user_discord_id, created_at) VALUES ($1::VARCHAR, $2::VARCHAR, $3::TIMESTAMP WITH TIME ZONE) RETURNING task_lists.id]
+[parameters: ('Test List', 123, datetime.datetime(2025, 1, 27, 16, 41, 33, 65863, tzinfo=datetime.timezone.utc))]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2025-01-27 17:41:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:35 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la récupération des listes: Event loop is closed
+2025-01-27 17:41:36 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:36 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:36 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la création de la liste: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO task_lists (name, user_discord_id, created_at) VALUES ($1::VARCHAR, $2::VARCHAR, $3::TIMESTAMP WITH TIME ZONE) RETURNING task_lists.id]
+[parameters: (123, 'Test List', datetime.datetime(2025, 1, 27, 16, 41, 36, 297782, tzinfo=datetime.timezone.utc))]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:36 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:36 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:36 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Test Task', False, datetime.datetime(2025, 1, 27, 16, 41, 36, 880116, tzinfo=datetime.timezone.utc), 1)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:37 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:37 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la récupération des listes: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at, tasks_1.id AS id_1, tasks_1.description, tasks_1.completed, tasks_1.created_at AS created_at_1, tasks_1.task_list_id 
+FROM task_lists LEFT OUTER JOIN tasks AS tasks_1 ON task_lists.id = tasks_1.task_list_id 
+WHERE task_lists.user_discord_id = $1::VARCHAR]
+[parameters: ('123456789',)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:37 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:38 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Test Task', False, datetime.datetime(2025, 1, 27, 16, 41, 38, 268974, tzinfo=datetime.timezone.utc), 999)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:38 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Task 1', False, datetime.datetime(2025, 1, 27, 16, 41, 38, 276918, tzinfo=datetime.timezone.utc), 1)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:38 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la création de la liste: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO task_lists (name, user_discord_id, created_at) VALUES ($1::VARCHAR, $2::VARCHAR, $3::TIMESTAMP WITH TIME ZONE) RETURNING task_lists.id]
+[parameters: ('Test List', 123, datetime.datetime(2025, 1, 27, 16, 41, 38, 800362, tzinfo=datetime.timezone.utc))]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:38 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Test Task', False, datetime.datetime(2025, 1, 27, 16, 41, 38, 870651, tzinfo=datetime.timezone.utc), 1)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:38 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:39 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la mise à jour de la description de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:39 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:39 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 999: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:40 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:40 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:40 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:41:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:40 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: Test error
+2025-01-27 17:41:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:40 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: 'coroutine' object has no attribute 'completed'
+2025-01-27 17:41:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:40 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la mise à jour de la description de la tâche: 'coroutine' object has no attribute 'description'
+2025-01-27 17:41:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:40 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 999: 'coroutine' object has no attribute 'all'
+2025-01-27 17:41:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:41 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: 'coroutine' object has no attribute 'all'
+2025-01-27 17:41:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:41 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: 'coroutine' object has no attribute 'completed'
+2025-01-27 17:41:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:41:41 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la mise à jour de la description de la tâche: 'coroutine' object has no attribute 'description'
+2025-01-27 17:41:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 17:43:17 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:43:17 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:43:17 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:43:17 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:43:17 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:43:17 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:43:17 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:17 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:43:17 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:43:18 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:18 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:18 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:18 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:18 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:43:18 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:43:18 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:18 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:18 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:18 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:18 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:43:18 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:43:18 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:18 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:18 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:18 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:43:18 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:43:18 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:43:18 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:18 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:20 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la création de la liste: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $2: 123 (expected str, got int)
+[SQL: INSERT INTO task_lists (name, user_discord_id, created_at) VALUES ($1::VARCHAR, $2::VARCHAR, $3::TIMESTAMP WITH TIME ZONE) RETURNING task_lists.id]
+[parameters: ('Test List', 123, datetime.datetime(2025, 1, 27, 16, 43, 18, 84513, tzinfo=datetime.timezone.utc))]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2025-01-27 17:43:20 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:20 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:20 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la récupération des listes: Event loop is closed
+2025-01-27 17:43:21 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:21 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:21 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la création de la liste: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO task_lists (name, user_discord_id, created_at) VALUES ($1::VARCHAR, $2::VARCHAR, $3::TIMESTAMP WITH TIME ZONE) RETURNING task_lists.id]
+[parameters: (123, 'Test List', datetime.datetime(2025, 1, 27, 16, 43, 21, 305590, tzinfo=datetime.timezone.utc))]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:21 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:21 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:21 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Test Task', False, datetime.datetime(2025, 1, 27, 16, 43, 21, 809918, tzinfo=datetime.timezone.utc), 1)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:22 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:22 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:22 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:22 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:22 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:22 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la récupération des listes: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at, tasks_1.id AS id_1, tasks_1.description, tasks_1.completed, tasks_1.created_at AS created_at_1, tasks_1.task_list_id 
+FROM task_lists LEFT OUTER JOIN tasks AS tasks_1 ON task_lists.id = tasks_1.task_list_id 
+WHERE task_lists.user_discord_id = $1::VARCHAR]
+[parameters: ('123456789',)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:22 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:22 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:22 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:23 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:23 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:23 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Test Task', False, datetime.datetime(2025, 1, 27, 16, 43, 23, 235540, tzinfo=datetime.timezone.utc), 999)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:23 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:23 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:23 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Task 1', False, datetime.datetime(2025, 1, 27, 16, 43, 23, 242428, tzinfo=datetime.timezone.utc), 1)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:23 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:23 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:23 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la création de la liste: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO task_lists (name, user_discord_id, created_at) VALUES ($1::VARCHAR, $2::VARCHAR, $3::TIMESTAMP WITH TIME ZONE) RETURNING task_lists.id]
+[parameters: ('Test List', 123, datetime.datetime(2025, 1, 27, 16, 43, 23, 784620, tzinfo=datetime.timezone.utc))]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:23 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:23 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Test Task', False, datetime.datetime(2025, 1, 27, 16, 43, 23, 849557, tzinfo=datetime.timezone.utc), 1)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:23 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:23 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:23 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:23 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:23 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:23 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la mise à jour de la description de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:24 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:24 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 999: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: Test error
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: Test error
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: Test error
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:43:25 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la mise à jour de la description de la tâche: Test error
+2025-01-27 17:43:25 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 17:45:56 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:45:56 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:45:56 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:45:56 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:45:56 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:45:56 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:45:56 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:45:56 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:45:56 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:45:56 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:45:56 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:45:56 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la récupération des listes: 'coroutine' object has no attribute 'scalars'
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:56 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:57 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:57 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:57 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:57 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:59 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: Event loop is closed
+2025-01-27 17:45:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:45:59 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Task 1', False, datetime.datetime(2025, 1, 27, 16, 45, 59, 957034, tzinfo=datetime.timezone.utc), 1)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:46:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:00 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la création de la liste: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO task_lists (name, user_discord_id, created_at) VALUES ($1::VARCHAR, $2::VARCHAR, $3::TIMESTAMP WITH TIME ZONE) RETURNING task_lists.id]
+[parameters: ('Test List', 123, datetime.datetime(2025, 1, 27, 16, 46, 0, 465967, tzinfo=datetime.timezone.utc))]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:46:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:00 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: INSERT INTO tasks (description, completed, created_at, task_list_id) VALUES ($1::VARCHAR, $2::BOOLEAN, $3::TIMESTAMP WITH TIME ZONE, $4::INTEGER) RETURNING tasks.id]
+[parameters: ('Test Task', False, datetime.datetime(2025, 1, 27, 16, 46, 0, 529396, tzinfo=datetime.timezone.utc), 1)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:46:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:00 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors du basculement de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:46:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:00 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la mise à jour de la description de la tâche: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT tasks.id, tasks.description, tasks.completed, tasks.created_at, tasks.task_list_id 
+FROM tasks 
+WHERE tasks.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:46:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:01 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:46:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:01 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 999: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (999,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:46:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:01 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) <class 'asyncpg.exceptions._base.InterfaceError'>: cannot perform operation: another operation is in progress
+[SQL: SELECT task_lists.id, task_lists.name, task_lists.user_discord_id, task_lists.created_at 
+FROM task_lists 
+WHERE task_lists.id = $1::INTEGER]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-01-27 17:46:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:01 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: Test error
+2025-01-27 17:46:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:02 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:02 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:02 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:02 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:02 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:02 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:02 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:02 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:02 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:02 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:46:02 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 17:49:58 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:49:58 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:49:58 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:49:58 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:49:58 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:49:58 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:58 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:59 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:59 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:49:59 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:59 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:59 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:49:59 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:59 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:59 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:49:59 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:59 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:59 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:49:59 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:59 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:49:59 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:49:59 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la récupération des listes de l'utilisateur 123456789: Test error
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche 1: Test error
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:49:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:50:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:50:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:50:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:50:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:50:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:50:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:50:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:50:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:50:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:50:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:50:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 17:55:13 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:13 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:13 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:55:13 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:13 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:13 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:55:13 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:13 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:13 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:55:13 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:13 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:13 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:13 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:55:13 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:55:14 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:55:14 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:55:14 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:55:14 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:55:14 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:55:14 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:55:14 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la récupération des listes de l'utilisateur 123456789: Test error
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche à la liste 1: Test error
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche 1: Test error
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: Test error
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:55:14 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 17:58:00 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:58:00 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:58:00 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:58:00 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:58:00 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:58:00 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:58:00 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:58:00 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:58:00 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:58:00 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:58:00 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:58:00 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la récupération des listes de l'utilisateur 123456789: Test error
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche à la liste 1: Test error
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche 1: Test error
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la liste 1: Test error
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:58:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:38 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 17:59:38 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 17:59:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:59:39 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:59:39 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:59:39 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:59:39 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:59:39 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:59:39 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:59:39 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:59:39 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:59:39 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 17:59:39 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 17:59:39 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la récupération des listes de l'utilisateur 123456789: Test error
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche à la liste 1: Test error
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche 1: Test error
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 17:59:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 18:01:37 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche à la liste 1: Test error
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:38 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche 1: Test error
+2025-01-27 18:01:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:01:38 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 18:05:31 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:31 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:31 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:31 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:05:31 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:05:34 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:34 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:34 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:34 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:34 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:05:34 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:05:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:37 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:37 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:37 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:05:37 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:05:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:41 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:41 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:05:41 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:05:44 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:44 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:44 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:44 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:44 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:05:44 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:05:46 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:46 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:46 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:46 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:46 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:05:46 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:05:49 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:49 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:49 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:49 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:49 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:05:50 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:05:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:52 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:52 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:52 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:05:52 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:05:55 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:55 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:55 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:55 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:55 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:05:55 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:05:57 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:57 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:05:57 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:57 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:05:57 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:05:57 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:00 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche à la liste 1: Test error
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche 1: Test error
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:06:01 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 18:07:24 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:24 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:24 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:24 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:07:24 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:07:27 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:27 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:27 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:27 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:27 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:07:27 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:07:30 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:30 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:30 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:30 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:30 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:07:30 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:07:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:32 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:32 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:32 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:07:32 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:07:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:35 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:35 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:35 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:07:35 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:07:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:37 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:37 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:37 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:37 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:07:37 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:07:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:40 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:40 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:40 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:40 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:07:40 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:07:43 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:43 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:43 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:43 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:43 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:07:43 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:07:46 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:46 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:46 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:46 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:46 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:07:46 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:07:48 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:48 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:48 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:48 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:07:48 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:07:48 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche à la liste 1: Test error
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche 1: Test error
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:07:52 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 18:15:35 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:35 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:35 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:35 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:15:35 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:15:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:39 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:39 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:39 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:15:39 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:15:43 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:43 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:43 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:43 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:43 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:15:43 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:15:45 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:45 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:45 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:45 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:45 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:15:45 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:15:48 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:48 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:48 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:48 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:48 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:15:48 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:15:51 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:51 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:51 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:51 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:51 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:15:51 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:15:53 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:53 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:53 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:53 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:53 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:15:53 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:15:55 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:55 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:55 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:55 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:55 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:15:55 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:15:57 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:57 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:57 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:57 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:57 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:15:57 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:15:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:59 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:15:59 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:59 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:15:59 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:15:59 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de l'ajout de la tâche à la liste 1: Test error
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [ERROR] src.infrastructure.repositories.task_repository - [N/A] Erreur lors de la suppression de la tâche 1: Test error
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:16:05 [DEBUG] asyncio - [N/A] Using proactor: IocpProactor
+2025-01-27 18:59:29 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-01-27 18:59:29 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-01-27 18:59:29 [INFO] __main__ - [N/A] Logging configuré avec succès
+2025-01-27 18:59:29 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:59:29 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:59:29 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:59:29 [INFO] __main__ - [N/A] Configuration chargée avec succès
+2025-01-27 18:59:29 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:59:29 [INFO] __main__ - [N/A] Base de données initialisée avec succès
+2025-01-27 18:59:30 [INFO] src.infrastructure.commands.task_commands - [N/A] Commandes de tâches configurées
+2025-01-27 18:59:30 [INFO] __main__ - [N/A] Commandes configurées avec succès
+2025-01-27 18:59:30 [INFO] __main__ - [N/A] Commandes synchronisées avec Discord
+2025-01-27 18:59:33 [INFO] __main__ - [N/A] Bot connecté en tant que HK-A1K
+2025-01-27 18:59:49 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:59:49 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:59:49 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:59:49 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:59:49 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:59:49 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-01-27 18:59:49 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-01-27 18:59:49 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-01-27 18:59:49 [INFO] src.infrastructure.config.db_state - [N/A] Base de données initialisée avec succès
+2025-01-27 18:59:52 [ERROR] src.infrastructure.commands.task_commands - [N/A] Erreur lors de l'affichage des listes: Parent instance <TaskList at 0x26bd8115130> is not bound to a Session; lazy load operation of attribute 'tasks' cannot proceed (Background on this error at: https://sqlalche.me/e/20/bhk3)
+2025-01-27 19:00:08 [ERROR] src.infrastructure.commands.task_commands - [N/A] Erreur lors de l'affichage des listes: Parent instance <TaskList at 0x26bd813a7e0> is not bound to a Session; lazy load operation of attribute 'tasks' cannot proceed (Background on this error at: https://sqlalche.me/e/20/bhk3)
