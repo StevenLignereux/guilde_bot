@@ -1,0 +1,30 @@
+2025-01-25 10:46:53 [ERROR] errors - [2ed60aa0] Test error
+2025-01-25 10:46:53 [ERROR] errors - [ae2761ea] [2ed60aa0] Test error
+2025-01-25 10:46:53 [ERROR] errors - [ea0d08af] [ae2761ea] [2ed60aa0] Test error
+2025-01-25 10:49:43 [ERROR] errors - [117aa165] [117aa165] Test error
+2025-01-25 10:49:43 [ERROR] errors - [09dc5c39] [09dc5c39] [117aa165] [117aa165] Test error
+2025-01-25 10:49:43 [ERROR] errors - [4776d01e] [4776d01e] [09dc5c39] [09dc5c39] [117aa165] [117aa165] Test error
+2025-01-25 10:54:01 [ERROR] errors - [47526e67] [47526e67] Test error
+2025-01-25 10:54:01 [ERROR] errors - [3111fa8e] [3111fa8e] [47526e67] [47526e67] Test error
+2025-01-25 10:54:01 [ERROR] errors - [8130a93e] [8130a93e] [3111fa8e] [3111fa8e] [47526e67] [47526e67] Test error
+2025-01-25 10:55:26 [[31m[31mERROR[0m[0m] errors - [4e5aa7e2] [4e5aa7e2] Test error
+2025-01-25 10:55:26 [[31m[31m[31m[31mERROR[0m[0m[0m[0m] errors - [0ceeda43] [0ceeda43] [4e5aa7e2] [4e5aa7e2] Test error
+2025-01-25 10:55:26 [[31m[31m[31m[31m[31m[31mERROR[0m[0m[0m[0m[0m[0m] errors - [97d10192] [97d10192] [0ceeda43] [0ceeda43] [4e5aa7e2] [4e5aa7e2] Test error
+2025-01-25 11:57:27 [[35m[35mCRITICAL[0m[0m] errors - [c6b4e3b3] [c6b4e3b3] Exception non gérée:
+Traceback (most recent call last):
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\main.py", line 14, in <module>
+    logger = logging.getLogger(__name__)
+             ^^^^^^^
+NameError: name 'logging' is not defined. Did you forget to import 'logging'
+2025-01-25 21:18:40 [ERROR] errors - [dadbfe47] [dadbfe47] Test error
+2025-01-25 21:18:40 [ERROR] errors - [0ad11ef5] [0ad11ef5] [dadbfe47] [dadbfe47] Test error
+2025-01-25 21:18:40 [ERROR] errors - [b7ea8537] [b7ea8537] [0ad11ef5] [0ad11ef5] [dadbfe47] [dadbfe47] Test error
+2025-01-25 21:19:33 [ERROR] errors - [6b04cc24] [6b04cc24] Test error
+2025-01-25 21:19:33 [ERROR] errors - [7574dbb9] [7574dbb9] [6b04cc24] [6b04cc24] Test error
+2025-01-25 21:19:33 [ERROR] errors - [b3acd15e] [b3acd15e] [7574dbb9] [7574dbb9] [6b04cc24] [6b04cc24] Test error
+2025-01-25 21:21:10 [ERROR] errors - [71a415c2] [71a415c2] Test error
+2025-01-25 21:21:10 [ERROR] errors - [561b2b10] [561b2b10] [71a415c2] [71a415c2] Test error
+2025-01-25 21:21:10 [ERROR] errors - [5041c793] [5041c793] [561b2b10] [561b2b10] [71a415c2] [71a415c2] Test error
+2025-01-25 21:23:29 [ERROR] errors - [6f95af31] [6f95af31] Test error
+2025-01-25 21:23:29 [ERROR] errors - [ce582f47] [ce582f47] [6f95af31] [6f95af31] Test error
+2025-01-25 21:23:29 [ERROR] errors - [f3cc8eb0] [f3cc8eb0] [ce582f47] [ce582f47] [6f95af31] [6f95af31] Test error
