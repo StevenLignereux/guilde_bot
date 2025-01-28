@@ -16,6 +16,11 @@ class DatabaseConfig:
     max_overflow: int = 10
     pool_timeout: int = 30
 
+    def __post_init__(self):
+        if self.url and self.url.startswith("postgres://"):
+            # Railway utilise postgres://, mais SQLAlchemy préfère postgresql://
+            self.url = self.url.replace("postgres://", "postgresql://", 1)
+
 @dataclass
 class DiscordConfig:
     token: str
