@@ -21,9 +21,11 @@ class TaskRepository(PostgresRepository[Task]):
     async def get_user_lists(self, user_discord_id: str) -> List[TaskList]:
         session = self._db if self._db is not None else await get_session()
         try:
-            query = select(TaskList).where(TaskList.user_discord_id == user_discord_id)
+            query = select(TaskList).options(
+                joinedload(TaskList.tasks)
+            ).where(TaskList.user_discord_id == user_discord_id)
             result = await session.execute(query)
-            tasks = list(result.scalars().all())
+            tasks = list(result.unique().scalars().all())
             return tasks
         except SQLAlchemyError as e:
             logger.error(f"Erreur lors de la récupération des listes pour l'utilisateur {user_discord_id}: {str(e)}")
@@ -52,6 +54,14 @@ class TaskRepository(PostgresRepository[Task]):
             session.add(task_list)
             await session.commit()
             await session.refresh(task_list)
+            
+            # Recharger la liste avec ses relations
+            query = select(TaskList).options(
+                joinedload(TaskList.tasks)
+            ).where(TaskList.id == task_list.id)
+            result = await session.execute(query)
+            task_list = result.unique().scalar_one()
+            
             return task_list
         except SQLAlchemyError as e:
             await session.rollback()
@@ -129,7 +139,7 @@ class TaskRepository(PostgresRepository[Task]):
             if self._db is None and session is not None:
                 await session.close()
     
-    async def delete_list(self, list_id: int) -> None:
+    async def delete_list(self, list_id: int) -> bool:
         session = self._db if self._db is not None else await get_session()
         try:
             query = select(TaskList).where(TaskList.id == list_id)
@@ -137,7 +147,7 @@ class TaskRepository(PostgresRepository[Task]):
             task_list = result.scalar_one_or_none()
 
             if task_list is None:
-                raise ValueError(f"La liste avec l'ID {list_id} n'existe pas")
+                return False
 
             tasks_query = select(Task).where(Task.task_list_id == list_id)
             tasks_result = await session.execute(tasks_query)
@@ -148,6 +158,7 @@ class TaskRepository(PostgresRepository[Task]):
 
             await session.delete(task_list)
             await session.commit()
+            return True
         except SQLAlchemyError as e:
             await session.rollback()
             logger.error(f"Erreur lors de la suppression de la liste {list_id}: {str(e)}")
@@ -156,7 +167,7 @@ class TaskRepository(PostgresRepository[Task]):
             if self._db is None and session is not None:
                 await session.close()
     
-    async def delete_task(self, task_id: int) -> None:
+    async def delete_task(self, task_id: int) -> bool:
         session = self._db if self._db is not None else await get_session()
         try:
             query = select(Task).where(Task.id == task_id)
@@ -164,10 +175,11 @@ class TaskRepository(PostgresRepository[Task]):
             task = result.scalar_one_or_none()
             
             if task is None:
-                raise ValueError(f"La tâche avec l'ID {task_id} n'existe pas")
+                return False
 
             await session.delete(task)
             await session.commit()
+            return True
         except SQLAlchemyError as e:
             if session is not None:
                 await session.rollback()
@@ -217,13 +229,19 @@ class TaskRepository(PostgresRepository[Task]):
     async def update_task_status(self, task_id: str, new_status: str) -> Task:
         session = self._db if self._db is not None else await get_session()
         try:
-            task = await self.get_task_by_id(task_id)
+            query = select(Task).filter(Task.id == task_id)
+            result = await session.execute(query)
+            task = result.scalar_one_or_none()
+            
+            if task is None:
+                raise TaskNotFoundError(task_id)
             
             if not task.can_transition_to(new_status):
                 raise InvalidTaskStateError(task.status, new_status)
             
             task.status = new_status
             await session.commit()
+            await session.refresh(task)
             return task
             
         except SQLAlchemyError as e:
@@ -235,13 +253,16 @@ class TaskRepository(PostgresRepository[Task]):
                 await session.close()
 
     async def get_list_by_id(self, list_id: int) -> Optional[TaskList]:
-        async with self._get_session() as session:
-            try:
-                query = select(TaskList).options(
-                    joinedload(TaskList.tasks)
-                ).filter(TaskList.id == list_id)
-                result = await session.execute(query)
-                return result.unique().scalar_one_or_none()
-            except Exception as e:
-                logger.error(f"Erreur lors de la récupération de la liste {list_id}: {str(e)}")
-                return None
+        session = self._db if self._db is not None else await get_session()
+        try:
+            query = select(TaskList).options(
+                joinedload(TaskList.tasks)
+            ).filter(TaskList.id == list_id)
+            result = await session.execute(query)
+            return result.unique().scalar_one_or_none()
+        except SQLAlchemyError as e:
+            logger.error(f"Erreur lors de la récupération de la liste {list_id}: {str(e)}")
+            raise
+        finally:
+            if self._db is None and session is not None:
+                await session.close()

@@ -25,22 +25,27 @@ class TaskService:
             self._initialized = True
     
     async def create_list(self, user_discord_id: str, name: str) -> Tuple[bool, str, Optional[TaskList]]:
+        """
+        Crée une nouvelle liste de tâches.
+        
+        Args:
+            user_discord_id: L'ID Discord de l'utilisateur
+            name: Le nom de la liste à créer
+            
+        Returns:
+            Un tuple (succès, message, liste) où succès est un booléen indiquant si la création a réussi,
+            message est un message explicatif, et liste est la liste créée si succès est True
+        """
         try:
             await self._ensure_initialized()
-            
-            if not name or len(name.strip()) == 0:
-                return False, "Le nom de la liste ne peut pas être vide", None
-                
-            if len(name) > 100:  # Limite raisonnable pour un nom de liste
-                return False, "Le nom de la liste est trop long (max 100 caractères)", None
-            
-            task_list = await self.repository.create_list(user_discord_id, name.strip())
+            task_list = await self.repository.create_list(name, user_discord_id)
+            # Recharger la liste avec ses tâches
+            task_list = await self.repository.get_list(task_list.id)
             return True, "Liste créée avec succès", task_list
-            
         except ValueError as e:
             return False, str(e), None
         except Exception as e:
-            logger.error(f"Erreur inattendue lors de la création de la liste: {str(e)}")
+            logger.error(f"Erreur lors de la création de la liste: {str(e)}")
             return False, "Une erreur est survenue lors de la création de la liste", None
     
     async def get_user_lists(self, user_discord_id: str) -> List[TaskList]:
@@ -153,10 +158,13 @@ class TaskService:
             if not completed_tasks:
                 return False
             
+            all_deleted = True
             for task in completed_tasks:
-                await self.repository.delete_task(task.id)
+                success = await self.repository.delete_task(task.id)
+                if not success:
+                    all_deleted = False
             
-            return True
+            return all_deleted
         except Exception as e:
             logger.error(f"Erreur lors de la suppression des tâches complétées: {str(e)}")
             return False

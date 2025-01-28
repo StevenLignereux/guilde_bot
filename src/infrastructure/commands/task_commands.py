@@ -14,16 +14,26 @@ class TaskListSelect(ui.Select):
     def __init__(self, task_lists: List[TaskList], task_service: Optional[TaskService] = None):
         options = []
         valid_lists = [tl for tl in task_lists if tl is not None]
-        for task_list in valid_lists:
-            completed_tasks = sum(1 for task in task_list.tasks if task.completed)
-            total_tasks = len(task_list.tasks)
+        
+        if not valid_lists:
             options.append(
                 discord.SelectOption(
-                    label=task_list.name,
-                    description=f"Tâches: {completed_tasks}/{total_tasks}",
-                    value=str(task_list.id)
+                    label="Aucune liste disponible",
+                    description="Créez une nouvelle liste pour commencer",
+                    value="none"
                 )
             )
+        else:
+            for task_list in valid_lists:
+                completed_tasks = sum(1 for task in task_list.tasks if task.completed)
+                total_tasks = len(task_list.tasks)
+                options.append(
+                    discord.SelectOption(
+                        label=task_list.name,
+                        description=f"Tâches: {completed_tasks}/{total_tasks}",
+                        value=str(task_list.id)
+                    )
+                )
         
         super().__init__(
             placeholder="Sélectionnez une liste",
@@ -37,6 +47,13 @@ class TaskListSelect(ui.Select):
     async def callback(self, interaction: discord.Interaction):
         try:
             await interaction.response.defer()
+            
+            if self.values[0] == "none":
+                await interaction.followup.send(
+                    "❌ Aucune liste disponible. Utilisez le bouton '➕ Créer une liste' pour commencer !",
+                    ephemeral=True
+                )
+                return
             
             # Récupérer la liste sélectionnée
             selected_list = next(
@@ -127,26 +144,28 @@ class ShowListsButton(ui.Button):
             await interaction.response.defer()
             
             lists = await self.task_service.get_user_lists(str(interaction.user.id))
-            if not lists:
-                await interaction.followup.send("Vous n'avez pas encore de liste de tâches !", ephemeral=True)
-                return
-            
             view = discord.ui.View(timeout=None)
             view.add_item(TaskListSelect(lists, self.task_service))
+            view.add_item(CreateListButton(self.task_service))
             
             embed = discord.Embed(
                 title="📋 Vos listes de tâches",
-                description="Sélectionnez une liste pour voir son contenu",
+                description="Sélectionnez une liste pour voir son contenu" if lists else "Vous n'avez pas encore de liste de tâches",
                 color=discord.Color.blue()
             )
             
             # Afficher les listes disponibles
-            lists_content = ""
-            for lst in lists:
-                lists_content += f"• {lst.name} ({len(lst.tasks)} tâches)\n"
-            
-            if lists_content:
+            if lists:
+                lists_content = ""
+                for lst in lists:
+                    lists_content += f"• {lst.name} ({len(lst.tasks)} tâches)\n"
                 embed.add_field(name="Listes disponibles", value=lists_content, inline=False)
+            else:
+                embed.add_field(
+                    name="Commencer",
+                    value="Utilisez le bouton '➕ Créer une liste' pour créer votre première liste !",
+                    inline=False
+                )
             
             await interaction.edit_original_response(embed=embed, view=view)
             
@@ -185,18 +204,36 @@ class CreateListModal(ui.Modal, title="Créer une nouvelle liste"):
             success, message, task_list = await self.task_service.create_list(str(interaction.user.id), str(self.name))
             
             if success and task_list:
+                # Récupérer la liste mise à jour des listes
                 lists = await self.task_service.get_user_lists(str(interaction.user.id))
+                
+                # Créer une nouvelle vue avec le menu déroulant et le bouton de création
                 view = discord.ui.View(timeout=None)
-                select = TaskListSelect(lists, self.task_service)
-                view.add_item(select)
+                view.add_item(TaskListSelect(lists, self.task_service))
+                view.add_item(CreateListButton(self.task_service))
+                
+                # Créer l'embed pour la nouvelle liste
+                completed_tasks = sum(1 for task in task_list.tasks if task.completed)
+                total_tasks = len(task_list.tasks)
+                progress_bar = "▓" * completed_tasks + "░" * (total_tasks - completed_tasks)
                 
                 embed = discord.Embed(
-                    title="📋 Vos listes de tâches",
-                    description=f"✅ Liste '{task_list.name}' créée avec succès !",
+                    title=f"📋 {task_list.name}",
+                    description=f"✅ Liste créée avec succès !\nProgression : {progress_bar} ({completed_tasks}/{total_tasks})",
                     color=discord.Color.green()
                 )
                 
-                await interaction.followup.send(embed=embed, view=view)
+                embed.add_field(
+                    name="Créée le",
+                    value=task_list.created_at.strftime("%d/%m/%Y à %H:%M"),
+                    inline=True
+                )
+                
+                # Ajouter les boutons d'action pour la nouvelle liste
+                list_view = TaskListView()
+                await list_view.update_list_id(task_list.id)
+                
+                await interaction.followup.send(embed=embed, view=list_view)
             else:
                 await interaction.followup.send(f"❌ Erreur : {message}", ephemeral=True)
                 return
@@ -267,9 +304,8 @@ class TaskButton(ui.Button):
 
 class TaskListView(ui.View):
     def __init__(self):
-        super().__init__()
+        super().__init__(timeout=None)
         self._next_button_id = 0
-        self.add_item(BackToMenuButton([]))  # Bouton retour
 
     def _get_unique_id(self) -> int:
         """Génère un ID unique pour les boutons"""
@@ -278,14 +314,14 @@ class TaskListView(ui.View):
 
     async def update_list_id(self, list_id: int):
         """Met à jour l'ID de la liste et ajoute les boutons d'action"""
-        # Supprimer tous les boutons existants sauf le bouton retour
+        # Supprimer tous les boutons existants
         self.clear_items()
-        self.add_item(BackToMenuButton([]))
 
         # Ajouter les boutons avec des IDs uniques
         self.add_item(AddTaskButton(list_id, f"add_task_{list_id}_{self._get_unique_id()}"))
         self.add_item(DeleteCompletedButton(list_id, f"delete_completed_{list_id}_{self._get_unique_id()}"))
         self.add_item(DeleteListButton(list_id, f"delete_list_{list_id}_{self._get_unique_id()}"))
+        self.add_item(BackToMenuButton([]))  # Bouton retour ajouté en dernier
 
 class AddTaskButton(ui.Button):
     def __init__(self, task_list_id: int, custom_id: str):
@@ -427,7 +463,7 @@ class DeleteListButton(ui.Button):
     def __init__(self, task_list_id: int, custom_id: str):
         super().__init__(
             style=discord.ButtonStyle.danger,
-            label="Supprimer la liste",
+            label="🗑️ Supprimer la liste",
             custom_id=custom_id
         )
         self.task_list_id = task_list_id
@@ -438,7 +474,6 @@ class DeleteListButton(ui.Button):
             # Confirmation de suppression
             confirm = await interaction.response.send_message(
                 "⚠️ Êtes-vous sûr de vouloir supprimer cette liste et toutes ses tâches ? Cette action est irréversible.",
-                ephemeral=True,
                 view=ConfirmDeleteView(self.task_list_id)
             )
         except Exception as e:
@@ -457,7 +492,7 @@ class ConfirmDeleteView(ui.View):
     @ui.button(label="Confirmer", style=discord.ButtonStyle.danger)
     async def confirm(self, interaction: discord.Interaction, button: ui.Button):
         try:
-            await interaction.response.defer(ephemeral=True)
+            await interaction.response.defer()
             
             # S'assurer que la base de données est initialisée
             await DatabaseState.ensure_initialized()
@@ -471,22 +506,34 @@ class ConfirmDeleteView(ui.View):
             success = await task_service.delete_list(self.task_list_id)
             
             if success:
-                # Créer un nouvel embed pour le menu principal
+                # Récupérer la liste mise à jour des listes
+                lists = await task_service.get_user_lists(str(interaction.user.id))
+                
+                # Créer une nouvelle vue avec le menu déroulant et le bouton de création
+                view = discord.ui.View(timeout=None)
+                view.add_item(TaskListSelect(lists, task_service))
+                view.add_item(CreateListButton(task_service))
+                
                 embed = discord.Embed(
-                    title="📋 Gestionnaire de tâches",
-                    description="✅ La liste a été supprimée avec succès !",
+                    title="📋 Vos listes de tâches",
+                    description="✅ Liste supprimée avec succès !",
                     color=discord.Color.green()
                 )
                 
-                # Créer une nouvelle vue avec les boutons du menu principal
-                view = MainMenuView(task_service)
+                # Afficher les listes disponibles
+                if lists:
+                    lists_content = ""
+                    for lst in lists:
+                        lists_content += f"• {lst.name} ({len(lst.tasks)} tâches)\n"
+                    embed.add_field(name="Listes disponibles", value=lists_content, inline=False)
+                else:
+                    embed.add_field(
+                        name="Commencer",
+                        value="Utilisez le bouton '➕ Créer une liste' pour créer votre première liste !",
+                        inline=False
+                    )
                 
-                # Envoyer un nouveau message
-                await interaction.followup.send(
-                    embed=embed,
-                    view=view,
-                    ephemeral=True
-                )
+                await interaction.followup.send(embed=embed, view=view)
             else:
                 await interaction.followup.send(
                     "❌ La liste n'a pas pu être supprimée.",
@@ -646,10 +693,38 @@ class TaskCommands(BaseCommand):
             if not self.task_service:
                 self.task_service = TaskService()
             success = await self.task_service.delete_list(list_id)
+            
             if success:
-                await interaction.followup.send("✅ Liste supprimée avec succès !")
+                # Récupérer la liste mise à jour des listes
+                lists = await self.task_service.get_user_lists(str(interaction.user.id))
+                
+                # Créer une nouvelle vue avec le menu déroulant et le bouton de création
+                view = discord.ui.View(timeout=None)
+                view.add_item(TaskListSelect(lists, self.task_service))
+                view.add_item(CreateListButton(self.task_service))
+                
+                embed = discord.Embed(
+                    title="📋 Vos listes de tâches",
+                    description="✅ Liste supprimée avec succès !",
+                    color=discord.Color.green()
+                )
+                
+                # Afficher les listes disponibles
+                if lists:
+                    lists_content = ""
+                    for lst in lists:
+                        lists_content += f"• {lst.name} ({len(lst.tasks)} tâches)\n"
+                    embed.add_field(name="Listes disponibles", value=lists_content, inline=False)
+                else:
+                    embed.add_field(
+                        name="Commencer",
+                        value="Utilisez le bouton '➕ Créer une liste' pour créer votre première liste !",
+                        inline=False
+                    )
+                
+                await interaction.followup.send(embed=embed, view=view)
             else:
-                await interaction.followup.send("❌ La liste n'a pas été trouvée !")
+                await interaction.followup.send("❌ La liste n'a pas été trouvée !", ephemeral=True)
         except Exception as e:
             logger.error(f"Erreur lors de la suppression de la liste: {str(e)}")
-            await interaction.followup.send("❌ Une erreur est survenue lors de la suppression de la liste !") 
+            await interaction.followup.send("❌ Une erreur est survenue lors de la suppression de la liste !", ephemeral=True) 
