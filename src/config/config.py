@@ -11,14 +11,14 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class DatabaseConfig:
-    url: str = os.getenv('Database_URL', '')
+    url: str = os.getenv('DATABASE_URL', '')
     pool_size: int = 5
     max_overflow: int = 10
     pool_timeout: int = 30
 
     def __post_init__(self):
         if not self.url:
-            raise ValueError("Database_URL n'est pas définie dans les variables d'environnement")
+            raise ValueError("DATABASE_URL n'est pas définie dans les variables d'environnement")
             
         # Convertir l'URL au format attendu par SQLAlchemy
         if self.url.startswith("postgres://"):

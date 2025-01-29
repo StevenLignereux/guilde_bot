@@ -23,11 +23,11 @@ async def init_db(config: DatabaseConfig) -> None:
     
     try:
         # Récupérer l'URL de la base de données
-        db_url = os.getenv('Database_URL')
+        db_url = os.getenv('DATABASE_URL')
         logger.info(f"URL de la base de données : {db_url}")
         
         if not db_url:
-            raise ValueError("Database_URL n'est pas définie dans les variables d'environnement")
+            raise ValueError("DATABASE_URL n'est pas définie dans les variables d'environnement")
             
         # Convertir l'URL PostgreSQL standard en URL asyncpg
         if db_url.startswith('postgresql://'):
@@ -55,7 +55,8 @@ async def init_db(config: DatabaseConfig) -> None:
         
         # Tester la connexion
         async with engine.begin() as conn:
-            await conn.execute("SELECT 1")
+            from sqlalchemy import text
+            await conn.execute(text("SELECT 1"))
             logger.info("Test de connexion réussi")
         
         logger.info("Base de données initialisée avec succès")
