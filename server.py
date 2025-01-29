@@ -8,7 +8,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-async def health_check(request):
+async def health_check(_: web.Request):
     return web.Response(text="Bot is running")
 
 async def start_server():
@@ -16,7 +16,7 @@ async def start_server():
     app.router.add_get("/", health_check)
     app.router.add_get("/health", health_check)
     
-    port = int(os.environ.get("PORT", 10000))
+    port = int(os.environ["PORT"])
     logger.info(f"Démarrage du serveur sur le port {port}")
     
     runner = web.AppRunner(app)
@@ -32,6 +32,10 @@ async def main():
     try:
         logger.info("Démarrage du bot Discord...")
         await bot_main()
+        while True:
+            await asyncio.sleep(3600)  # Attendre indéfiniment
+    except Exception as e:
+        logger.error(f"Erreur lors de l'exécution du bot: {e}")
     finally:
         await runner.cleanup()
 
