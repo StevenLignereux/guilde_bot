@@ -119,6 +119,8 @@ class Events(commands.Cog):
             
             try:
                 # Création de l'image de bienvenue
+                if not isinstance(welcome_image_path, str):
+                    raise ValueError("Le chemin de l'image n'est pas une chaîne valide")
                 background = Image.open(welcome_image_path)
                 print("✅ Image de fond chargée")
             except Exception as e:
@@ -204,23 +206,39 @@ class Events(commands.Cog):
             draw.text((x + shadow_offset, y + shadow_offset), welcome_text, font=font, fill=shadow_color, align="center")
 
             # Sauvegarde et envoi
-            output_path = f"welcome_{member.id}.png"
-            print(f"Sauvegarde de l'image : {output_path}")
-            logger.debug(f"Sauvegarde de l'image : {output_path}")
-            background.save(output_path)
-
+            output_path = f"/tmp/welcome_{member.id}.png"  # Utiliser /tmp pour être sûr d'avoir les permissions
+            print(f"Tentative de sauvegarde de l'image : {output_path}")
             try:
-                print("Tentative d'envoi du message...")
-                logger.debug("Envoi du message de bienvenue...")
-                with open(output_path, 'rb') as f:
-                    picture = discord.File(f)
-                    await channel.send(file=picture)
-                print(f"Message envoyé avec succès pour {member.name}")
-                logger.info(f"Message de bienvenue envoyé avec succès pour {member.name}")
-            finally:
+                background.save(output_path)
+                print(f"✅ Image sauvegardée : {output_path}")
+                
+                print(f"Vérification du fichier sauvegardé...")
                 if os.path.exists(output_path):
-                    os.remove(output_path)
-                    logger.debug("Fichier temporaire supprimé")
+                    print(f"✅ Fichier trouvé : {output_path}")
+                    file_size = os.path.getsize(output_path)
+                    print(f"Taille du fichier : {file_size} bytes")
+                else:
+                    print(f"❌ Fichier non trouvé après sauvegarde : {output_path}")
+                    return
+
+                print("Tentative d'envoi du message...")
+                with open(output_path, 'rb') as f:
+                    picture = discord.File(f, filename="welcome.png")
+                    await channel.send(file=picture)
+                print(f"✅ Message envoyé avec succès pour {member.name}")
+                
+            except Exception as e:
+                print(f"❌ ERREUR lors de la sauvegarde/envoi : {str(e)}")
+                logger.error(f"Erreur détaillée : {str(e)}", exc_info=True)
+                return
+            finally:
+                try:
+                    if os.path.exists(output_path):
+                        os.remove(output_path)
+                        print("✅ Fichier temporaire supprimé")
+                except Exception as e:
+                    print(f"❌ Erreur lors de la suppression du fichier temporaire : {str(e)}")
+                    pass
 
         except Exception as e:
             print(f"ERREUR: {str(e)}")
