@@ -5,6 +5,8 @@ from sqlalchemy.orm import declarative_base
 from src.config.config import DatabaseConfig
 from contextlib import asynccontextmanager
 import asyncio
+import asyncpg
+from urllib.parse import urlparse
 
 # Configuration du logging
 logger = logging.getLogger(__name__)
@@ -15,6 +17,43 @@ Base = declarative_base()
 # Variables globales pour le moteur et la session
 engine = None
 async_session = None
+
+async def test_connection(db_url: str) -> bool:
+    """
+    Teste la connexion à la base de données avec asyncpg directement.
+    """
+    try:
+        # Parser l'URL pour extraire les composants
+        parsed = urlparse(db_url)
+        user = parsed.username
+        password = parsed.password
+        host = parsed.hostname
+        port = parsed.port or 5432
+        database = parsed.path.lstrip('/')
+
+        logger.info(f"Test de connexion à {host}:{port}/{database} avec l'utilisateur {user}")
+        
+        # Tenter une connexion directe
+        conn = await asyncpg.connect(
+            user=user,
+            password=password,
+            database=database,
+            host=host,
+            port=port,
+            ssl='require',
+            command_timeout=10
+        )
+        
+        # Tester la connexion
+        await conn.execute('SELECT 1')
+        await conn.close()
+        
+        logger.info("Test de connexion asyncpg réussi")
+        return True
+        
+    except Exception as e:
+        logger.error(f"Erreur lors du test de connexion asyncpg : {str(e)}")
+        return False
 
 async def init_db(config: DatabaseConfig) -> None:
     """
@@ -29,6 +68,10 @@ async def init_db(config: DatabaseConfig) -> None:
         
         if not db_url:
             raise ValueError("DATABASE_URL n'est pas définie dans les variables d'environnement")
+        
+        # Tester d'abord la connexion avec asyncpg
+        if not await test_connection(db_url):
+            raise ConnectionError("Impossible de se connecter à la base de données")
             
         # Convertir l'URL PostgreSQL standard en URL asyncpg
         if db_url.startswith('postgresql://'):
@@ -38,18 +81,10 @@ async def init_db(config: DatabaseConfig) -> None:
             
         logger.info(f"URL convertie : {db_url}")
         
-        # Configuration de base avec SSL
-        connect_args = {
-            "ssl": "require",
-            "connect_timeout": 10
-        }
-        
         # Créer le moteur avec une configuration minimale
         engine = create_async_engine(
             db_url,
-            connect_args=connect_args,
-            pool_size=1,
-            max_overflow=0,
+            connect_args={"ssl": "require"},
             echo=True
         )
         
@@ -59,17 +94,6 @@ async def init_db(config: DatabaseConfig) -> None:
             class_=AsyncSession,
             expire_on_commit=False
         )
-        
-        # Test simple de connexion
-        try:
-            async with engine.connect() as conn:
-                from sqlalchemy import text
-                await conn.execute(text("SELECT 1"))
-                await conn.commit()
-                logger.info("Test de connexion réussi")
-        except Exception as e:
-            logger.error(f"Erreur lors du test de connexion : {str(e)}")
-            raise
         
         logger.info("Base de données initialisée avec succès")
         
