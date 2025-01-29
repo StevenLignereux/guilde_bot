@@ -31,9 +31,30 @@ class DiscordConfig:
 
 @dataclass
 class TwitchConfig:
-    client_id: str
-    client_secret: str
-    username: str
+    client_id: Optional[str] = None
+    client_secret: Optional[str] = None
+    username: Optional[str] = None
+
+    @classmethod
+    def create_from_env(cls) -> 'TwitchConfig':
+        """Crée une configuration Twitch à partir des variables d'environnement"""
+        try:
+            client_id = os.getenv('TWITCH_CLIENT_ID')
+            client_secret = os.getenv('TWITCH_CLIENT_SECRET')
+            username = os.getenv('TWITCH_USERNAME')
+            
+            if all([client_id, client_secret, username]):
+                return cls(
+                    client_id=client_id,
+                    client_secret=client_secret,
+                    username=username
+                )
+            else:
+                logger.warning("Configuration Twitch incomplète, les fonctionnalités Twitch seront désactivées")
+                return cls()
+        except Exception as e:
+            logger.warning(f"Erreur lors du chargement de la configuration Twitch: {e}")
+            return cls()
 
 @dataclass
 class ResourceConfig:
@@ -89,7 +110,7 @@ class Config:
             raise EnvironmentVariableError(f"La variable d'environnement {key} est requise mais n'est pas définie")
         return value
 
-    def _get_optional_env(self, key: str, default: str = None) -> Optional[str]:
+    def _get_optional_env(self, key: str, default: str = '') -> str:
         """Récupère une variable d'environnement optionnelle"""
         return os.getenv(key, default)
 
@@ -103,21 +124,26 @@ class Config:
 
     def _load_discord_config(self) -> DiscordConfig:
         """Charge la configuration Discord"""
+        token = self._get_required_env('DISCORD_TOKEN')
+        welcome_channel_id = int(self._get_required_env('WELCOME_CHANNEL_ID'))
+        stream_channel_id = int(self._get_required_env('STREAM_CHANNEL_ID'))
+        news_channel_id = int(self._get_required_env('NEWS_CHANNEL_ID'))
+        command_prefix = self._get_optional_env('COMMAND_PREFIX', '/')
+        
+        if not command_prefix:
+            command_prefix = '/'
+        
         return DiscordConfig(
-            token=self._get_required_env('DISCORD_TOKEN'),
-            welcome_channel_id=int(self._get_required_env('WELCOME_CHANNEL_ID')),
-            stream_channel_id=int(self._get_required_env('STREAM_CHANNEL_ID')),
-            news_channel_id=int(self._get_required_env('NEWS_CHANNEL_ID')),
-            command_prefix=self._get_optional_env('COMMAND_PREFIX', '/')
+            token=token,
+            welcome_channel_id=welcome_channel_id,
+            stream_channel_id=stream_channel_id,
+            news_channel_id=news_channel_id,
+            command_prefix=command_prefix
         )
 
     def _load_twitch_config(self) -> TwitchConfig:
         """Charge la configuration Twitch"""
-        return TwitchConfig(
-            client_id=self._get_required_env('TWITCH_CLIENT_ID'),
-            client_secret=self._get_required_env('TWITCH_CLIENT_SECRET'),
-            username=self._get_required_env('TWITCH_USERNAME')
-        )
+        return TwitchConfig.create_from_env()
 
     def _load_resource_config(self) -> ResourceConfig:
         """Charge la configuration des ressources"""
