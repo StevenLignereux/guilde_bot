@@ -2,13 +2,17 @@ services:
   - type: worker
     name: guilde-bot
     runtime: python
+    plan: free
     buildCommand: |
       pip install -r requirements.txt
       alembic upgrade head
-    startCommand: python main.py
+    startCommand: python server.py
+    autoDeploy: true
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.0
+      - key: PORT
+        value: 10000
       - key: DATABASE_URL
         sync: false # Cette variable sera configurée manuellement dans l'interface Render
       - key: DISCORD_TOKEN
