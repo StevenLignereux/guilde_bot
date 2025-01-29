@@ -17,7 +17,17 @@ logger.setLevel(logging.DEBUG)  # Définir le niveau à DEBUG pour voir tous les
 class Events(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        print("=== Events Cog initialisé ===")
+        print("\n=== Events Cog - Vérification des intents ===")
+        print(f"Members Intent: {bot.intents.members}")
+        print(f"Message Content Intent: {bot.intents.message_content}")
+        print(f"Guilds Intent: {bot.intents.guilds}")
+        
+        if not bot.intents.members:
+            print("❌ ERREUR: L'intent MEMBERS n'est pas activé!")
+            return
+            
+        print("✅ Tous les intents nécessaires sont activés")
+        print("\n=== Events Cog - Vérification des variables d'environnement ===")
         
         # Vérification des ressources au démarrage
         welcome_channel_id = os.getenv('WELCOME_CHANNEL_ID', '')
