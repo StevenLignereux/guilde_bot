@@ -38,51 +38,38 @@ async def init_db(config: DatabaseConfig) -> None:
             
         logger.info(f"URL convertie : {db_url}")
         
-        # Créer le moteur avec des paramètres de connexion optimisés
+        # Configuration de base avec SSL
+        connect_args = {
+            "ssl": "require",
+            "connect_timeout": 10
+        }
+        
+        # Créer le moteur avec une configuration minimale
         engine = create_async_engine(
             db_url,
-            pool_pre_ping=True,
-            pool_size=5,
-            max_overflow=10,
-            echo=True,
-            connect_args={
-                "command_timeout": 60,  # 60 secondes pour les commandes
-                "timeout": 30,         # 30 secondes pour la connexion
-                "server_settings": {
-                    "statement_timeout": "60000",  # 60 secondes en millisecondes
-                    "idle_in_transaction_session_timeout": "60000"
-                }
-            },
-            pool_timeout=30,           # 30 secondes pour obtenir une connexion du pool
-            pool_recycle=1800,         # Recycler les connexions après 30 minutes
-            pool_use_lifo=True,        # Utiliser les connexions les plus récentes d'abord
+            connect_args=connect_args,
+            pool_size=1,
+            max_overflow=0,
+            echo=True
         )
         
-        # Créer la factory de sessions avec retry
+        # Créer la factory de sessions
         async_session = async_sessionmaker(
             engine,
             class_=AsyncSession,
             expire_on_commit=False
         )
         
-        # Tester la connexion avec retry
-        retry_count = 3
-        last_error = None
-        
-        for attempt in range(retry_count):
-            try:
-                async with engine.begin() as conn:
-                    from sqlalchemy import text
-                    await conn.execute(text("SELECT 1"))
-                    logger.info("Test de connexion réussi")
-                    break
-            except Exception as e:
-                last_error = e
-                if attempt < retry_count - 1:
-                    logger.warning(f"Tentative {attempt + 1}/{retry_count} échouée, nouvelle tentative...")
-                    await asyncio.sleep(2 ** attempt)  # Attente exponentielle
-                else:
-                    raise last_error
+        # Test simple de connexion
+        try:
+            async with engine.connect() as conn:
+                from sqlalchemy import text
+                await conn.execute(text("SELECT 1"))
+                await conn.commit()
+                logger.info("Test de connexion réussi")
+        except Exception as e:
+            logger.error(f"Erreur lors du test de connexion : {str(e)}")
+            raise
         
         logger.info("Base de données initialisée avec succès")
         
