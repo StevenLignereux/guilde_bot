@@ -2,24 +2,21 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# Copier les fichiers de dépendances
-COPY requirements.txt .
+# Copier tout le code source d'abord
+COPY . .
 
 # Installer les dépendances
 RUN pip install --no-cache-dir -r requirements.txt
 
-# S'assurer que les dossiers de ressources existent
-RUN mkdir -p src/resources/images src/resources/fonts
+# Vérifier la structure des dossiers
+RUN ls -la src/resources/images || true
+RUN ls -la src/resources/fonts || true
 
-# Copier les ressources d'abord
-COPY src/resources/images/welcome.png src/resources/images/
-COPY src/resources/fonts/default.ttf src/resources/fonts/
-
-# Copier le reste du code source
-COPY . .
-
-# Vérifier que les ressources sont présentes
-RUN test -f src/resources/images/welcome.png || (echo "ERREUR: welcome.png manquant" && exit 1)
-RUN test -f src/resources/fonts/default.ttf || (echo "ERREUR: default.ttf manquant" && exit 1)
-
-CMD ["python", "main.py"] 
+# Afficher les variables d'environnement au démarrage
+CMD echo "=== Vérification des chemins ===" && \
+    echo "WELCOME_IMAGE_PATH=$WELCOME_IMAGE_PATH" && \
+    echo "FONT_PATH=$FONT_PATH" && \
+    echo "WELCOME_CHANNEL_ID=$WELCOME_CHANNEL_ID" && \
+    ls -la src/resources/images && \
+    ls -la src/resources/fonts && \
+    python main.py 
