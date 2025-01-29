@@ -21,39 +21,51 @@ async_session = None
 async def test_connection(db_url: str) -> bool:
     """
     Teste la connexion à la base de données avec asyncpg directement.
+    Inclut un mécanisme de retry avec backoff exponentiel.
     """
-    try:
-        # Parser l'URL pour extraire les composants
-        parsed = urlparse(db_url)
-        user = parsed.username
-        password = parsed.password
-        host = parsed.hostname
-        port = parsed.port or 5432
-        database = parsed.path.lstrip('/')
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            # Parser l'URL pour extraire les composants
+            parsed = urlparse(db_url)
+            user = parsed.username
+            password = parsed.password
+            host = parsed.hostname
+            port = parsed.port or 5432
+            database = parsed.path.lstrip('/')
 
-        logger.info(f"Test de connexion à {host}:{port}/{database} avec l'utilisateur {user}")
-        
-        # Tenter une connexion directe
-        conn = await asyncpg.connect(
-            user=user,
-            password=password,
-            database=database,
-            host=host,
-            port=port,
-            ssl='require',
-            command_timeout=10
-        )
-        
-        # Tester la connexion
-        await conn.execute('SELECT 1')
-        await conn.close()
-        
-        logger.info("Test de connexion asyncpg réussi")
-        return True
-        
-    except Exception as e:
-        logger.error(f"Erreur lors du test de connexion asyncpg : {str(e)}")
-        return False
+            logger.info(f"Tentative {attempt + 1}/{max_retries} de connexion à {host}:{port}/{database}")
+            
+            # Tenter une connexion directe avec des timeouts plus longs
+            conn = await asyncpg.connect(
+                user=user,
+                password=password,
+                database=database,
+                host=host,
+                port=port,
+                ssl='require',
+                command_timeout=30,
+                timeout=30
+            )
+            
+            # Tester la connexion
+            await conn.execute('SELECT 1')
+            await conn.close()
+            
+            logger.info(f"Test de connexion réussi après {attempt + 1} tentative(s)")
+            return True
+            
+        except Exception as e:
+            logger.warning(f"Tentative {attempt + 1}/{max_retries} échouée: {str(e)}")
+            if attempt < max_retries - 1:
+                # Backoff exponentiel entre les tentatives
+                wait_time = 2 ** attempt
+                logger.info(f"Attente de {wait_time} secondes avant la prochaine tentative...")
+                await asyncio.sleep(wait_time)
+                continue
+            
+    logger.error("Échec de toutes les tentatives de connexion")
+    return False
 
 async def init_db(config: DatabaseConfig) -> None:
     """
