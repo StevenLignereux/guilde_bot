@@ -61,12 +61,34 @@ class ResourceConfig:
     welcome_image_path: Path
     font_path: Path
 
+    @classmethod
+    def create_from_env(cls) -> 'ResourceConfig':
+        """Crée une configuration des ressources avec des chemins par défaut"""
+        # Chemins par défaut relatifs au dossier du projet
+        default_welcome_path = Path("src/resources/images/welcome.png")
+        default_font_path = Path("src/resources/fonts/default.ttf")
+        
+        # Utiliser les variables d'environnement si définies, sinon utiliser les chemins par défaut
+        welcome_path = os.getenv('WELCOME_IMAGE_PATH')
+        font_path = os.getenv('FONT_PATH')
+        
+        return cls(
+            welcome_image_path=Path(welcome_path) if welcome_path else default_welcome_path,
+            font_path=Path(font_path) if font_path else default_font_path
+        )
+
     def validate(self):
         """Vérifie que les ressources existent"""
         if not self.welcome_image_path.exists():
-            raise ResourceNotFoundError(str(self.welcome_image_path))
+            raise ResourceNotFoundError(
+                f"L'image de bienvenue n'existe pas: {self.welcome_image_path}\n"
+                f"Veuillez placer une image 'welcome.png' dans le dossier {self.welcome_image_path.parent}"
+            )
         if not self.font_path.exists():
-            raise ResourceNotFoundError(str(self.font_path))
+            raise ResourceNotFoundError(
+                f"La police n'existe pas: {self.font_path}\n"
+                f"Veuillez placer une police 'default.ttf' dans le dossier {self.font_path.parent}"
+            )
 
 class Config:
     def __init__(self, env: Optional[str] = None):
@@ -147,10 +169,7 @@ class Config:
 
     def _load_resource_config(self) -> ResourceConfig:
         """Charge la configuration des ressources"""
-        return ResourceConfig(
-            welcome_image_path=Path(self._get_required_env('WELCOME_IMAGE_PATH')),
-            font_path=Path(self._get_required_env('FONT_PATH'))
-        )
+        return ResourceConfig.create_from_env()
 
     @property
     def is_production(self) -> bool:
