@@ -92,36 +92,61 @@ class Events(commands.Cog):
             print(f"- Font : {font_path}")
             print(f"- Image : {welcome_image_path}")
             
-            # Vérifier le contenu du dossier
-            print("Contenu du dossier src/resources/images :")
-            os.system("ls -la src/resources/images")
-            print("\nContenu du dossier src/resources/fonts :")
-            os.system("ls -la src/resources/fonts")
+            # Vérification détaillée des fichiers
+            for path in [welcome_image_path, font_path]:
+                if not path:  # Vérifier si le chemin est None ou vide
+                    print(f"❌ Chemin non défini")
+                    return
+                    
+                if not os.path.exists(path):
+                    print(f"❌ Fichier manquant : {path}")
+                    return
+                    
+                try:
+                    # Vérifier les permissions
+                    stats = os.stat(path)
+                    print(f"Permissions pour {path}: {oct(stats.st_mode)[-3:]}")
+                    # Vérifier si on peut lire le fichier
+                    with open(str(path), 'rb') as f:
+                        f.read(1)
+                    print(f"✅ Fichier accessible : {path}")
+                except Exception as e:
+                    print(f"❌ Erreur d'accès au fichier {path}: {str(e)}")
+                    logger.error(f"Erreur d'accès au fichier {path}: {str(e)}")
+                    return
             
-            if not font_path or not os.path.exists(font_path):
-                print(f"ERREUR: Police introuvable : {font_path}")
-                logger.error(f"Fichier de police introuvable : {font_path}")
-                return
-                
-            if not welcome_image_path or not os.path.exists(welcome_image_path):
-                print(f"ERREUR: Image introuvable : {welcome_image_path}")
-                logger.error(f"Image de fond introuvable : {welcome_image_path}")
-                return
-                
             print("Ressources validées, création de l'image...")
-            logger.debug("Ressources trouvées, création de l'image...")
+            
+            try:
+                # Création de l'image de bienvenue
+                background = Image.open(welcome_image_path)
+                print("✅ Image de fond chargée")
+            except Exception as e:
+                print(f"❌ Erreur lors du chargement de l'image de fond : {str(e)}")
+                return
+                
+            try:
+                # Chargement de la police
+                font = ImageFont.truetype(str(font_path), 110)
+                print("✅ Police chargée")
+            except Exception as e:
+                print(f"❌ Erreur lors du chargement de la police : {str(e)}")
+                return
 
-            # Création de l'image de bienvenue
-            background = Image.open(welcome_image_path)
             draw = ImageDraw.Draw(background)
             
             # Téléchargement et redimensionnement de l'avatar
             avatar_url = member.avatar.url if member.avatar else member.default_avatar.url
             print(f"URL de l'avatar : {avatar_url}")
-            logger.debug(f"URL de l'avatar : {avatar_url}")
             
-            response = requests.get(avatar_url)
-            avatar_image = Image.open(BytesIO(response.content))
+            try:
+                response = requests.get(avatar_url)
+                response.raise_for_status()  # Vérifie si la requête a réussi
+                avatar_image = Image.open(BytesIO(response.content))
+                print("✅ Avatar téléchargé")
+            except Exception as e:
+                print(f"❌ Erreur lors du téléchargement de l'avatar : {str(e)}")
+                return
 
             avatar_size = 475
             avatar_image = avatar_image.resize((avatar_size, avatar_size), Image.Resampling.LANCZOS)
