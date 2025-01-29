@@ -17,15 +17,18 @@ async def start_server():
         app.router.add_get("/", health_check)
         app.router.add_get("/health", health_check)
         
-        # Render s'attend à ce que nous utilisions la variable PORT
-        port = int(os.environ.get("PORT", 10000))
+        # Forcer l'utilisation du port de Render
+        port = int(os.getenv("PORT", 10000))
         logger.info(f"Configuration du serveur sur le port {port}")
         
         runner = web.AppRunner(app)
         await runner.setup()
-        site = web.TCPSite(runner, host="0.0.0.0", port=port)
+        
+        # Spécifier explicitement l'hôte et le port
+        site = web.TCPSite(runner, "0.0.0.0", port)
         await site.start()
-        logger.info(f"Serveur web démarré avec succès sur le port {port}")
+        
+        logger.info(f"Serveur web démarré sur http://0.0.0.0:{port}")
         return site, runner
     except Exception as e:
         logger.error(f"Erreur lors du démarrage du serveur web : {str(e)}")
@@ -33,30 +36,27 @@ async def start_server():
 
 async def start_application():
     try:
-        # Démarrer d'abord le serveur web
+        # Démarrer le serveur web
         site, runner = await start_server()
-        logger.info("Serveur web initialisé, démarrage du bot...")
+        logger.info("Serveur web démarré, lancement du bot...")
         
-        # Ensuite démarrer le bot
-        try:
-            await bot_main()
-        except Exception as e:
-            logger.error(f"Erreur lors du démarrage du bot : {str(e)}")
-            raise
-        finally:
-            # S'assurer que le serveur web reste en cours d'exécution
-            try:
-                # Attendre indéfiniment
-                await asyncio.Future()
-            except asyncio.CancelledError:
-                logger.info("Arrêt du serveur web...")
-                await runner.cleanup()
+        # Démarrer le bot dans une tâche séparée
+        bot_task = asyncio.create_task(bot_main())
+        
+        # Attendre indéfiniment tout en gardant le serveur actif
+        await asyncio.gather(
+            bot_task,
+            asyncio.Future()  # Garde le serveur web en vie
+        )
     except Exception as e:
         logger.error(f"Erreur lors du démarrage de l'application : {str(e)}")
         raise
+    finally:
+        # Nettoyage
+        if 'runner' in locals():
+            await runner.cleanup()
 
 if __name__ == "__main__":
-    logger.info("Démarrage de l'application...")
     try:
         asyncio.run(start_application())
     except KeyboardInterrupt:

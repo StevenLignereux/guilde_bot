@@ -12,7 +12,7 @@ services:
       - key: PYTHON_VERSION
         value: 3.12.0
       - key: PORT
-        value: 10000
+        value: "10000"
       - key: DATABASE_URL
         sync: false # Cette variable sera configurée manuellement dans l'interface Render
       - key: DISCORD_TOKEN
