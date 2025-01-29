@@ -14,7 +14,55 @@ Base = declarative_base()
 # Variables globales pour le moteur et la session
 engine = None
 async_session = None
-DATABASE_URL = os.getenv('Database_URL', 'postgresql://postgres:postgres@localhost:5432/guilde_bot')
+
+async def init_db(config: DatabaseConfig) -> None:
+    """
+    Initialise la connexion à la base de données.
+    """
+    global engine, async_session
+    
+    try:
+        # Récupérer l'URL de la base de données
+        db_url = os.getenv('Database_URL')
+        logger.info(f"URL de la base de données : {db_url}")
+        
+        if not db_url:
+            raise ValueError("Database_URL n'est pas définie dans les variables d'environnement")
+            
+        # Convertir l'URL PostgreSQL standard en URL asyncpg
+        if db_url.startswith('postgresql://'):
+            db_url = db_url.replace('postgresql://', 'postgresql+asyncpg://', 1)
+        elif db_url.startswith('postgres://'):
+            db_url = db_url.replace('postgres://', 'postgresql+asyncpg://', 1)
+            
+        logger.info(f"URL convertie : {db_url}")
+        
+        # Créer le moteur avec des paramètres de connexion plus stricts
+        engine = create_async_engine(
+            db_url,
+            pool_pre_ping=True,  # Vérifie la connexion avant utilisation
+            pool_size=5,
+            max_overflow=10,
+            echo=True  # Active les logs SQL
+        )
+        
+        # Créer la factory de sessions
+        async_session = async_sessionmaker(
+            engine,
+            class_=AsyncSession,
+            expire_on_commit=False
+        )
+        
+        # Tester la connexion
+        async with engine.begin() as conn:
+            await conn.execute("SELECT 1")
+            logger.info("Test de connexion réussi")
+        
+        logger.info("Base de données initialisée avec succès")
+        
+    except Exception as e:
+        logger.error(f"Erreur lors de l'initialisation de la base de données: {str(e)}")
+        raise
 
 @asynccontextmanager
 async def get_db():
@@ -30,43 +78,6 @@ async def get_db():
         yield session
     finally:
         await session.close()
-
-def get_test_session() -> AsyncSession:
-    """
-    Retourne une session de test.
-    À utiliser uniquement dans les tests.
-    """
-    if not async_session:
-        raise RuntimeError("La session de base de données n'est pas initialisée")
-    return async_session()
-
-async def init_db(config: DatabaseConfig) -> None:
-    """
-    Initialise la connexion à la base de données.
-    """
-    global engine, async_session
-    
-    try:
-        # Convertir l'URL PostgreSQL standard en URL asyncpg si nécessaire
-        db_url = DATABASE_URL
-        if db_url.startswith('postgresql://'):
-            db_url = db_url.replace('postgresql://', 'postgresql+asyncpg://', 1)
-        
-        # Créer le moteur
-        engine = create_async_engine(db_url)
-        
-        # Créer la factory de sessions
-        async_session = async_sessionmaker(
-            engine,
-            class_=AsyncSession,
-            expire_on_commit=False
-        )
-        
-        logger.info("Base de données initialisée avec succès")
-        
-    except Exception as e:
-        logger.error(f"Erreur lors de l'initialisation de la base de données: {e}")
-        raise
 
 async def get_session() -> AsyncSession:
     """

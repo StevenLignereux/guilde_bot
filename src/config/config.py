@@ -11,15 +11,21 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class DatabaseConfig:
-    url: str = os.getenv('Database_URL', 'postgresql://postgres:postgres@localhost:5432/guilde_bot')
+    url: str = os.getenv('Database_URL', '')
     pool_size: int = 5
     max_overflow: int = 10
     pool_timeout: int = 30
 
     def __post_init__(self):
-        if self.url and self.url.startswith("postgres://"):
-            # Railway utilise postgres://, mais SQLAlchemy préfère postgresql://
+        if not self.url:
+            raise ValueError("Database_URL n'est pas définie dans les variables d'environnement")
+            
+        # Convertir l'URL au format attendu par SQLAlchemy
+        if self.url.startswith("postgres://"):
             self.url = self.url.replace("postgres://", "postgresql://", 1)
+            logger.info("URL de base de données convertie de postgres:// à postgresql://")
+            
+        logger.info(f"Configuration de la base de données : {self.url}")
 
 @dataclass
 class DiscordConfig:
