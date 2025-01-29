@@ -69,7 +69,7 @@ class GuildeBot(commands.Bot):
             print(f"WELCOME_CHANNEL_ID: {os.getenv('WELCOME_CHANNEL_ID')}")
             channel = self.get_channel(int(os.getenv('WELCOME_CHANNEL_ID', '0')))
             if channel:
-                print(f"✅ Canal de bienvenue trouvé : {channel.name}")
+                print(f"✅ Canal de bienvenue trouvé : {getattr(channel, 'name', str(channel))}")
             else:
                 print("❌ Canal de bienvenue non trouvé")
         else:
