@@ -1,0 +1,31 @@
+services:
+  - type: worker
+    name: guilde-bot
+    runtime: python
+    buildCommand: |
+      pip install -r requirements.txt
+      alembic upgrade head
+    startCommand: python main.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.0
+      - key: DATABASE_URL
+        sync: false # Cette variable sera configurée manuellement dans l'interface Render
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: STREAM_CHANNEL_ID
+        sync: false
+      - key: TWITCH_CLIENT_ID
+        sync: false
+      - key: TWITCH_CLIENT_SECRET
+        sync: false
+      - key: TWITCH_USERNAME
+        sync: false
+      - key: WELCOME_CHANNEL_ID
+        sync: false
+      - key: NEWS_CHANNEL_ID
+        sync: false
+      - key: WELCOME_IMAGE_PATH
+        value: src/resources/images/welcome.png
+      - key: FONT_PATH
+        value: src/resources/fonts/default.ttf
