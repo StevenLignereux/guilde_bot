@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from src.infrastructure.commands.task_commands import TaskCommands
 from src.application.services.task_service import TaskService
 import sys
+from aiohttp import web
 
 # Configuration du logger
 logger = logging.getLogger()
@@ -85,6 +86,27 @@ async def load_extensions(bot):
             except Exception as e:
                 print(f"❌ Erreur lors du chargement de {filename}: {str(e)}")
 
+async def start_server():
+    """Démarre le serveur web"""
+    app = web.Application()
+    
+    async def health_check(_):
+        return web.Response(text="Bot is running")
+    
+    app.router.add_get("/", health_check)
+    app.router.add_get("/health", health_check)
+    
+    port = int(os.environ.get("PORT", 10000))
+    logger.info(f"Démarrage du serveur sur le port {port}")
+    
+    runner = web.AppRunner(app)
+    await runner.setup()
+    site = web.TCPSite(runner, "0.0.0.0", port)
+    await site.start()
+    
+    logger.info(f"Serveur web démarré sur le port {port}")
+    return runner
+
 async def main():
     """Point d'entrée principal du bot"""
     try:
@@ -100,6 +122,10 @@ async def main():
         await init_db(config.database)
         logger.info("Base de données initialisée avec succès")
         
+        # Démarrer le serveur web
+        runner = await start_server()
+        logger.info("Serveur web démarré")
+        
         # Créer et démarrer le bot
         token = os.getenv("DISCORD_TOKEN")
         if not token:
@@ -108,7 +134,10 @@ async def main():
         async with GuildeBot() as bot:
             await load_extensions(bot)
             print("\n=== CONNEXION AU SERVEUR DISCORD ===")
-            await bot.start(token)
+            try:
+                await bot.start(token)
+            finally:
+                await runner.cleanup()
             
     except Exception as e:
         logger.error(f"Erreur lors du démarrage du bot: {e}")
