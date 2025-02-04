@@ -22,9 +22,8 @@ class TaskService:
         repository (TaskRepository): Repository pour l'accès aux données
         _initialized (bool): État d'initialisation du service
     """
-    def __init__(self, repository: Optional[TaskRepository] = None):
-        self.repository = repository if repository is not None else TaskRepository()
-        self._initialized = False
+    def __init__(self):
+        self.repository = TaskRepository()
     
     async def _ensure_initialized(self):
         if not self._initialized:
@@ -113,8 +112,11 @@ class TaskService:
             ValueError: Si la tâche n'existe pas
         """
         try:
-            result = await self.repository.delete_task(task_id)
-            return bool(result)  # Convertit explicitement en bool
+            task = await self.repository.get_by_id(task_id)
+            if task:
+                await self.repository.delete(task)
+                return True
+            return False
         except ValueError as e:
             logger.error(f"Erreur lors de la suppression de la tâche: {str(e)}")
             return False
@@ -199,4 +201,10 @@ class TaskService:
             return await self.repository.get_list_by_id(list_id)
         except Exception as e:
             logger.error(f"Erreur lors de la récupération de la liste {list_id}: {str(e)}")
-            return None 
+            return None
+
+    async def get_all_tasks(self):
+        return await self.repository.get_all()
+
+    async def create_task(self, data):
+        return await self.repository.add(data) 

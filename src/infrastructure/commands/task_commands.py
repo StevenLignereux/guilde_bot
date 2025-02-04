@@ -611,7 +611,7 @@ class TaskCommands(BaseCommand):
     
     def __init__(self, bot):
         super().__init__(bot)
-        self.task_service = None
+        self.task_service = TaskService()
         
     async def setup(self) -> None:
         """Configure les commandes pour le bot"""

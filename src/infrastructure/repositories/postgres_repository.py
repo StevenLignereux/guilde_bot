@@ -100,4 +100,26 @@ class PostgresRepository(Repository[T]):
                 await session.commit()
             except SQLAlchemyError as e:
                 await session.rollback()
-                raise 
+                raise
+
+    async def get_all(self):
+        async with get_session() as session:
+            query = select(self._entity_type)
+            result = await session.execute(query)
+            return result.scalars().all()
+
+    async def add(self, entity: T) -> T:
+        async with get_session() as session:
+            session.add(entity)
+            await session.commit()
+            return entity
+
+    async def get_by_id(self, id: int) -> Optional[T]:
+        async with get_session() as session:
+            result = await session.get(self._entity_type, id)
+            return result
+
+    async def delete(self, entity: T) -> None:
+        async with get_session() as session:
+            await session.delete(entity)
+            await session.commit() 
