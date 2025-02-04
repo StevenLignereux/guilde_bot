@@ -33,8 +33,10 @@ class GuildeBot(commands.Bot):
     async def setup_hook(self) -> None:
         """Configure le bot avant son démarrage"""
         try:
-            # Configurer les commandes
-            await TaskCommands(self).setup()
+            # Ajouter le cog TaskCommands
+            task_commands = TaskCommands(self)
+            await self.add_cog(task_commands)
+            await task_commands.setup()
             logger.info("Commandes configurées avec succès")
             
             # Synchroniser les commandes avec Discord
