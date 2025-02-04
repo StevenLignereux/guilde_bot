@@ -67,10 +67,17 @@ class TaskService:
     async def get_user_lists(self, user_discord_id: str) -> List[TaskList]:
         """Récupère toutes les listes d'un utilisateur"""
         await self._ensure_initialized()
-        async with get_session() as session:
-            query = select(TaskList).filter_by(user_discord_id=user_discord_id)
-            result = await session.execute(query)
-            return list(result.scalars().all())
+        try:
+            async with get_session() as session:
+                # Utiliser selectinload pour charger les tâches en même temps
+                query = select(TaskList).filter_by(user_discord_id=user_discord_id).options(
+                    selectinload(TaskList.tasks)
+                )
+                result = await session.execute(query)
+                return list(result.scalars().all())
+        except Exception as e:
+            logger.error(f"Erreur lors de la récupération des listes: {str(e)}")
+            return []
     
     async def add_task(self, description: str, task_list_id: int) -> Optional[Task]:
         """Ajoute une tâche à une liste"""
@@ -220,8 +227,15 @@ class TaskService:
             raise
 
     async def get_list(self, list_id: int) -> Optional[TaskList]:
+        """Récupère une liste par son ID"""
+        await self._ensure_initialized()
         try:
-            return await self.repository.get_list_by_id(list_id)
+            async with get_session() as session:
+                query = select(TaskList).filter_by(id=list_id).options(
+                    selectinload(TaskList.tasks)
+                )
+                result = await session.execute(query)
+                return result.scalar_one_or_none()
         except Exception as e:
             logger.error(f"Erreur lors de la récupération de la liste {list_id}: {str(e)}")
             return None

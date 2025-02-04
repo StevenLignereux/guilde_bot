@@ -4019,3 +4019,132 @@ In components.0.components.0.options: This field is required
 2025-01-28 10:18:12 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
 2025-01-28 10:18:12 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
 2025-01-28 10:18:12 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-02-04 21:09:42 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-02-04 21:09:42 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-02-04 21:09:42 [INFO] root - [N/A] Logging configuré avec succès
+2025-02-04 21:09:42 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-02-04 21:09:42 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-02-04 21:09:42 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-02-04 21:09:42 [INFO] root - [N/A] Configuration chargée avec succès
+2025-02-04 21:09:42 [INFO] src.infrastructure.config.database - [N/A] URL de la base de données : postgresql+asyncpg://guildbot:marlene12@localhost:5432/guild_bot
+2025-02-04 21:09:42 [ERROR] src.infrastructure.config.database - [N/A] Erreur lors de l'initialisation de la base de données: connection was closed in the middle of operation
+2025-02-04 21:09:42 [ERROR] root - [N/A] Erreur lors du démarrage du bot: connection was closed in the middle of operation
+2025-02-04 21:09:42 [ERROR] root - [N/A] Erreur critique
+Traceback (most recent call last):
+  File "C:\Users\devil\AppData\Local\Programs\Python\Python312\Lib\asyncio\windows_events.py", line 462, in finish_socket_func
+    return ov.getresult()
+           ^^^^^^^^^^^^^^
+OSError: [WinError 64] Le nom réseau spécifié n’est plus disponible
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\devil\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py", line 286, in _loop_reading
+    length = fut.result()
+             ^^^^^^^^^^^^
+  File "C:\Users\devil\AppData\Local\Programs\Python\Python312\Lib\asyncio\windows_events.py", line 803, in _poll
+    value = callback(transferred, key, ov)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\AppData\Local\Programs\Python\Python312\Lib\asyncio\windows_events.py", line 466, in finish_socket_func
+    raise ConnectionResetError(*exc.args)
+ConnectionResetError: [WinError 64] Le nom réseau spécifié n’est plus disponible
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\devil\OneDrive\Bureau\projets\guilde_bot\main.py", line 150, in <module>
+    asyncio.run(main())
+  File "C:\Users\devil\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 686, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "c:\Users\devil\OneDrive\Bureau\projets\guilde_bot\main.py", line 124, in main
+    await init_db(config.database)
+  File "c:\Users\devil\OneDrive\Bureau\projets\guilde_bot\src\infrastructure\config\database.py", line 99, in init_db
+    async with engine.begin() as conn:
+               ^^^^^^^^^^^^^^
+  File "C:\Users\devil\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\ext\asyncio\engine.py", line 1054, in begin
+    async with conn:
+               ^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\ext\asyncio\base.py", line 121, in __aenter__
+    return await self.start(is_ctxmanager=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\ext\asyncio\engine.py", line 270, in start
+    await greenlet_spawn(self.sync_engine.connect)
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 197, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3258, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3282, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 168, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 166, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\engine\create.py", line 643, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 616, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 937, in connect
+    await_only(creator_fn(*arg, **kw)),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 127, in await_only
+    return current.driver.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 192, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\asyncpg\connection.py", line 2421, in connect
+    return await connect_utils._connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\asyncpg\connect_utils.py", line 1049, in _connect
+    conn = await _connect_addr(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\asyncpg\connect_utils.py", line 886, in _connect_addr
+    return await __connect_addr(params, True, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\asyncpg\connect_utils.py", line 934, in __connect_addr
+    await connected
+asyncpg.exceptions.ConnectionDoesNotExistError: connection was closed in the middle of operation
