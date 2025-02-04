@@ -7,10 +7,14 @@ from contextlib import asynccontextmanager
 import asyncio
 import asyncpg
 from urllib.parse import urlparse
-from typing import Optional
+from typing import Optional, AsyncGenerator
 
 # Créer la classe Base pour les modèles SQLAlchemy
 Base = declarative_base()
+
+# Variables globales pour le moteur et la session
+engine = None
+async_session = None
 
 # Configuration du logging
 logger = logging.getLogger(__name__)
@@ -66,6 +70,8 @@ async def test_connection(db_url: str) -> bool:
 
 async def init_db(config):
     """Initialise la connexion à la base de données."""
+    global engine, async_session
+    
     try:
         # Construire l'URL de connexion à partir de la config
         if not hasattr(config, 'url'):
@@ -108,30 +114,17 @@ async def init_db(config):
         raise
 
 @asynccontextmanager
-async def get_db():
-    """
-    Gestionnaire de contexte pour obtenir une session de base de données.
-    
-    Yield:
-        AsyncSession: Session de base de données active
+async def get_session() -> AsyncGenerator[AsyncSession, None]:
+    """Fournit une session de base de données dans un contexte async."""
+    if async_session is None:
+        raise RuntimeError("La base de données n'a pas été initialisée")
         
-    Example:
-        async with get_db() as session:
-            result = await session.execute(query)
-    """
-    if not async_session:
-        raise RuntimeError("La session de base de données n'est pas initialisée")
-    
     session = async_session()
     try:
         yield session
+        await session.commit()
+    except Exception as e:
+        await session.rollback()
+        raise
     finally:
-        await session.close()
-
-async def get_session() -> AsyncSession:
-    """
-    Retourne une nouvelle session de base de données.
-    """
-    if not async_session:
-        raise RuntimeError("La session de base de données n'est pas initialisée")
-    return async_session() 
+        await session.close() 
