@@ -6,6 +6,8 @@ from src.infrastructure.config.database import init_db, async_session
 from src.config.config import load_config
 from src.infrastructure.config.db_state import DatabaseState
 from src.domain.exceptions import TaskNotFoundError, InvalidTaskStateError, DatabaseConnectionError
+from sqlalchemy.sql import select
+from src.infrastructure.config.database import get_session
 
 # Configuration du logging
 logging.basicConfig(level=logging.INFO)
@@ -36,92 +38,103 @@ class TaskService:
             self._initialized = True
     
     async def create_list(self, user_discord_id: str, name: str) -> Tuple[bool, str, Optional[TaskList]]:
-        """
-        Crée une nouvelle liste de tâches.
-        
-        Args:
-            user_discord_id: L'ID Discord de l'utilisateur
-            name: Le nom de la liste à créer
-            
-        Returns:
-            Un tuple (succès, message, liste) où succès est un booléen indiquant si la création a réussi,
-            message est un message explicatif, et liste est la liste créée si succès est True
-        """
+        """Crée une nouvelle liste de tâches"""
+        await self._ensure_initialized()
         try:
-            await self._ensure_initialized()
-            task_list = await self.repository.create_list(name, user_discord_id)
-            # Recharger la liste avec ses tâches
-            task_list = await self.repository.get_list(task_list.id)
-            return True, "Liste créée avec succès", task_list
-        except ValueError as e:
-            return False, str(e), None
+            async with get_session() as session:
+                task_list = TaskList(
+                    name=name,
+                    user_discord_id=user_discord_id
+                )
+                session.add(task_list)
+                await session.commit()
+                await session.refresh(task_list)
+                return True, "Liste créée avec succès", task_list
         except Exception as e:
             logger.error(f"Erreur lors de la création de la liste: {str(e)}")
-            return False, "Une erreur est survenue lors de la création de la liste", None
+            return False, "Erreur lors de la création de la liste", None
     
     async def get_user_lists(self, user_discord_id: str) -> List[TaskList]:
+        """Récupère toutes les listes d'un utilisateur"""
         await self._ensure_initialized()
-        return await self.repository.get_user_lists(user_discord_id)
+        async with get_session() as session:
+            query = select(TaskList).filter_by(user_discord_id=user_discord_id)
+            result = await session.execute(query)
+            return list(result.scalars().all())
     
     async def add_task(self, description: str, task_list_id: int) -> Optional[Task]:
-        """
-        Ajoute une nouvelle tâche à une liste.
-        
-        Args:
-            description: La description de la tâche
-            task_list_id: L'identifiant de la liste à laquelle ajouter la tâche
-            
-        Returns:
-            Task: La tâche créée
-            
-        Raises:
-            ValueError: Si la description est vide ou si la liste n'existe pas
-        """
+        """Ajoute une tâche à une liste"""
+        await self._ensure_initialized()
         try:
-            if not description or len(description.strip()) == 0:
-                raise ValueError("La description de la tâche ne peut pas être vide")
-                
-            if len(description) > 500:  # Limite raisonnable pour une description
-                raise ValueError("La description de la tâche est trop longue (max 500 caractères)")
-            
-            return await self.repository.add_task(description.strip(), task_list_id)
-            
-        except ValueError as e:
-            logger.error(f"Erreur de validation lors de l'ajout de la tâche: {str(e)}")
-            raise
+            async with get_session() as session:
+                task = Task(
+                    description=description,
+                    task_list_id=task_list_id
+                )
+                session.add(task)
+                await session.commit()
+                await session.refresh(task)
+                return task
         except Exception as e:
-            logger.error(f"Erreur inattendue lors de l'ajout de la tâche: {str(e)}")
-            raise
+            logger.error(f"Erreur lors de l'ajout de la tâche: {str(e)}")
+            return None
     
     async def toggle_task(self, task_id: int) -> Optional[Task]:
-        return await self.repository.toggle_task(task_id)
+        """Change l'état d'une tâche (complétée/non complétée)"""
+        await self._ensure_initialized()
+        try:
+            async with get_session() as session:
+                query = select(Task).filter_by(id=task_id)
+                result = await session.execute(query)
+                task = result.scalar_one_or_none()
+                
+                if task:
+                    task.completed = not task.completed
+                    await session.commit()
+                    await session.refresh(task)
+                    
+                return task
+        except Exception as e:
+            logger.error(f"Erreur lors du changement d'état de la tâche: {str(e)}")
+            return None
     
     async def update_task_description(self, task_id: int, new_description: str) -> Optional[Task]:
-        """Met à jour la description d'une tâche."""
-        return await self.repository.update_task_description(task_id, new_description)
+        """Met à jour la description d'une tâche"""
+        await self._ensure_initialized()
+        try:
+            async with get_session() as session:
+                query = select(Task).filter_by(id=task_id)
+                result = await session.execute(query)
+                task = result.scalar_one_or_none()
+                
+                if task:
+                    task.description = new_description
+                    await session.commit()
+                    await session.refresh(task)
+                    
+                return task
+        except Exception as e:
+            logger.error(f"Erreur lors de la mise à jour de la description: {str(e)}")
+            return None
     
     async def delete_task(self, task_id: int) -> bool:
-        """
-        Supprime une tâche spécifique.
-        
-        Args:
-            task_id: L'identifiant de la tâche à supprimer
-            
-        Returns:
-            bool: True si la suppression a réussi, False sinon
-            
-        Raises:
-            ValueError: Si la tâche n'existe pas
-        """
+        """Supprime une tâche"""
+        await self._ensure_initialized()
         try:
-            task = await self.repository.get_by_id(task_id)
-            if task:
-                await self.repository.delete(task)
-                return True
-            return False
+            async with get_session() as session:
+                query = select(Task).filter_by(id=task_id)
+                result = await session.execute(query)
+                task = result.scalar_one_or_none()
+                
+                if task:
+                    await session.delete(task)
+                    await session.commit()
+                    return True
+                    
+                return False
         except Exception as e:
-            logger.error(f"Erreur dans delete_task: {str(e)}")
-            raise
+            logger.error(f"Erreur lors de la suppression de la tâche: {str(e)}")
+            return False
     
     async def check_database(self):
         """Vérifie l'état de la base de données."""
@@ -142,24 +155,22 @@ class TaskService:
             return False, f"Erreur de base de données : {str(e)}"
 
     async def delete_list(self, list_id: int) -> bool:
-        """
-        Supprime une liste de tâches et toutes ses tâches associées.
-        
-        Args:
-            list_id: L'identifiant de la liste à supprimer
-            
-        Returns:
-            bool: True si la suppression a réussi, False sinon
-            
-        Raises:
-            ValueError: Si la liste n'existe pas
-        """
+        """Supprime une liste et toutes ses tâches"""
+        await self._ensure_initialized()
         try:
-            await self._ensure_initialized()
-            result = await self.repository.delete_list(list_id)
-            return bool(result)
+            async with get_session() as session:
+                query = select(TaskList).filter_by(id=list_id)
+                result = await session.execute(query)
+                task_list = result.scalar_one_or_none()
+                
+                if task_list:
+                    await session.delete(task_list)
+                    await session.commit()
+                    return True
+                    
+                return False
         except Exception as e:
-            logger.error(f"Erreur lors de la suppression de la liste {list_id}: {str(e)}")
+            logger.error(f"Erreur lors de la suppression de la liste: {str(e)}")
             return False
 
     async def delete_completed_tasks(self, task_list_id: int) -> bool:
