@@ -1,22 +1,16 @@
 import os
 import logging
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.orm import sessionmaker
 from src.config.config import DatabaseConfig
 from contextlib import asynccontextmanager
 import asyncio
 import asyncpg
 from urllib.parse import urlparse
+from typing import Optional
 
 # Configuration du logging
 logger = logging.getLogger(__name__)
-
-# Créer une classe de base pour les modèles
-Base = declarative_base()
-
-# Variables globales pour le moteur et la session
-engine = None
-async_session = None
 
 async def test_connection(db_url: str) -> bool:
     """
@@ -67,56 +61,40 @@ async def test_connection(db_url: str) -> bool:
     logger.error("Échec de toutes les tentatives de connexion")
     return False
 
-async def init_db(config: DatabaseConfig):
-    """
-    Initialise la connexion à la base de données.
-    
-    Configure le moteur SQLAlchemy et crée une factory de sessions
-    en utilisant les paramètres fournis dans la configuration.
-    
-    Args:
-        config (DatabaseConfig): Configuration de la base de données
-        
-    Raises:
-        SQLAlchemyError: En cas d'erreur de connexion
-    """
-    global engine, async_session
-    
+async def init_db(config):
+    """Initialise la connexion à la base de données."""
     try:
-        # Récupérer l'URL de la base de données
-        db_url = os.getenv('DATABASE_URL')
-        logger.info(f"URL de la base de données : {db_url}")
-        
-        if not db_url:
-            raise ValueError("DATABASE_URL n'est pas définie dans les variables d'environnement")
-        
-        # Tester d'abord la connexion avec asyncpg
-        if not await test_connection(db_url):
-            raise ConnectionError("Impossible de se connecter à la base de données")
+        # Construire l'URL de connexion à partir de la config
+        if not hasattr(config, 'url'):
+            raise ValueError("La configuration de la base de données est invalide")
             
-        # Convertir l'URL PostgreSQL standard en URL asyncpg
-        if db_url.startswith('postgresql://'):
-            db_url = db_url.replace('postgresql://', 'postgresql+asyncpg://', 1)
-        elif db_url.startswith('postgres://'):
-            db_url = db_url.replace('postgres://', 'postgresql+asyncpg://', 1)
+        database_url = config.url
+        if not database_url:
+            raise ValueError("L'URL de la base de données est vide")
             
-        logger.info(f"URL convertie : {db_url}")
+        # Ajouter le préfixe async si nécessaire
+        if not database_url.startswith('postgresql+asyncpg://'):
+            database_url = database_url.replace('postgresql://', 'postgresql+asyncpg://')
+            
+        logger.info(f"URL de la base de données : {database_url}")
         
-        # Créer le moteur avec une configuration minimale
+        # Créer le moteur
         engine = create_async_engine(
-            db_url,
-            connect_args={"ssl": "require"},
-            echo=True
+            database_url,
+            echo=False,
+            pool_size=5,
+            max_overflow=10
         )
         
-        # Créer la factory de sessions
-        async_session = async_sessionmaker(
+        # Créer la session factory
+        async_session = sessionmaker(
             engine,
             class_=AsyncSession,
             expire_on_commit=False
         )
         
         logger.info("Base de données initialisée avec succès")
+        return engine, async_session
         
     except Exception as e:
         logger.error(f"Erreur lors de l'initialisation de la base de données: {str(e)}")
