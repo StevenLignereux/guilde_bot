@@ -1,0 +1,16 @@
+[Unit]
+Description=Guilde Bot Discord
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/guilde_bot
+Environment=PYTHONPATH=/opt/guilde_bot
+EnvironmentFile=/opt/guilde_bot/.env
+ExecStart=/opt/guilde_bot/venv/bin/python main.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target 

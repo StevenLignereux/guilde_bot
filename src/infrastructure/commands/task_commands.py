@@ -616,9 +616,9 @@ class TaskCommands(BaseCommand):
         
     async def setup(self) -> None:
         """Configure les commandes pour le bot"""
-        await self.bot.add_cog(self)
         logger.info("Commandes de tâches enregistrées")
-    
+        # Ne pas ajouter le cog ici car il est déjà ajouté dans setup_hook
+
     @app_commands.command(
         name="tasks",
         description="Affiche vos listes de tâches"
