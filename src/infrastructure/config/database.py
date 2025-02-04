@@ -1,13 +1,16 @@
 import os
 import logging
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
 from src.config.config import DatabaseConfig
 from contextlib import asynccontextmanager
 import asyncio
 import asyncpg
 from urllib.parse import urlparse
 from typing import Optional
+
+# Créer la classe Base pour les modèles SQLAlchemy
+Base = declarative_base()
 
 # Configuration du logging
 logger = logging.getLogger(__name__)
@@ -85,6 +88,10 @@ async def init_db(config):
             pool_size=5,
             max_overflow=10
         )
+        
+        # Créer les tables
+        async with engine.begin() as conn:
+            await conn.run_sync(Base.metadata.create_all)
         
         # Créer la session factory
         async_session = sessionmaker(
