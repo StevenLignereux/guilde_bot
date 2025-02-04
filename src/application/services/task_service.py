@@ -191,22 +191,32 @@ class TaskService:
             return False
 
     async def delete_completed_tasks(self, task_list_id: int) -> bool:
+        """Supprime toutes les tâches complétées d'une liste"""
+        await self._ensure_initialized()
         try:
-            task_list = await self.repository.get_list(task_list_id)
-            if not task_list:
-                return False
-            
-            completed_tasks = [task for task in task_list.tasks if task.completed]
-            if not completed_tasks:
-                return False
-            
-            all_deleted = True
-            for task in completed_tasks:
-                success = await self.repository.delete_task(task.id)
-                if not success:
-                    all_deleted = False
-            
-            return all_deleted
+            async with get_session() as session:
+                # Récupérer la liste avec ses tâches
+                query = select(TaskList).filter_by(id=task_list_id).options(
+                    selectinload(TaskList.tasks)
+                )
+                result = await session.execute(query)
+                task_list = result.scalar_one_or_none()
+
+                if not task_list:
+                    return False
+
+                # Filtrer les tâches complétées
+                completed_tasks = [task for task in task_list.tasks if task.completed]
+                if not completed_tasks:
+                    return False
+
+                # Supprimer les tâches complétées
+                for task in completed_tasks:
+                    await session.delete(task)
+
+                await session.commit()
+                return True
+
         except Exception as e:
             logger.error(f"Erreur lors de la suppression des tâches complétées: {str(e)}")
             return False
