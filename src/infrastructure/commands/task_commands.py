@@ -611,56 +611,39 @@ class TaskCommands(BaseCommand):
     
     def __init__(self, bot):
         super().__init__(bot)
-        self._task_service = None
+        self._task_service = TaskService()  # Initialisation directe
         logger.debug("TaskCommands initialisé")
-        
-    @property
-    def task_service(self):
-        if self._task_service is None:
-            self._task_service = TaskService()
-        return self._task_service
         
     async def setup(self) -> None:
         """Configure les commandes pour le bot"""
-        # Initialiser le service après que la base de données soit prête
-        self.task_service = TaskService()
-        
-        # Ajouter les commandes directement au bot
-        self.bot.tree.add_command(self.list_tasks)
-        self.bot.tree.add_command(self.add_task)
-        self.bot.tree.add_command(self.delete_task)
-        self.bot.tree.add_command(self.delete_list)
-        
-        logger.info("Commandes de tâches configurées")
-
-    @app_commands.command(
-        name="tasks",
-        description="Gérer vos listes de tâches"
-    )
-    async def list_tasks(
-        self,
-        interaction: discord.Interaction
-    ):
-        """Affiche le menu principal de gestion des tâches"""
-        try:
-            await interaction.response.defer()
-            
-            if not self.task_service:
-                self.task_service = TaskService()
-                
-            embed = discord.Embed(
-                title="📋 Gestionnaire de tâches",
-                description="Que souhaitez-vous faire ?",
-                color=discord.Color.blue()
+        # Enregistrement des commandes
+        self.bot.tree.add_command(
+            app_commands.Command(
+                name="list_tasks",
+                description="Affiche la liste des tâches",
+                callback=self.list_tasks
             )
+        )
+        logger.info("Commandes de tâches enregistrées")
+
+    async def list_tasks(self, interaction):
+        try:
+            tasks = await self._task_service.get_all_tasks()
+            if not tasks:
+                await interaction.response.send_message("Aucune tâche n'est enregistrée.", ephemeral=True)
+                return
             
-            view = MainMenuView(self.task_service)
-            await interaction.followup.send(embed=embed, view=view)
+            # Format et envoi des tâches
+            message = "Liste des tâches :\n"
+            for task in tasks:
+                message += f"- {task.title}\n"
+            
+            await interaction.response.send_message(message, ephemeral=True)
             
         except Exception as e:
-            logger.error(f"Erreur lors de l'affichage du menu: {str(e)}")
-            await interaction.followup.send("❌ Une erreur est survenue !")
-    
+            logger.error(f"Erreur lors de l'affichage des listes: {str(e)}")
+            await interaction.response.send_message("Une erreur est survenue lors de l'affichage des listes.", ephemeral=True)
+
     @app_commands.command(
         name="add_task",
         description="Ajoute une tâche à une liste"
@@ -674,9 +657,9 @@ class TaskCommands(BaseCommand):
         """Ajoute une tâche à une liste"""
         try:
             await interaction.response.defer()
-            if not self.task_service:
-                self.task_service = TaskService()
-            task = await self.task_service.add_task(description, list_id)
+            if not self._task_service:
+                self._task_service = TaskService()
+            task = await self._task_service.add_task(description, list_id)
             await interaction.followup.send(f"✅ Tâche ajoutée avec succès à la liste {list_id} !")
         except Exception as e:
             logger.error(f"Erreur lors de l'ajout de la tâche: {str(e)}")
@@ -694,9 +677,9 @@ class TaskCommands(BaseCommand):
         """Supprime une tâche"""
         try:
             await interaction.response.defer()
-            if not self.task_service:
-                self.task_service = TaskService()
-            success = await self.task_service.delete_task(task_id)
+            if not self._task_service:
+                self._task_service = TaskService()
+            success = await self._task_service.delete_task(task_id)
             if success:
                 await interaction.followup.send("✅ Tâche supprimée avec succès !")
             else:
@@ -717,18 +700,18 @@ class TaskCommands(BaseCommand):
         """Supprime une liste de tâches"""
         try:
             await interaction.response.defer()
-            if not self.task_service:
-                self.task_service = TaskService()
-            success = await self.task_service.delete_list(list_id)
+            if not self._task_service:
+                self._task_service = TaskService()
+            success = await self._task_service.delete_list(list_id)
             
             if success:
                 # Récupérer la liste mise à jour des listes
-                lists = await self.task_service.get_user_lists(str(interaction.user.id))
+                lists = await self._task_service.get_user_lists(str(interaction.user.id))
                 
                 # Créer une nouvelle vue avec le menu déroulant et le bouton de création
                 view = discord.ui.View(timeout=None)
-                view.add_item(TaskListSelect(lists, self.task_service))
-                view.add_item(CreateListButton(self.task_service))
+                view.add_item(TaskListSelect(lists, self._task_service))
+                view.add_item(CreateListButton(self._task_service))
                 
                 embed = discord.Embed(
                     title="📋 Vos listes de tâches",
