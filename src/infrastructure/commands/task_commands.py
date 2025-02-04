@@ -616,33 +616,54 @@ class TaskCommands(BaseCommand):
         
     async def setup(self) -> None:
         """Configure les commandes pour le bot"""
-        # Enregistrement des commandes
-        self.bot.tree.add_command(
-            app_commands.Command(
-                name="list_tasks",
-                description="Affiche la liste des tâches",
-                callback=self.list_tasks
-            )
-        )
+        await self.bot.add_cog(self)
         logger.info("Commandes de tâches enregistrées")
-
-    async def list_tasks(self, interaction):
+    
+    @app_commands.command(
+        name="tasks",
+        description="Affiche vos listes de tâches"
+    )
+    async def list_tasks(self, interaction: discord.Interaction):
+        """Affiche la liste des tâches"""
         try:
-            tasks = await self._task_service.get_all_tasks()
-            if not tasks:
-                await interaction.response.send_message("Aucune tâche n'est enregistrée.", ephemeral=True)
-                return
+            await interaction.response.defer()
+            if not self._task_service:
+                self._task_service = TaskService()
             
-            # Format et envoi des tâches
-            message = "Liste des tâches :\n"
-            for task in tasks:
-                message += f"- {task.title}\n"
+            # Récupérer les listes de l'utilisateur
+            lists = await self._task_service.get_user_lists(str(interaction.user.id))
             
-            await interaction.response.send_message(message, ephemeral=True)
+            # Créer une vue avec le menu déroulant et le bouton de création
+            view = discord.ui.View(timeout=None)
+            view.add_item(TaskListSelect(lists, self._task_service))
+            view.add_item(CreateListButton(self._task_service))
+            
+            embed = discord.Embed(
+                title="📋 Vos listes de tâches",
+                description="Sélectionnez une liste pour voir son contenu",
+                color=discord.Color.blue()
+            )
+            
+            # Afficher les listes disponibles
+            if lists:
+                lists_content = ""
+                for lst in lists:
+                    completed_tasks = sum(1 for task in lst.tasks if task.completed)
+                    total_tasks = len(lst.tasks)
+                    lists_content += f"• {lst.name} ({completed_tasks}/{total_tasks} tâches)\n"
+                embed.add_field(name="Listes disponibles", value=lists_content, inline=False)
+            else:
+                embed.add_field(
+                    name="Commencer",
+                    value="Utilisez le bouton '➕ Créer une liste' pour créer votre première liste !",
+                    inline=False
+                )
+            
+            await interaction.followup.send(embed=embed, view=view)
             
         except Exception as e:
             logger.error(f"Erreur lors de l'affichage des listes: {str(e)}")
-            await interaction.response.send_message("Une erreur est survenue lors de l'affichage des listes.", ephemeral=True)
+            await interaction.followup.send("Une erreur est survenue lors de l'affichage des listes.", ephemeral=True)
 
     @app_commands.command(
         name="add_task",
