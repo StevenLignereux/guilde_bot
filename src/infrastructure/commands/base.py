@@ -220,8 +220,9 @@ class SlashCommandGroup(app_commands.Group):
         if self.error_handler:
             if asyncio.iscoroutinefunction(self.error_handler):
                 await self.error_handler(interaction, error)
-            elif self.error_handler:
-                await asyncio.to_thread(self.error_handler, interaction, error)
+            else:
+                self.error_handler(interaction, error)
+                await interaction.response.send_message("Une erreur est survenue.", ephemeral=True)
 
 class SlashCommandCheck:
     """Classe utilitaire pour les vérifications des commandes slash"""
