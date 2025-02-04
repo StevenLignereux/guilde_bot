@@ -23,7 +23,9 @@ class TaskService:
         _initialized (bool): État d'initialisation du service
     """
     def __init__(self):
+        self._initialized = True
         self.repository = TaskRepository()
+        logger.debug("TaskService initialisé")
     
     async def _ensure_initialized(self):
         if not self._initialized:
@@ -117,9 +119,9 @@ class TaskService:
                 await self.repository.delete(task)
                 return True
             return False
-        except ValueError as e:
-            logger.error(f"Erreur lors de la suppression de la tâche: {str(e)}")
-            return False
+        except Exception as e:
+            logger.error(f"Erreur dans delete_task: {str(e)}")
+            raise
     
     async def check_database(self):
         """Vérifie l'état de la base de données."""
@@ -204,7 +206,15 @@ class TaskService:
             return None
 
     async def get_all_tasks(self):
-        return await self.repository.get_all()
+        try:
+            return await self.repository.get_all()
+        except Exception as e:
+            logger.error(f"Erreur dans get_all_tasks: {str(e)}")
+            raise
 
     async def create_task(self, data):
-        return await self.repository.add(data) 
+        try:
+            return await self.repository.add(data)
+        except Exception as e:
+            logger.error(f"Erreur dans create_task: {str(e)}")
+            raise 
