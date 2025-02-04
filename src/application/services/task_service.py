@@ -7,6 +7,7 @@ from src.config.config import load_config
 from src.infrastructure.config.db_state import DatabaseState
 from src.domain.exceptions import TaskNotFoundError, InvalidTaskStateError, DatabaseConnectionError
 from sqlalchemy.sql import select
+from sqlalchemy.orm import selectinload
 from src.infrastructure.config.database import get_session
 
 # Configuration du logging
@@ -44,11 +45,20 @@ class TaskService:
             async with get_session() as session:
                 task_list = TaskList(
                     name=name,
-                    user_discord_id=user_discord_id
+                    user_discord_id=user_discord_id,
+                    tasks=[]  # Initialisation explicite de la liste des tâches
                 )
                 session.add(task_list)
                 await session.commit()
                 await session.refresh(task_list)
+                
+                # Requête explicite pour charger la liste avec ses tâches
+                query = select(TaskList).filter_by(id=task_list.id).options(
+                    selectinload(TaskList.tasks)
+                )
+                result = await session.execute(query)
+                task_list = result.scalar_one()
+                
                 return True, "Liste créée avec succès", task_list
         except Exception as e:
             logger.error(f"Erreur lors de la création de la liste: {str(e)}")
