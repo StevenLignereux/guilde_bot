@@ -6,6 +6,17 @@ from src.infrastructure.config.database import init_db, async_session
 logger = logging.getLogger(__name__)
 
 class DatabaseState:
+    """
+    Gestionnaire d'état de la base de données implémentant le pattern Singleton.
+    
+    Cette classe assure qu'une seule instance de la connexion à la base de données
+    est maintenue tout au long de l'exécution de l'application. Elle gère l'initialisation
+    de la connexion et fournit un accès centralisé à la session de base de données.
+    
+    Attributes:
+        _instance (Optional[DatabaseState]): Instance unique de la classe
+        _initialized (bool): État d'initialisation de la base de données
+    """
     _instance = None
     _initialized = False
     
@@ -16,6 +27,14 @@ class DatabaseState:
     
     @classmethod
     async def ensure_initialized(cls):
+        """
+        Assure que la base de données est initialisée.
+        
+        Initialise la connexion si ce n'est pas déjà fait.
+        
+        Raises:
+            RuntimeError: Si l'initialisation échoue
+        """
         if not cls._initialized:
             try:
                 config = load_config()

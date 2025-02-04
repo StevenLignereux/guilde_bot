@@ -9,6 +9,17 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 async def test_connection():
+    """
+    Teste la connexion à la base de données.
+    
+    Vérifie que la connexion peut être établie et que des requêtes
+    simples peuvent être exécutées. Utilise les variables d'environnement
+    pour la configuration.
+    
+    Raises:
+        SQLAlchemyError: En cas d'erreur de connexion
+        Exception: Pour toute autre erreur inattendue
+    """
     load_dotenv()
     db_url = os.getenv('DATABASE_URL')
     

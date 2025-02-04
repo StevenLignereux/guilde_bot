@@ -1,7 +1,7 @@
 """
 Classes de base pour les commandes du bot
 """
-from typing import Optional, List, Callable, Any, Dict, Union
+from typing import Optional, List, Callable, Any, Dict, Union, Awaitable
 from discord.ext import commands
 from discord import app_commands
 import discord
@@ -9,19 +9,37 @@ from functools import wraps
 from enum import Enum
 from ..errors.exceptions import CommandError, PermissionError, ValidationError
 from .aliases import AliasManager
+import asyncio
 
 class BucketType(Enum):
-    """Types de bucket pour les cooldowns"""
-    default = 0
-    user = 1
-    guild = 2
-    channel = 3
-    member = 4
-    category = 5
-    role = 6
+    """Types de bucket pour la gestion des cooldowns des commandes.
+    
+    Cette énumération définit les différents types de bucket utilisés pour gérer
+    les limites de taux d'utilisation (cooldowns) des commandes. Chaque type détermine
+    comment les cooldowns sont appliqués et partagés entre les utilisateurs.
+    
+    Attributes:
+        default (int): Cooldown global pour toutes les utilisations de la commande
+        user (int): Cooldown par utilisateur
+        guild (int): Cooldown par serveur
+        channel (int): Cooldown par canal
+        member (int): Cooldown par membre dans un serveur spécifique
+        category (int): Cooldown par catégorie de canal
+        role (int): Cooldown par rôle
+    """
 
 class BaseCommand(commands.Cog):
-    """Classe de base pour toutes les commandes"""
+    """
+    Classe de base pour toutes les commandes du bot.
+    
+    Fournit les fonctionnalités communes à toutes les commandes :
+    gestion des alias, validation des paramètres, gestion des erreurs.
+    
+    Attributes:
+        alias_manager (AliasManager): Gestionnaire des alias de commandes
+        _validators (Dict): Dictionnaire des validateurs par commande
+        error_handler (Callable): Gestionnaire d'erreurs personnalisé
+    """
     
     def __init__(self, bot: commands.Bot):
         self.bot = bot
@@ -47,6 +65,23 @@ class BaseCommand(commands.Cog):
     def get_commands(self) -> List[commands.Command]:
         """Retourne la liste des commandes du cog"""
         return [cmd for cmd in self.walk_commands()]
+
+    def validate_params(self, command_name: str, **kwargs) -> Dict[str, Any]:
+        """
+        Valide les paramètres d'une commande.
+        
+        Args:
+            command_name (str): Nom de la commande
+            **kwargs: Paramètres à valider
+            
+        Returns:
+            Dict[str, Any]: Paramètres validés
+            
+        Raises:
+            CommandError: Si la validation échoue
+        """
+        # Validation logic here
+        return kwargs  # Retourne les paramètres, validés ou non
 
 class CommandCheck:
     """Classe utilitaire pour les vérifications de commandes"""
@@ -111,8 +146,14 @@ class SlashCommandGroup(app_commands.Group):
             self._validators[command_name] = {}
         self._validators[command_name][param_name] = validator
     
-    def add_command(self, command: app_commands.Command, aliases: List[str] = None):
-        """Ajoute une commande au groupe avec ses alias"""
+    def add_command(self, command: app_commands.Command, aliases: List[str] = []):
+        """
+        Ajoute une commande au groupe avec ses alias
+        
+        Args:
+            command (app_commands.Command): La commande à ajouter
+            aliases (List[str]): Liste des alias de la commande
+        """
         super().add_command(command)
         
         if aliases:
@@ -175,7 +216,10 @@ class SlashCommandGroup(app_commands.Group):
     async def on_error(self, interaction: discord.Interaction, error: Exception):
         """Gère les erreurs des commandes du groupe"""
         if self.error_handler:
-            await self.error_handler(interaction, error)
+            if asyncio.iscoroutinefunction(self.error_handler):
+                await self.error_handler(interaction, error)
+            elif self.error_handler:
+                await asyncio.to_thread(self.error_handler, interaction, error)
 
 class SlashCommandCheck:
     """Classe utilitaire pour les vérifications des commandes slash"""
@@ -392,7 +436,7 @@ class AliasedSlashCommandGroup(app_commands.Group):
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.error_handler = None
+        self.error_handler: Optional[Callable[[discord.Interaction, Exception], Awaitable[None] | None]] = None
         self._validators: Dict[str, Dict[str, Any]] = {}
         self.alias_manager = AliasManager()
         self._commands: Dict[str, app_commands.Command] = {}

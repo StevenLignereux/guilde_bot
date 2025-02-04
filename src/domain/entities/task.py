@@ -18,7 +18,17 @@ class TaskList(Base):
         return f"<TaskList(id={self.id}, name='{self.name}', user_discord_id='{self.user_discord_id}')>"
 
 class Task(Base):
-    """Représente une tâche dans une liste"""
+    """
+    Représente une tâche dans une liste.
+    
+    Attributes:
+        id (int): Identifiant unique de la tâche
+        description (str): Description de la tâche
+        completed (bool): État de complétion de la tâche
+        created_at (datetime): Date de création
+        task_list_id (int): ID de la liste parente
+        task_list (TaskList): Relation vers la liste parente
+    """
     __tablename__ = "tasks"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)

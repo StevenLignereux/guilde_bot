@@ -14,6 +14,15 @@ from sqlalchemy.exc import SQLAlchemyError
 logger = logging.getLogger(__name__)
 
 class TaskRepository(PostgresRepository[Task]):
+    """
+    Repository pour la gestion des tâches en base de données.
+    
+    Gère les opérations CRUD sur les tâches et les listes de tâches.
+    Utilise SQLAlchemy pour les interactions avec la base PostgreSQL.
+    
+    Args:
+        db (AsyncSession | None): Session de base de données optionnelle
+    """
     def __init__(self, db: AsyncSession | None = None):
         super().__init__(Task)
         self._db = db

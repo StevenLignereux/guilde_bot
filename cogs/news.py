@@ -8,6 +8,17 @@ import logging
 
 
 class News(commands.Cog):
+    """
+    Cog gérant les fonctionnalités de news.
+    
+    Vérifie périodiquement les nouvelles actualités et les publie
+    dans le canal configuré.
+    
+    Attributes:
+        bot (commands.Bot): Instance du bot Discord
+        session (requests.Session): Session HTTP pour les requêtes
+        news_cache (set): Cache des news déjà publiées
+    """
     def __init__(self, bot):
         self.bot = bot
         self.session = requests.Session()
@@ -61,7 +72,12 @@ class News(commands.Cog):
         if not news_items:
             return
 
-        channel_id = int(os.getenv('NEWS_CHANNEL_ID'))
+        news_channel_id = os.getenv('NEWS_CHANNEL_ID')
+        if not news_channel_id:
+            logging.error("NEWS_CHANNEL_ID n'est pas défini")
+            return
+            
+        channel_id = int(news_channel_id)
         channel = self.bot.get_channel(channel_id)
         
         if not channel:

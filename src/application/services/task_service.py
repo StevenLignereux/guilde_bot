@@ -12,6 +12,16 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class TaskService:
+    """
+    Service de gestion des tâches.
+    
+    Gère toutes les opérations liées aux tâches et listes de tâches :
+    création, modification, suppression et recherche.
+    
+    Attributes:
+        repository (TaskRepository): Repository pour l'accès aux données
+        _initialized (bool): État d'initialisation du service
+    """
     def __init__(self, repository: Optional[TaskRepository] = None):
         self.repository = repository if repository is not None else TaskRepository()
         self._initialized = False

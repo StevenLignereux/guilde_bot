@@ -11,6 +11,16 @@ from sqlalchemy.exc import SQLAlchemyError
 logger = logging.getLogger(__name__)
 
 class TaskListSelect(ui.Select):
+    """Menu déroulant pour la sélection d'une liste de tâches.
+    
+    Cette classe gère l'interface utilisateur permettant de sélectionner une liste de tâches
+    parmi celles disponibles. Elle affiche les listes sous forme de menu déroulant et gère
+    les interactions de l'utilisateur.
+    
+    Attributes:
+        task_lists (List[TaskList]): Liste des listes de tâches disponibles
+        task_service (Optional[TaskService]): Service de gestion des tâches
+    """
     def __init__(self, task_lists: List[TaskList], task_service: Optional[TaskService] = None):
         options = []
         valid_lists = [tl for tl in task_lists if tl is not None]
@@ -587,7 +597,17 @@ class MainMenuView(ui.View):
             )
 
 class TaskCommands(BaseCommand):
-    """Commandes de gestion des tâches"""
+    """
+    Gestionnaire des commandes Discord liées aux tâches.
+    
+    Implémente toutes les commandes slash pour la gestion des tâches :
+    création, modification, suppression et affichage des tâches et listes.
+    
+    Attributes:
+        bot (commands.Bot): Instance du bot Discord
+        task_service (TaskService): Service de gestion des tâches
+        logger (Logger): Logger pour le suivi des opérations
+    """
     
     def __init__(self, bot):
         super().__init__(bot)

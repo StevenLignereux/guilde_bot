@@ -67,9 +67,18 @@ async def test_connection(db_url: str) -> bool:
     logger.error("Échec de toutes les tentatives de connexion")
     return False
 
-async def init_db(config: DatabaseConfig) -> None:
+async def init_db(config: DatabaseConfig):
     """
     Initialise la connexion à la base de données.
+    
+    Configure le moteur SQLAlchemy et crée une factory de sessions
+    en utilisant les paramètres fournis dans la configuration.
+    
+    Args:
+        config (DatabaseConfig): Configuration de la base de données
+        
+    Raises:
+        SQLAlchemyError: En cas d'erreur de connexion
     """
     global engine, async_session
     
@@ -116,8 +125,14 @@ async def init_db(config: DatabaseConfig) -> None:
 @asynccontextmanager
 async def get_db():
     """
-    Retourne une session de base de données dans un contexte.
-    La session est automatiquement fermée à la fin du contexte.
+    Gestionnaire de contexte pour obtenir une session de base de données.
+    
+    Yield:
+        AsyncSession: Session de base de données active
+        
+    Example:
+        async with get_db() as session:
+            result = await session.execute(query)
     """
     if not async_session:
         raise RuntimeError("La session de base de données n'est pas initialisée")

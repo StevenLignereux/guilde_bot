@@ -11,21 +11,16 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class DatabaseConfig:
-    url: str = os.getenv('DATABASE_URL', '')
-    pool_size: int = 5
-    max_overflow: int = 10
-    pool_timeout: int = 30
-
     def __post_init__(self):
-        if not self.url:
-            raise ValueError("DATABASE_URL n'est pas définie dans les variables d'environnement")
-            
-        # Convertir l'URL au format attendu par SQLAlchemy
-        if self.url.startswith("postgres://"):
-            self.url = self.url.replace("postgres://", "postgresql://", 1)
-            logger.info("URL de base de données convertie de postgres:// à postgresql://")
-            
-        logger.info(f"Configuration de la base de données : {self.url}")
+        # Vérifier que toutes les variables nécessaires sont définies
+        required_vars = ['DB_HOST', 'DB_PORT', 'DB_NAME', 'DB_USER', 'DB_PASSWORD']
+        missing_vars = [var for var in required_vars if not os.getenv(var)]
+        if missing_vars:
+            raise ValueError(f"Variables manquantes dans .env: {', '.join(missing_vars)}")
+    
+    @property
+    def url(self) -> str:
+        return f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
 
 @dataclass
 class DiscordConfig:
@@ -144,11 +139,7 @@ class Config:
 
     def _load_database_config(self) -> DatabaseConfig:
         """Charge la configuration de la base de données"""
-        return DatabaseConfig(
-            pool_size=int(self._get_optional_env('DATABASE_POOL_SIZE', '5')),
-            max_overflow=int(self._get_optional_env('DATABASE_MAX_OVERFLOW', '10')),
-            pool_timeout=int(self._get_optional_env('DATABASE_POOL_TIMEOUT', '30'))
-        )
+        return DatabaseConfig()
 
     def _load_discord_config(self) -> DiscordConfig:
         """Charge la configuration Discord"""

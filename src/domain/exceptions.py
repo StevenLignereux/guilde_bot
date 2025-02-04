@@ -12,13 +12,26 @@ class TaskError(DomainError):
 
 # Exceptions spécifiques pour le Repository
 class TaskNotFoundError(RepositoryError):
-    """Levée quand une tâche n'est pas trouvée"""
+    """
+    Exception levée quand une tâche n'est pas trouvée dans la base de données.
+    
+    Args:
+        task_id (str): Identifiant de la tâche non trouvée
+        
+    Attributes:
+        task_id (str): Identifiant de la tâche
+    """
     def __init__(self, task_id: str):
         self.task_id = task_id
         super().__init__(f"Tâche non trouvée avec l'ID: {task_id}")
 
 class DatabaseConnectionError(RepositoryError):
-    """Levée lors d'un problème de connexion à la base de données"""
+    """
+    Exception levée lors d'un problème de connexion à la base de données.
+    
+    Args:
+        details (str): Détails de l'erreur de connexion
+    """
     def __init__(self, details: str):
         super().__init__(f"Erreur de connexion à la base de données: {details}")
 

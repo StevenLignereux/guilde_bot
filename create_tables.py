@@ -4,6 +4,15 @@ from dotenv import load_dotenv
 import os
 
 async def create_tables():
+    """
+    Crée les tables nécessaires dans la base de données.
+    
+    Utilise les modèles SQLAlchemy pour créer la structure de la base
+    de données. Vérifie d'abord la connexion avant de créer les tables.
+    
+    Raises:
+        Exception: En cas d'erreur lors de la création des tables
+    """
     # Charger les variables d'environnement
     load_dotenv()
     

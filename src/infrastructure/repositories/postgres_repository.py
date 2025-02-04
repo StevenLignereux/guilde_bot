@@ -11,6 +11,15 @@ from contextlib import asynccontextmanager
 logger = logging.getLogger(__name__)
 
 class HasId(Protocol):
+    """Protocole définissant une entité avec un identifiant.
+    
+    Ce protocole est utilisé pour garantir que toutes les entités gérées par le PostgresRepository
+    possèdent un attribut 'id'. Il sert de contrainte de type pour assurer que seules les classes
+    avec un identifiant peuvent être utilisées avec le repository.
+    
+    Attributes:
+        id (int): L'identifiant unique de l'entité
+    """
     id: int
 
 T = TypeVar('T', bound=HasId)
