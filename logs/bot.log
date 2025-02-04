@@ -4148,3 +4148,82 @@ Traceback (most recent call last):
   File "C:\Users\devil\OneDrive\Bureau\projets\guilde_bot\.venv\Lib\site-packages\asyncpg\connect_utils.py", line 934, in __connect_addr
     await connected
 asyncpg.exceptions.ConnectionDoesNotExistError: connection was closed in the middle of operation
+2025-02-04 20:45:41 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-02-04 20:45:41 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-02-04 20:45:41 [INFO] root - [N/A] Logging configuré avec succès
+2025-02-04 20:45:41 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-02-04 20:45:41 [INFO] src.config.config - [N/A] Utilisation des variables d'environnement système
+2025-02-04 20:45:41 [ERROR] src.config.config - [N/A] Erreur lors du chargement de la configuration: Variables manquantes dans .env: DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD
+2025-02-04 20:45:41 [ERROR] root - [N/A] Erreur lors du démarrage du bot: Variables manquantes dans .env: DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD
+2025-02-04 20:45:41 [ERROR] root - [N/A] Erreur critique
+Traceback (most recent call last):
+  File "/opt/guilde_bot/main.py", line 150, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/opt/guilde_bot/main.py", line 120, in main
+    config = load_config()
+             ^^^^^^^^^^^^^
+  File "/opt/guilde_bot/src/config/config.py", line 189, in load_config
+    return Config()
+           ^^^^^^^^
+  File "/opt/guilde_bot/src/config/config.py", line 99, in __init__
+    self.database = self._load_database_config()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/guilde_bot/src/config/config.py", line 142, in _load_database_config
+    return DatabaseConfig()
+           ^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in __init__
+  File "/opt/guilde_bot/src/config/config.py", line 19, in __post_init__
+    raise ValueError(f"Variables manquantes dans .env: {', '.join(missing_vars)}")
+ValueError: Variables manquantes dans .env: DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD
+2025-02-04 20:46:24 [INFO] src.infrastructure.logging.logger - [N/A] Logging configuré en mode développement (niveau: DEBUG)
+2025-02-04 20:46:24 [INFO] root - [N/A] Système de logging initialisé en mode développement
+2025-02-04 20:46:24 [INFO] root - [N/A] Logging configuré avec succès
+2025-02-04 20:46:24 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-02-04 20:46:24 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-02-04 20:46:24 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-02-04 20:46:24 [INFO] root - [N/A] Configuration chargée avec succès
+2025-02-04 20:46:24 [INFO] src.infrastructure.config.database - [N/A] URL de la base de données : postgresql+asyncpg://guildbot:marlene12@localhost:5432/guild_bot
+2025-02-04 20:46:24 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-02-04 20:46:24 [INFO] root - [N/A] Base de données initialisée avec succès
+2025-02-04 20:46:24 [INFO] root - [N/A] Démarrage du serveur sur le port 10000
+2025-02-04 20:46:24 [INFO] root - [N/A] Serveur web démarré sur le port 10000
+2025-02-04 20:46:24 [INFO] root - [N/A] Serveur web démarré
+2025-02-04 20:46:25 [DEBUG] src.application.services.task_service - [N/A] TaskService initialisé
+2025-02-04 20:46:25 [DEBUG] src.infrastructure.commands.task_commands - [N/A] TaskCommands initialisé
+2025-02-04 20:46:25 [INFO] src.infrastructure.commands.task_commands - [N/A] Commandes de tâches enregistrées
+2025-02-04 20:46:25 [INFO] root - [N/A] Commandes configurées avec succès
+2025-02-04 20:46:25 [INFO] root - [N/A] Commandes synchronisées avec Discord
+2025-02-04 20:46:28 [INFO] root - [N/A] Bot connecté en tant que HK-A1K
+2025-02-04 20:46:28 [INFO] cogs.events - [N/A] Bot connecté en tant que HK-A1K#8311
+2025-02-04 20:46:28 [DEBUG] urllib3.connectionpool - [N/A] Starting new HTTPS connection (1): www.swtor.com:443
+2025-02-04 20:46:29 [DEBUG] urllib3.connectionpool - [N/A] https://www.swtor.com:443 "GET /fr/info/news HTTP/1.1" 200 11428
+2025-02-04 20:46:29 [DEBUG] urllib3.connectionpool - [N/A] Starting new HTTPS connection (1): id.twitch.tv:443
+2025-02-04 20:46:30 [DEBUG] urllib3.connectionpool - [N/A] https://id.twitch.tv:443 "POST /oauth2/token HTTP/1.1" 200 93
+2025-02-04 20:46:30 [DEBUG] urllib3.connectionpool - [N/A] Starting new HTTPS connection (1): api.twitch.tv:443
+2025-02-04 20:46:30 [DEBUG] urllib3.connectionpool - [N/A] https://api.twitch.tv:443 "GET /helix/streams?user_login=Reazon_BzH HTTP/1.1" 200 27
+2025-02-04 20:47:05 [DEBUG] src.application.services.task_service - [N/A] TaskService initialisé
+2025-02-04 20:47:15 [DEBUG] src.application.services.task_service - [N/A] TaskService initialisé
+2025-02-04 20:47:24 [DEBUG] src.application.services.task_service - [N/A] TaskService initialisé
+2025-02-04 20:47:27 [DEBUG] src.application.services.task_service - [N/A] TaskService initialisé
+2025-02-04 20:47:27 [ERROR] src.application.services.task_service - [N/A] Erreur lors de la suppression des tâches complétées: object _AsyncGeneratorContextManager can't be used in 'await' expression
+2025-02-04 20:47:28 [DEBUG] urllib3.connectionpool - [N/A] https://id.twitch.tv:443 "POST /oauth2/token HTTP/1.1" 200 93
+2025-02-04 20:47:29 [DEBUG] urllib3.connectionpool - [N/A] https://api.twitch.tv:443 "GET /helix/streams?user_login=Reazon_BzH HTTP/1.1" 200 27
+2025-02-04 20:47:38 [DEBUG] src.application.services.task_service - [N/A] TaskService initialisé
+2025-02-04 20:47:38 [ERROR] src.application.services.task_service - [N/A] Erreur lors de la suppression des tâches complétées: object _AsyncGeneratorContextManager can't be used in 'await' expression
+2025-02-04 20:47:59 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-02-04 20:47:59 [INFO] src.config.config - [N/A] Chargement des variables depuis .env
+2025-02-04 20:47:59 [INFO] src.config.config - [N/A] Variables chargées depuis le fichier .env
+2025-02-04 20:47:59 [INFO] src.infrastructure.config.database - [N/A] URL de la base de données : postgresql+asyncpg://guildbot:marlene12@localhost:5432/guild_bot
+2025-02-04 20:47:59 [INFO] src.infrastructure.config.database - [N/A] Base de données initialisée avec succès
+2025-02-04 20:47:59 [INFO] src.infrastructure.config.db_state - [N/A] Base de données initialisée avec succès
+2025-02-04 20:47:59 [DEBUG] src.application.services.task_service - [N/A] TaskService initialisé
+2025-02-04 20:48:08 [DEBUG] src.application.services.task_service - [N/A] TaskService initialisé
